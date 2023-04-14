@@ -29,16 +29,13 @@ public class Cliente extends Usuario{
     
     //elegir armas o armaduras activas
     public void elegirEquipo() {
-        String equipo;
-        menu.askElegirEquipo(equipo); //elegir si quiere cambiar un arma o una armadura
+        String equipo= menu.askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
         if (equipo=="armas") {
-            Arma arma;
-            menu.askArma(arma, this.personaje.getEquipo(), this.personaje.getArmas_activas());
+            Arma arma = menu.askArma(this.personaje.getEquipo(), this.personaje.getArmas_activas());
             this.personaje.ponerArmaActiva(arma);  //cambia la última de la lista por la que le pasamos como parámetro
         }
         else {
-            Armadura armadura;
-            menu.askArmadura(armadura, this.personaje.getEquipo(), this.personaje.getArmadura_activa());
+            Armadura armadura = menu.askArmadura(this.personaje.getEquipo(), this.personaje.getArmadura_activa());
             this.personaje.ponerArmaduraActiva(armadura);
         }
     }

@@ -14,7 +14,9 @@ public class BaseUsuarios {
     private Map<String, String> contras;
     
     public void load () {
-        
+        read();
+        actualizarPersonajes(); //busca cada personaje activo de cada cliente en el ranking para asegurarse de tener el personaje actualizado en caso de que un OperadorSistema
+        //lo haya modificado
     }
     
     public boolean login (String userName, String pass) {
