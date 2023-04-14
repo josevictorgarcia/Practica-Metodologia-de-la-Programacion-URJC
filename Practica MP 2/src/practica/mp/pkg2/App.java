@@ -13,6 +13,7 @@ import java.util.*;
 public class App {
     
     private BaseUsuarios baseUsers;
+    private Ranking ranking;
     private Menu menu;
     private Usuario usuarioActivo;
     
@@ -22,6 +23,8 @@ public class App {
         loadRanking();
         while (!inicioSesion(menu, usuarioActivo)) {} //se queda en blucle hasta que el usuario se registre o se loguee
         menu.inicio(usuarioActivo);
+        ranking.save();
+        baseUsers.save();
         
         
         

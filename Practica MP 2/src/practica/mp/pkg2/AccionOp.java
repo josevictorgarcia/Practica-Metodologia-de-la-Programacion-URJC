@@ -8,7 +8,6 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public enum Accion {
-    DarseBaja, SalirSistema, ModificarPersonajes, ElegirEquipo, Desafiar, ResponderDesafios, ConsultaCombates, ConsultaRanking
+public enum AccionOp {
+    DarseBaja, SalirSistema, EditarPersonaje, CompletarPersonaje, ValidarDesafios, Banear, Desbanear
 }
-//prueba

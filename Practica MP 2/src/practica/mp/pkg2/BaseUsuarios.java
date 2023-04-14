@@ -37,6 +37,10 @@ public class BaseUsuarios {
         Usuario user = new Usuario(userName, pass);
         usuario.add(user, userName);
     }
+    
+    public void eliminar (String userName) {
+        usuarios.remove(userName);
+    }
             
     
 }
