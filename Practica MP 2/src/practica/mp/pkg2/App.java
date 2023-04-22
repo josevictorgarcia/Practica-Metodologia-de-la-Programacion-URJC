@@ -22,7 +22,7 @@ public class App {
         loadBase();
         loadRanking();
         while (!inicioSesion(menu, usuarioActivo)) {} //se queda en blucle hasta que el usuario se registre o se loguee
-        menu.inicio(usuarioActivo);
+        menu.inicio(usuarioActivo, baseUsers);
         ranking.save();
         baseUsers.save();
         
@@ -48,7 +48,7 @@ public class App {
         }
         else {
             menu.askLoginData(userName, pass);
-            if baseUsers.login(userName, pass) {
+            if (baseUsers.login(userName, pass)) {
                 usuarioActivo= baseUsers.getUsuario(userName);
                 return true;
             } 

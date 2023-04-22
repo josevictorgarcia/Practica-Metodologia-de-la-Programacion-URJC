@@ -8,7 +8,6 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-import java.util.*;
 
 public class MetProgUrjcGame {
 

@@ -43,6 +43,10 @@ public class BaseUsuarios {
     public void eliminar (String userName) {
         usuarios.remove(userName);
     }
+
+    void save() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
             
     
 }

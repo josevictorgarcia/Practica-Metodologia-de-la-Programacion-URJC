@@ -4,6 +4,8 @@
  */
 package practica.mp.pkg2;
 
+import java.util.List;
+
 /**
  *
  * @author Alex
@@ -16,5 +18,9 @@ public class Ranking {
     }
     public void actualizarPersonaje (Personaje per) {
         //iterar estructura hasta encontrar personaje con nombre igual, anotar su posición y cambiarlo por el nuevo
+    }
+
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
