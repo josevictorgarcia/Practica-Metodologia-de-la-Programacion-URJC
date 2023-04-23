@@ -9,8 +9,9 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.util.*;
-        
-public class Personaje {
+import java.io.Serializable;
+
+public class Personaje implements Serializable, Comparable<Personaje>{
     private String nombre;
     private Habilidad habilidad_especial;
     private List<Equipo> equipo;
@@ -20,11 +21,28 @@ public class Personaje {
     private int oro;
     private int salud;
     private int poder;
-    private int potencial_ataque;
+    private int potencial_ataque; 
+    private int desafios_ganados;
     
     public Personaje (String nombre) {
         this.nombre=nombre;
     }
     
+    @Override
+    public int compareTo(Personaje p) {
+        return this.desafios_ganados - p.desafios_ganados;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getDesafios_ganados() {
+        return desafios_ganados;
+    }
+
+    public void setDesafios_ganados(int desafios_ganados) {
+        this.desafios_ganados = desafios_ganados;
+    }
     
 }
