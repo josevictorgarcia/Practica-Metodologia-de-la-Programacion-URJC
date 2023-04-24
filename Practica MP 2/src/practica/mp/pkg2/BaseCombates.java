@@ -12,6 +12,7 @@ package practica.mp.pkg2;
 import java.util.*;
 
 public class BaseCombates {
+    //guarda los ultimos 10 combates de cada usuario
     private Map <List<Combate>, String> combates;
     
     public void load() {

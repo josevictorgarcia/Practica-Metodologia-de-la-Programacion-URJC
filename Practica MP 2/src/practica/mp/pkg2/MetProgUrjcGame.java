@@ -9,6 +9,7 @@ package practica.mp.pkg2;
  * @author Alex
  */
 
+//clase main 
 public class MetProgUrjcGame {
 
     /**

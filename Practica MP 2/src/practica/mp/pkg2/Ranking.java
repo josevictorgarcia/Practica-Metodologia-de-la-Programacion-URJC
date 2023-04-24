@@ -14,14 +14,17 @@ import java.util.logging.Logger;
  *
  * @author Alex
  */
+
+//guarda una lista de personajes ordenada en funcion de desfios_ganados
+
 public class Ranking {
-    private List<Usuario> ranking;
+    private List<Personaje> ranking;
 
     public Ranking() {
        try {
             FileInputStream archivo = new FileInputStream("ranking.txt");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
-            ranking = (List<Usuario>) rankingEntrada.readObject();
+            ranking = (List<Personaje>) rankingEntrada.readObject();
             rankingEntrada.close();
             archivo.close();
        }catch(IOException | ClassNotFoundException e) {
@@ -29,11 +32,29 @@ public class Ranking {
         }
     }
     
-    public void añadirUsuario (Usuario user) {
-        ranking.add(user);
-        actualizarRanking();    
+    //introduce personaje ordenado por desafios_ganados
+    public void añadirPersonaje (Personaje per) {
+        Iterator<String> iterator = ranking.iterator();
+        boolean end = true;
+        Personaje aux;
+        int pos = 0;
+        while (iterator.hasNext() & end){
+            aux=iterator.next();
+            if (aux.getDesafios_ganados() < per.getDesafios_ganados()) {
+                end=false;
+            }
+            pos++;   
+        }
+        if (pos==0) {
+            ranking.add(per); 
+        }
+        else {
+            ranking.add(pos-1, per);
+        }
+        actualizarRanking();
+        
+        
     }
-    
     public void actualizarRanking () {
         Collections.sort(ranking);
         try {
@@ -48,27 +69,8 @@ public class Ranking {
     }
     public void mostrarRanking(){
         System.out.println("\nRanking:");
-        for (Usuario u : ranking) {
-            System.out.println("Nombre: " + u.getNickname() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
+        for (Personaje p : ranking) {
+            System.out.println("Nombre: " + p.getNombre() + ", Desafíos ganados: " + p.getDesafios_ganados());
         }
-    }
-    public Usuario buscarUsuario(String nickname){
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ranking.txt"))) {
-            ranking = (List<Usuario>) ois.readObject(); // Lee la lista de objetos Usuario desde el archivo
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        
-        // Busca el usuario con el nickname especificado en la lista
-        //boolean encontrado = false;
-        for (Usuario usuario : ranking) {
-            if (usuario.getNickname().equals(nickname)) {
-                //encontrado = true;
-                return usuario;
-            }else{
-                return null;
-            }
-        }
-        return null;
     }
 }

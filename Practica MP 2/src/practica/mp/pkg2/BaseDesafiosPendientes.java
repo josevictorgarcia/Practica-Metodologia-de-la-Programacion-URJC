@@ -12,6 +12,11 @@ package practica.mp.pkg2;
 import java.util.*;
 
 public class BaseDesafiosPendientes {
+    
+    //base de datos que guarda para cada usuario los desafios que le han enviado. 
+    //Cuando alguien envia un desafio se añade el Desafio sin validar al usuario desafiado
+    //Despues un Operador de sistema lo valida
+    //Finalmente el desafiado lo responde
     private Map< List<Desafio> , String > desafiosUsuarios;
     
     public void load() {

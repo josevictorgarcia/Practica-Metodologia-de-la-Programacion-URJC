@@ -7,6 +7,10 @@ import java.util.*;
  *
  * @author Alex
  */
+
+
+//Clase principal que inicia el programa.
+//No se podia en MetProgUrjcGame porque se usa estático y no se podian invocar objetos
 public class App {
     
     private BaseUsuarios baseUsers;

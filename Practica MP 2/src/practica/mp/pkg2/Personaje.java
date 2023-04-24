@@ -19,11 +19,11 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     private Equipo armadura_activa;
     private List<Esbirro> esbirros;
     private int oro;
-    private int salud;
-    private int poder;
-    private int potencial_ataque; 
+    private int salud;                                  //Valor entre 0 y 5 --> Determinado por el numero de exitos.
+    private int poder;                                  //Valor entre 1 y 5
+    private int potencial_ataque;                       //Valor entre 0 y 5 --> Determinado por el numero de exitos.
     private int desafios_ganados;
-    
+
     public Personaje (String nombre) {
         this.nombre=nombre;
     }
@@ -44,5 +44,38 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     public void setDesafios_ganados(int desafios_ganados) {
         this.desafios_ganados = desafios_ganados;
     }
+
+    public int getPotencialAtaque(){
+        return this.potencial_ataque;
+    }
     
+    public void setSalud(int n){
+        this.salud = n;
+    }
+
+    public int getSalud(){
+        return this.salud;
+    }
+
+    public void setPotencialAtaque(int n){       //Usamos polimorfismo de acuerdo a que tipo de personaje nos estamos refiriendo
+        this.potencial_ataque = n;
+    }
+
+    public void setPoder(int n){
+        this.poder = n;
+    }
+
+    public int getPoder(){
+        return this.poder;
+    }
+
+    @Override
+    public boolean equals(Object o){ 
+        if (o==this) {return true;}
+        else if (!(o instanceof Personaje)) {return false;}
+        else {
+            Personaje p = (Personaje) o;
+            return (p.getNombre()==this.getNombre());
+        }
+    }
 }
