@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package practica.mp.pkg2;
 
 import java.util.*;
@@ -16,15 +13,20 @@ public class App {
     private Ranking ranking;
     private Menu menu;
     private Usuario usuarioActivo;
+
+    public App() {
+        menu = new Menu();
+    }
     
     //es el main pero sin ser estático
-    public void run() {
-        loadBase();
-        loadRanking();
-        while (!inicioSesion(menu, usuarioActivo)) {} //se queda en blucle hasta que el usuario se registre o se loguee
-        menu.inicio(usuarioActivo, baseUsers);
-        ranking.save();
-        baseUsers.save();
+    public void run() throws InterruptedException {
+        menu.inicio();
+        //loadBase();
+        //loadRanking();
+        //while (!inicioSesion(menu, usuarioActivo)) {} //se queda en blucle hasta que el usuario se registre o se loguee
+        //menu.inicio(usuarioActivo, baseUsers);
+        //ranking.save();
+        //baseUsers.save();
         
         
         

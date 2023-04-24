@@ -15,13 +15,13 @@ import java.util.logging.Logger;
  * @author Alex
  */
 public class Ranking {
-    private List<Personaje> ranking;
+    private List<Usuario> ranking;
 
     public Ranking() {
        try {
             FileInputStream archivo = new FileInputStream("ranking.txt");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
-            ranking = (List<Personaje>) rankingEntrada.readObject();
+            ranking = (List<Usuario>) rankingEntrada.readObject();
             rankingEntrada.close();
             archivo.close();
        }catch(IOException | ClassNotFoundException e) {
@@ -29,12 +29,11 @@ public class Ranking {
         }
     }
     
-    public void añadirPersonaje (Personaje per) {
-        ranking.add(per);
-        actualizarRanking();
-        
-        
+    public void añadirUsuario (Usuario user) {
+        ranking.add(user);
+        actualizarRanking();    
     }
+    
     public void actualizarRanking () {
         Collections.sort(ranking);
         try {
@@ -49,8 +48,27 @@ public class Ranking {
     }
     public void mostrarRanking(){
         System.out.println("\nRanking:");
-        for (Personaje p : ranking) {
-            System.out.println("Nombre: " + p.getNombre() + ", Desafíos ganados: " + p.getDesafios_ganados());
+        for (Usuario u : ranking) {
+            System.out.println("Nombre: " + u.getNickname() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
         }
+    }
+    public Usuario buscarUsuario(String nickname){
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ranking.txt"))) {
+            ranking = (List<Usuario>) ois.readObject(); // Lee la lista de objetos Usuario desde el archivo
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        
+        // Busca el usuario con el nickname especificado en la lista
+        //boolean encontrado = false;
+        for (Usuario usuario : ranking) {
+            if (usuario.getNickname().equals(nickname)) {
+                //encontrado = true;
+                return usuario;
+            }else{
+                return null;
+            }
+        }
+        return null;
     }
 }

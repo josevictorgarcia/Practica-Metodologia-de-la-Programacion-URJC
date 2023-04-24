@@ -8,10 +8,11 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
     private String nombre;
     private String nickname;
     private String contrasena;
+    private Personaje personaje;
     
     public void darseBaja(BaseUsuarios baseUsuarios) {
         baseUsuarios.eliminar(this.getNombre());
@@ -23,7 +24,16 @@ public class Usuario {
     public String getNombre() {
         return nombre;
     }
+    @Override
+    public int compareTo(Usuario u) {
+        return this.personaje.getDesafios_ganados() - u.personaje.getDesafios_ganados();
+    }
 
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+    
+    
     /**
      * @param nombre the nombre to set
      */
