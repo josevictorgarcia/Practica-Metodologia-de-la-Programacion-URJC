@@ -8,6 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
+
+//es una pantalla, hace de interfaz con el usuario. Es quien le muestra o le pide cosas al usuario.
 public class Menu {
     
     //pregunta en bucle que hacer y le dice al usuario que lo haga
@@ -17,10 +19,10 @@ public class Menu {
         AccionOp accionOp;
         Cliente cliente;
         OperadorSistema op;
-        if (user instanceof Cliente) {
+        if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
             cliente= (Cliente) user;
-            while (!end) {
-                pedirAccionCliente(accionCliente);
+            while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
+                pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
                 switch (accionCliente) {
                     case DarseBaja:
                         cliente.darseBaja(base);
@@ -52,7 +54,7 @@ public class Menu {
         } 
         else {
             op= (OperadorSistema) user;
-            while (!end) {
+            while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
                 pedirAccionOperador(accionOp);
                 switch (accionOp) {
                     case DarseBaja:

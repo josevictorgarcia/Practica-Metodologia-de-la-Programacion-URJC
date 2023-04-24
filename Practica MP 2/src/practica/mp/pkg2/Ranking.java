@@ -14,6 +14,9 @@ import java.util.logging.Logger;
  *
  * @author Alex
  */
+
+//guarda una lista de personajes ordenada en funcion de desfios_ganados
+
 public class Ranking {
     private List<Personaje> ranking;
 
@@ -29,8 +32,25 @@ public class Ranking {
         }
     }
     
+    //introduce personaje ordenado por desafios_ganados
     public void añadirPersonaje (Personaje per) {
-        ranking.add(per);
+        Iterator<String> iterator = ranking.iterator();
+        boolean end = true;
+        Personaje aux;
+        int pos = 0;
+        while (iterator.hasNext() & end){
+            aux=iterator.next();
+            if (aux.getDesafios_ganados() < per.getDesafios_ganados()) {
+                end=false;
+            }
+            pos++;   
+        }
+        if (pos==0) {
+            ranking.add(per); 
+        }
+        else {
+            ranking.add(pos-1, per);
+        }
         actualizarRanking();
         
         

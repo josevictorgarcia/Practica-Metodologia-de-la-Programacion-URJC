@@ -8,6 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
+
+//guarda la informacion del Cliente y se le llama para hacer las acciones a las que tiene derecho
 public class Cliente extends Usuario{
     private String numRegistro;
     private Personaje personaje;
@@ -31,11 +33,11 @@ public class Cliente extends Usuario{
     public void elegirEquipo() {
         String equipo= menu.askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
         if (equipo=="armas") {
-            Arma arma = menu.askArma(this.personaje.getEquipo(), this.personaje.getArmas_activas());
-            this.personaje.ponerArmaActiva(arma);  //cambia la última de la lista por la que le pasamos como parámetro
+            Arma arma = menu.askArma(this.personaje.getEquipo(), this.personaje.getArmas_activas()); //muestra todas las armas activas y no activas y pide que elija una para poner activa
+            this.personaje.ponerArmaActiva(arma);  //cambia la última arma de la lista por la que le pasamos como parámetro
         }
         else {
-            Armadura armadura = menu.askArmadura(this.personaje.getEquipo(), this.personaje.getArmadura_activa());
+            Armadura armadura = menu.askArmadura(this.personaje.getEquipo(), this.personaje.getArmadura_activa()); //muestra armaduras y pide elegir una para ponerla activa
             this.personaje.ponerArmaduraActiva(armadura);
         }
     }
@@ -43,9 +45,9 @@ public class Cliente extends Usuario{
     public void desafiar () {
         String desafiado;
         int oro;
-        menu.askDesafio(desafiado, oro);
+        menu.askDesafio(desafiado, oro); //pide el nombre de usuario y el oro que desea apostar
         Desafio des = new Desafio(this.getNombre(), desafiado, oro);
-        enviarDesafio(Desafio, desafiado);
+        enviarDesafio(Desafio, desafiado); //sube el desafio a baseDesafiosPendientes
     }
     
     public void responderDesafios (BaseDesafiosPendientes base) {

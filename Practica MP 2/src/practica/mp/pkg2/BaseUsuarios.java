@@ -10,6 +10,8 @@ package practica.mp.pkg2;
  */
 import java.util.*;
 public class BaseUsuarios {
+    
+    //base de datos que guarda los usuarios con su información y contraseña
     private Map <Usuario, String> usuarios;
     private Map<String, String> contras;
     

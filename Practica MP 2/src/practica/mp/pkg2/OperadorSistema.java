@@ -8,21 +8,23 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
+
+
 public class OperadorSistema extends Usuario{
     
     public void editarPersonaje(Ranking rank) {
         Personaje per;
-        per= menu.askPersonaje(rank);
-        menu.askCambiarPersonaje(per);
+        per= menu.askPersonaje(rank);  //muestra ranking y pide que elija un personaje
+        menu.askCambiarPersonaje(per); //pide los datos (nombre, etc) para cambiar al personaje y los cambia
     }
     
     public void completarPersonaje (Ranking rank ) {
         Personaje per;
-        per= menu.askPersonaje(rank);
+        per= menu.askPersonaje(rank);  //muestra ranking y pide que elija un personaje para completar
         String opcion = menu.askAñadir();
         switch (opcion) {
             case "armas":
-                Arma arma = menu.askArmaNueva();
+                Arma arma = menu.askArmaNueva(); //pide datos para el arma nueva y la devuelve como objeto
                 per.añadirArma(arma);
                 break;
             case "armaduras":
@@ -41,7 +43,8 @@ public class OperadorSistema extends Usuario{
     }
     
     public void validarDesafios () {
-        
+        Desafio des =menu.askDesafioValidar(baseDesafiosPendientes); //muestra desafios pendientes no validados y pide que elija uno para validarlo
+        des.validar();
     }
     
     

@@ -8,6 +8,9 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
+
+
+
 public class Usuario {
     private String nombre;
     private String nickname;
