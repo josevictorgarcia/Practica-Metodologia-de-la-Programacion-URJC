@@ -122,4 +122,26 @@ public class Menu {
         }    
     }
 */
+    /*public void pedirAccionCliente(AccionCliente accionCliente)throws InterruptedException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Elija lo que quiere hacer: ");
+        if ("DarseBaja".equals(scanner.nextLine())){            
+            accionCliente= accionCliente.DarseBaja;
+        }else if ("SalirSistema".equals(scanner.nextLine())){
+            accionCliente= accionCliente.SalirSistema;
+        }else if ("CambiarPersonaje".equals(scanner.nextLine())){
+            accionCliente= accionCliente.CambiarPersonaje;
+        }else if ("ElegirEquipo".equals(scanner.nextLine())){
+            accionCliente= accionCliente.ElegirEquipo;
+        }else if ("Desafiar".equals(scanner.nextLine())){
+            accionCliente= accionCliente.Desafiar;
+        }else if ("ResponderDesafios".equals(scanner.nextLine())){
+            accionCliente= accionCliente.ResponderDesafios;
+        }else if ("ConsultaCombates".equals(scanner.nextLine())){
+            accionCliente= accionCliente.ConsultaCombates;
+        }else if ("ConsultaRanking".equals(scanner.nextLine())){
+            accionCliente= accionCliente.ConsultaRanking;
+        }
+    }
 }
+*/
