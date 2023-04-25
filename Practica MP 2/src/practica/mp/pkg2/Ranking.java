@@ -24,7 +24,7 @@ public class Ranking {
        try {
             FileInputStream archivo = new FileInputStream("ranking.txt");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
-            ranking = (List<Personaje>) rankingEntrada.readObject();
+            ranking = (List<Usuario>) rankingEntrada.readObject();
             rankingEntrada.close();
             archivo.close();
        }catch(IOException | ClassNotFoundException e) {
@@ -69,8 +69,8 @@ public class Ranking {
     }
     public void mostrarRanking(){
         System.out.println("\nRanking:");
-        for (Personaje p : ranking) {
-            System.out.println("Nombre: " + p.getNombre() + ", Desafíos ganados: " + p.getDesafios_ganados());
+        for (Usuario u : ranking) {
+            System.out.println("Nombre: " + u.getNombre() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
         }
     }
 }

@@ -16,6 +16,7 @@ public class Usuario {
     private String nickname;
     private String contrasena;
     private boolean baneado;
+    private Personaje personaje;
     
     public Usuario (String nombre, String nickname, String contrasena) {
         this.baneado=false;
@@ -82,6 +83,10 @@ public class Usuario {
      */
     public void setBaneado(boolean baneado) {
         this.baneado = baneado;
+    }
+
+    public Personaje getPersonaje() {
+        return personaje;
     }
     
     
