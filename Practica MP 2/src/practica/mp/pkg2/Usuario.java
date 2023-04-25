@@ -25,8 +25,8 @@ public class Usuario {
         this.contrasena=contrasena;
     }
     
-    public void darseBaja(BaseUsuarios baseUsuarios) {
-        baseUsuarios.eliminar(this.getNombre());
+    public void darseBaja(Ranking ranking) {
+        ranking.eliminar(this.getNombre());
     }
 
     /**

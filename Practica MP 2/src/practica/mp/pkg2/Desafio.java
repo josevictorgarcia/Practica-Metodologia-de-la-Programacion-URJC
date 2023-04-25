@@ -29,6 +29,10 @@ public class Desafio {
     public void validar() {
         this.validado=true;
     }
+    public void comenzarDesafio(){
+        this.combate=new Combate(desafiante, desafiado);
+        combate.desarrolloCombate();
+    }
     
     public void aceptar() {
         this.combate = new Combate(this.desafiante, this.desafiado);

@@ -8,6 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Combate {
@@ -19,12 +21,12 @@ public class Combate {
     private Personaje personaje2;       //Personaje 2 que participa en el combate
     private Personaje ganador;
     
-    public Combate(Personae p1, Personaje p2) {
+    public Combate(Personaje p1, Personaje p2) {
         this.ganador=null;
         this.personaje1=p1;
         this.personaje2=p2;
         this.fecha= new Date();
-        this.id_combate= generarID();
+        this.id_combate= generarID(p1,p2,fecha);
     }
 
     public Personaje getPersonaje1(){
@@ -64,5 +66,11 @@ public class Combate {
                 this.ganador=this.personaje2;
             }
         }
+    }
+    
+    private String generarID(Personaje p1, Personaje p2, Date fecha){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        String strDate = dateFormat.format(fecha);
+        return p1.getNombre()+p2.getNombre()+strDate;
     }
 }

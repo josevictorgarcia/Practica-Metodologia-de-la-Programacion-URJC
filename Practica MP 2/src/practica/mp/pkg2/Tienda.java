@@ -4,6 +4,8 @@
  */
 package practica.mp.pkg2;
 
+import java.util.List;
+
 /**
  *
  * @author migue
