@@ -4,31 +4,39 @@
  */
 package practica.mp.pkg2;
 
-import java.util.List;
+import java.util.*;
 
 /**
  *
  * @author migue
  */
 public class Tienda {
-    private List<String> items;
+    private Equipos items;
     
-    public void mostrarItems(){
-        for(String i:items){
-            System.out.println(i);
+    public void comprar(Personaje personaje){
+        items.mostrarEquipos();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce el nombre del equipo a comprar:");
+        String nombreEquipo = scanner.nextLine();
+
+        // Buscar el equipo que deseas modificar
+        Equipo equipoBuscado = null;
+        for (Equipo equipo : items) {
+            if (equipo.getNombre().equals(nombreEquipo)) {
+                equipoBuscado = equipo;
+                break;
+            }
         }
-        
-    }
-    public void comprar(int oro, String item, Personaje personaje){
-        if (personaje.oroSuficiente(oro)==true){
-            personaje.anadirItem(item);
-            personaje.modificarOro(oro);
+        if (equipoBuscado == null) {
+            System.out.println("No se encontró un equipo con ese nombre.");
+        } else {
+            if (personaje.oroSuficiente(equipoBuscado.getCoste())==true){
+                personaje.anadirItem(equipoBuscado);
+                personaje.modificarOro(equipoBuscado.getCoste());
+            }
+            else{
+            System.out.println("No tiene dinero suficiente");
+            }
         }
-        else{
-            mostrarMensajeError();
-        }
-    }
-    public void mostrarMensajeError(){
-        System.out.println("No tiene dinero suficiente");
     }
 }
