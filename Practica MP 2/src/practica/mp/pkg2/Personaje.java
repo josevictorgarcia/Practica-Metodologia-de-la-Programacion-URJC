@@ -78,4 +78,12 @@ public class Personaje implements Serializable, Comparable<Personaje>{
             return (p.getNombre()==this.getNombre());
         }
     }
+    
+    public boolean oroSuficiente(int oro){
+        if(oro<=this.oro){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
