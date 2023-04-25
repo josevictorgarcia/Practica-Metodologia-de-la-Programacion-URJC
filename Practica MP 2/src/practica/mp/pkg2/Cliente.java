@@ -50,8 +50,10 @@ public class Cliente extends Usuario{
         enviarDesafio(Desafio, desafiado); //sube el desafio a baseDesafiosPendientes
     }
     
+    
+    //el usuario solo acepta desafios, no los rechaza. Si no quiere 
     public void responderDesafios (BaseDesafiosPendientes base) {
-        //mucho texto
+        des.aceptar();
     }
     
     public void consultaCombates (BaseCombates base) {

@@ -24,13 +24,82 @@ public class App {
     
     //es el main pero sin ser estático
     public void run() throws InterruptedException {
-        menu.inicio();
+        User user = null;
+        while (user==null){
+            user = menu.inicio();
+        }
         //loadBase();
         //loadRanking();
         //while (!inicioSesion(menu, usuarioActivo)) {} //se queda en blucle hasta que el usuario se registre o se loguee
         //menu.inicio(usuarioActivo, baseUsers);
         //ranking.save();
         //baseUsers.save();
+        //pregunta en bucle que hacer y le dice al usuario que lo haga
+        
+        if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
+            cliente= (Cliente) user;
+            while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
+                pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
+                switch (accionCliente) {
+                    case DarseBaja:
+                        cliente.darseBaja(base);
+                        end=true;
+                        break;
+                    case SalirSistema:
+                        end=true;
+                        break;
+                    case CambiarPersonaje:
+                        cliente.cambiarPersonaje();
+                        break;
+                    case ElegirEquipo:
+                        cliente.elegirEquipo();
+                        break;
+                    case Desafiar:
+                        cliente.desafiar();
+                        break;
+                    case ResponderDesafios:
+                        cliente.responderDesafios();
+                        break;
+                    case ConsultaCombates:
+                        cliente.consultaCombates();
+                        break;
+                    case ConsultaRanking:
+                        cliente.consultaRanking();
+                        break;
+                }
+            }
+        } 
+        else {
+            op= (OperadorSistema) user;
+            while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
+                pedirAccionOperador(accionOp);
+                switch (accionOp) {
+                    case DarseBaja:
+                        op.darseBaja(base);
+                        end=true;
+                        break;
+                    case SalirSistema:
+                        end=true;
+                        break;
+                    case EditarPersonaje:
+                        op.cambiarPersonaje();
+                        break;
+                    case CompletarPersonaje:
+                        op.elegirEquipo();
+                        break;
+                    case ValidarDesafios:
+                        op.desafiar();
+                        break;
+                    case Banear:
+                        op.responderDesafios();
+                        break;
+                    case Desbanear:
+                        op.consultaCombates();
+                        break;
+                }
+            }
+        }    
+    }
         
         
         
@@ -42,27 +111,7 @@ public class App {
         baseUsers.load();
     }
     
-    //pregunta si es registro o login, y añade o busca en la estructura
-    private boolean inicioSesion(Menu menu, Usuario usuarioActivo) {
-        String userName;
-        String pass;
-        if menu.askRegister() {
-            menu.askRegisData(userName, pass);
-            baseUsers.register(userName, pass);
-            usuarioActivo = baseUsers.getUsuario(userName);
-            return true;
-        }
-        else {
-            menu.askLoginData(userName, pass);
-            if (baseUsers.login(userName, pass)) {
-                usuarioActivo= baseUsers.getUsuario(userName);
-                return true;
-            } 
-            else {
-                return false;
-            }
-        }
-    }
+    
     
     private void loadRanking() {
         ranking= new Ranking();

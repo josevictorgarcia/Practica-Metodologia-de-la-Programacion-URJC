@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 //guarda una lista de personajes ordenada en funcion de desfios_ganados
 
 public class Ranking {
-    private List<Personaje> ranking;
+    private List<User> ranking;
 
     public Ranking() {
        try {
