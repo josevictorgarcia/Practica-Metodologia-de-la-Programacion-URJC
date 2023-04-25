@@ -13,6 +13,8 @@ package practica.mp.pkg2;
 public class Cliente extends Usuario{
     private String numRegistro;
     private Personaje personaje;
+    private List<Desafio> desafiosPendientes;
+    private List<Combate> ultimosCombates;
     
     public Cliente () {
         super();
@@ -23,7 +25,7 @@ public class Cliente extends Usuario{
         String nombrePersonaje;
         menu.askPersonajeDatos(nombrePersonaje);
         //ranking.eliminar(personaje) ??? Si cambias de personaje lo eliminamos del ranking?
-        personaje = new Personaje(nombrePersonaje);
+        setPersonaje(new Personaje(nombrePersonaje));
         //baseUsuarios.save() ?? para que el cambio quede reflejado a los que le desafien despues mientras aun no ha finalizado el programa?  En general en cualquier cambio a 
         //personaje también
         
@@ -33,12 +35,12 @@ public class Cliente extends Usuario{
     public void elegirEquipo() {
         String equipo= menu.askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
         if (equipo=="armas") {
-            Arma arma = menu.askArma(this.personaje.getEquipo(), this.personaje.getArmas_activas()); //muestra todas las armas activas y no activas y pide que elija una para poner activa
-            this.personaje.ponerArmaActiva(arma);  //cambia la última arma de la lista por la que le pasamos como parámetro
+            Arma arma = menu.askArma(this.getPersonaje().getEquipo(), this.getPersonaje().getArmas_activas()); //muestra todas las armas activas y no activas y pide que elija una para poner activa
+            this.getPersonaje().ponerArmaActiva(arma);  //cambia la última arma de la lista por la que le pasamos como parámetro
         }
         else {
-            Armadura armadura = menu.askArmadura(this.personaje.getEquipo(), this.personaje.getArmadura_activa()); //muestra armaduras y pide elegir una para ponerla activa
-            this.personaje.ponerArmaduraActiva(armadura);
+            Armadura armadura = menu.askArmadura(this.getPersonaje().getEquipo(), this.getPersonaje().getArmadura_activa()); //muestra armaduras y pide elegir una para ponerla activa
+            this.getPersonaje().ponerArmaduraActiva(armadura);
         }
     }
     
@@ -52,7 +54,8 @@ public class Cliente extends Usuario{
     
     
     //el usuario solo acepta desafios, no los rechaza. Si no quiere 
-    public void responderDesafios (BaseDesafiosPendientes base) {
+    public void responderDesafios () {
+        Desafio des= menu.mostrarDesafios(this.getDesafiosPendientes());
         des.aceptar();
     }
     
@@ -63,5 +66,33 @@ public class Cliente extends Usuario{
     
     public void consultaRanking (Ranking rank) {
         menu.mostrarRanking(rank);
+    }
+
+    /**
+     * @return the numRegistro
+     */
+    public String getNumRegistro() {
+        return numRegistro;
+    }
+
+    /**
+     * @param numRegistro the numRegistro to set
+     */
+    public void setNumRegistro(String numRegistro) {
+        this.numRegistro = numRegistro;
+    }
+
+    /**
+     * @return the personaje
+     */
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+
+    /**
+     * @param personaje the personaje to set
+     */
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
     }
 }

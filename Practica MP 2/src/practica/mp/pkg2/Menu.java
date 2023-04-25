@@ -18,7 +18,7 @@ public class Menu {
     
     
     
-public User inicio() throws InterruptedException{
+public Usuario inicio() throws InterruptedException{
     Scanner scanner = new Scanner(System.in);
     Ranking ranking= new Ranking();
     System.out.println("Pulse '1' para iniciar sesión o '2' para registrarse:");
@@ -98,24 +98,27 @@ public void pedirAccionCliente(AccionCliente accionCliente)throws InterruptedExc
     }else if ("ConsultaRanking".equals(scanner.nextLine())){
         accionCliente= accionCliente.ConsultaRanking;
     }
-    public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Elija lo que quiere hacer: ");
-        if ("DarseBaja".equals(scanner.nextLine())){            
-            accionOp= accionOp.DarseBaja;
-        }else if ("SalirSistema".equals(scanner.nextLine())){
-            accionOp= accionOp.SalirSistema;
-        }else if ("CambiarPersonaje".equals(scanner.nextLine())){
-            accionOp= accionOp.EditarPersonaje;
-        }else if ("ElegirEquipo".equals(scanner.nextLine())){
-            accionOp= accionOp.CompletarPersonaje;
-        }else if ("Desafiar".equals(scanner.nextLine())){
-            accionOp= accionOp.ValidarDesafios;
-        }else if ("ResponderDesafios".equals(scanner.nextLine())){
-            accionOp= accionOp.Banear;
-        }else if ("ConsultaCombates".equals(scanner.nextLine())){
-            accionOp= accionOp.Desbanear;
-        }
+}
+public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Elija lo que quiere hacer: ");
+    if ("DarseBaja".equals(scanner.nextLine())){            
+        accionOp= accionOp.DarseBaja;
+    }else if ("SalirSistema".equals(scanner.nextLine())){
+        accionOp= accionOp.SalirSistema;
+    }else if ("CambiarPersonaje".equals(scanner.nextLine())){
+        accionOp= accionOp.EditarPersonaje;
+    }else if ("ElegirEquipo".equals(scanner.nextLine())){
+        accionOp= accionOp.CompletarPersonaje;
+    }else if ("Desafiar".equals(scanner.nextLine())){
+        accionOp= accionOp.ValidarDesafios;
+    }else if ("ResponderDesafios".equals(scanner.nextLine())){
+        accionOp= accionOp.Banear;
+    }else if ("ConsultaCombates".equals(scanner.nextLine())){
+        accionOp= accionOp.Desbanear;
     }
 }
+    
+   
+
 }
