@@ -1,6 +1,11 @@
 
 package practica.mp.pkg2;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 /**
@@ -18,6 +23,7 @@ public class App {
     private Usuario usuarioActivo;
 
     public App() {
+        ranking = loadRanking();
         menu = new Menu();
     }
     
@@ -65,57 +71,69 @@ public class App {
                         cliente.consultaCombates();
                         break;
                     case ConsultaRanking:
-                        cliente.consultaRanking();
+                        cliente.consultaRanking(ranking);
                         break;
                 }
             }
         } 
         else {
             OperadorSistema op= (OperadorSistema) user;
+            AccionOp accionOp;
             while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
-                pedirAccionOperador(accionOp);
+                menu.pedirAccionOperador(accionOp);
                 switch (accionOp) {
                     case DarseBaja:
-                        op.darseBaja(base);
+                        op.darseBaja(ranking);
                         end=true;
                         break;
                     case SalirSistema:
                         end=true;
                         break;
                     case EditarPersonaje:
-                        op.cambiarPersonaje();
+                        op.editarPersonaje(ranking);
                         break;
                     case CompletarPersonaje:
-                        op.elegirEquipo();
+                        op.completarPersonaje(ranking);
                         break;
                     case ValidarDesafios:
-                        op.desafiar();
+                        op.validarDesafios();
                         break;
                     case Banear:
-                        op.responderDesafios();
+                        op.banear();
                         break;
                     case Desbanear:
-                        op.consultaCombates();
+                        op.desbanear();
                         break;
                 }
             }
         }    
     }
-        
-        
-        
+    
+    public Ranking loadRanking() {
+        try {
+            FileInputStream archivo = new FileInputStream("ranking.ser");
+            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
+            Ranking rank = (Ranking) rankingEntrada.readObject();
+            rankingEntrada.close();
+            archivo.close();
+            return rank;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new Ranking();
+        }
     }
     
-    //carga los usuarios y contraseñas de memoria con un read
-    private void loadBase() {
-        baseUsers = new BaseUsuarios();
-        baseUsers.load();
+    public void saveRanking() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("ranking.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(ranking);
+            rankingSalida.close();
+            archivo.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveRanking");}
     }
-    
-    
-    
-    private void loadRanking() {
-        ranking= new Ranking();
-        ranking.mostrarRanking();
-    }
+   
 }

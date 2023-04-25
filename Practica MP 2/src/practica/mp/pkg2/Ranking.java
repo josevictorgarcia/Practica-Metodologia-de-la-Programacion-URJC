@@ -17,21 +17,13 @@ import java.util.logging.Logger;
 
 //guarda una lista de personajes ordenada en funcion de desfios_ganados
 
-public class Ranking {
+public class Ranking implements Serializable{
     private List<Usuario> ranking;
 
     public Ranking() {
-       try {
-            FileInputStream archivo = new FileInputStream("ranking.txt");
-            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
-            ranking = (List<Usuario>) rankingEntrada.readObject();
-            rankingEntrada.close();
-            archivo.close();
-       }catch(IOException | ClassNotFoundException e) {
-            System.out.println("Error al leer el objeto desde el archivo: " + e.getMessage());
-        }
+       
     }
-    
+
     //introduce personaje ordenado por desafios_ganados
     public void añadirPersonaje (Personaje per) {
         Iterator<String> iterator = ranking.iterator();

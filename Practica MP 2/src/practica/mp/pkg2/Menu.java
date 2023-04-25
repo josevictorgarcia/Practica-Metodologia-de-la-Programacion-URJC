@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package practica.mp.pkg2;
+import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -118,6 +119,50 @@ public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
         accionOp= accionOp.Desbanear;
     }
 }
+
+private String pedirString (String mensaje) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println(mensaje);
+    String respuesta = scanner.nextLine();
+    scanner.close();
+    return respuesta;
+}
+
+private void mostrarString (String mensaje) {
+    System.out.println(mensaje);
+}
+
+public String askNombrePersonaje () {
+    return pedirString("Introduzca nombre para su nuevo personaje");
+}
+
+public String askElegirEquipo() {
+    return pedirString("Escriba 'armas' si quiere cambiar un arma. Escriba cualquier otra cosa para cambiar armadura");
+}
+
+public Arma askArma(List<Equipo> equipo, List<Arma> armasActivas) {
+    mostrarString("Las armas en tu inventario son:");
+    int pos =0;
+    for (Equipo i: equipo) {
+            if (i instanceof Arma) {
+                mostrarString(pos + ": " +i.getNombre());
+            }
+            pos++;
+        }
+    mostrarString("Las armas activas son :");
+    for (Arma i: armasActivas) {
+        mostrarString(i.getNombre());
+    }
+    String respuesta = pedirString("Escriba el numero del arma que desea incluir como activa");
+    try {
+        int num = Integer.parseInt(respuesta);
+        return (Arma) equipo.get(num); 
+    }
+    catch (Exception ex){
+        System.out.println("Error class menu method askArma");
+    }
+}
+
     
    
 

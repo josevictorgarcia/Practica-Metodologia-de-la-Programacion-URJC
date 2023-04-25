@@ -42,6 +42,7 @@ public class OperadorSistema extends Usuario{
         }
     }
     
+    
     public void validarDesafios () {
         Desafio des =menu.askDesafioValidar(baseDesafiosPendientes); //muestra desafios pendientes no validados y pide que elija uno para validarlo
         des.validar();

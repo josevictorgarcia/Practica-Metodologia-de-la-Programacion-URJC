@@ -26,11 +26,24 @@ public class Personaje implements Serializable, Comparable<Personaje>{
 
     public Personaje (String nombre) {
         this.nombre=nombre;
+        this.equipo= new ArrayList();
+        this.armas_activas = new ArrayList();
     }
     
     @Override
     public int compareTo(Personaje p) {
         return this.desafios_ganados - p.desafios_ganados;
+    }
+    
+    public void ponerArmaActiva (Arma arma) {
+        if (arma.getManos()==2) {
+                armas_activas.clear();
+                armas_activas.add(arma);
+            }
+        else {
+            armas_activas.remove(0);
+            armas_activas.add(0,arma);
+        }
     }
 
     public String getNombre() {
@@ -46,7 +59,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     }
 
     public int getPotencialAtaque(){
-        return this.potencial_ataque;
+        return this.getPotencial_ataque();
     }
     
     public void setSalud(int n){
@@ -58,7 +71,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     }
 
     public void setPotencialAtaque(int n){       //Usamos polimorfismo de acuerdo a que tipo de personaje nos estamos refiriendo
-        this.potencial_ataque = n;
+        this.setPotencial_ataque(n);
     }
 
     public void setPoder(int n){
@@ -85,5 +98,109 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         }else{
             return false;
         }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the habilidad_especial
+     */
+    public Habilidad getHabilidad_especial() {
+        return habilidad_especial;
+    }
+
+    /**
+     * @param habilidad_especial the habilidad_especial to set
+     */
+    public void setHabilidad_especial(Habilidad habilidad_especial) {
+        this.habilidad_especial = habilidad_especial;
+    }
+
+    /**
+     * @return the equipo
+     */
+    public List<Equipo> getEquipo() {
+        return equipo;
+    }
+
+    /**
+     * @param equipo the equipo to set
+     */
+    public void setEquipo(List<Equipo> equipo) {
+        this.equipo = equipo;
+    }
+
+    /**
+     * @return the armas_activas
+     */
+    public List<Equipo> getArmas_activas() {
+        return armas_activas;
+    }
+
+    /**
+     * @param armas_activas the armas_activas to set
+     */
+    public void setArmas_activas(List<Equipo> armas_activas) {
+        this.armas_activas = armas_activas;
+    }
+
+    /**
+     * @return the armadura_activa
+     */
+    public Equipo getArmadura_activa() {
+        return armadura_activa;
+    }
+
+    /**
+     * @param armadura_activa the armadura_activa to set
+     */
+    public void setArmadura_activa(Equipo armadura_activa) {
+        this.armadura_activa = armadura_activa;
+    }
+
+    /**
+     * @return the esbirros
+     */
+    public List<Esbirro> getEsbirros() {
+        return esbirros;
+    }
+
+    /**
+     * @param esbirros the esbirros to set
+     */
+    public void setEsbirros(List<Esbirro> esbirros) {
+        this.esbirros = esbirros;
+    }
+
+    /**
+     * @return the oro
+     */
+    public int getOro() {
+        return oro;
+    }
+
+    /**
+     * @param oro the oro to set
+     */
+    public void setOro(int oro) {
+        this.oro = oro;
+    }
+
+    /**
+     * @return the potencial_ataque
+     */
+    public int getPotencial_ataque() {
+        return potencial_ataque;
+    }
+
+    /**
+     * @param potencial_ataque the potencial_ataque to set
+     */
+    public void setPotencial_ataque(int potencial_ataque) {
+        this.potencial_ataque = potencial_ataque;
     }
 }

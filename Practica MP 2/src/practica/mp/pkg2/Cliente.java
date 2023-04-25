@@ -8,7 +8,7 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-
+import java.util.*;
 //guarda la informacion del Cliente y se le llama para hacer las acciones a las que tiene derecho
 public class Cliente extends Usuario{
     private String numRegistro;
@@ -16,14 +16,15 @@ public class Cliente extends Usuario{
     private List<Desafio> desafiosPendientes;
     private List<Combate> ultimosCombates;
     
-    public Cliente () {
-        super();
+    public Cliente (String nombre, String nickname, String contrasena) {
+        super(nombre, nickname,contrasena);
+        this.numRegistro=generarNumRegistro();
         personaje= new Personaje(this.getNombre()); //por defecto crea un personaje con su mismo nombre
     }
     
     public void cambiarPersonaje() {
         String nombrePersonaje;
-        menu.askPersonajeDatos(nombrePersonaje);
+        nombrePersonaje= menu.askNombrePersonaje();
         //ranking.eliminar(personaje) ??? Si cambias de personaje lo eliminamos del ranking?
         setPersonaje(new Personaje(nombrePersonaje));
         //baseUsuarios.save() ?? para que el cambio quede reflejado a los que le desafien despues mientras aun no ha finalizado el programa?  En general en cualquier cambio a 
@@ -34,7 +35,7 @@ public class Cliente extends Usuario{
     //elegir armas o armaduras activas
     public void elegirEquipo() {
         String equipo= menu.askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
-        if (equipo=="armas") {
+        if (equipo.equals("armas")) {
             Arma arma = menu.askArma(this.getPersonaje().getEquipo(), this.getPersonaje().getArmas_activas()); //muestra todas las armas activas y no activas y pide que elija una para poner activa
             this.getPersonaje().ponerArmaActiva(arma);  //cambia la última arma de la lista por la que le pasamos como parámetro
         }
@@ -59,9 +60,8 @@ public class Cliente extends Usuario{
         des.aceptar();
     }
     
-    public void consultaCombates (BaseCombates base) {
-        List<Combate> list = base.getCombates(this.getNombre());
-        menu.mostrarCombates(list);
+    public void consultaCombates () {
+        menu.mostrarCombates(this.ultimosCombates);
     }
     
     public void consultaRanking (Ranking rank) {
@@ -94,5 +94,33 @@ public class Cliente extends Usuario{
      */
     public void setPersonaje(Personaje personaje) {
         this.personaje = personaje;
+    }
+
+    /**
+     * @return the desafiosPendientes
+     */
+    public List<Desafio> getDesafiosPendientes() {
+        return desafiosPendientes;
+    }
+
+    /**
+     * @param desafiosPendientes the desafiosPendientes to set
+     */
+    public void setDesafiosPendientes(List<Desafio> desafiosPendientes) {
+        this.desafiosPendientes = desafiosPendientes;
+    }
+
+    /**
+     * @return the ultimosCombates
+     */
+    public List<Combate> getUltimosCombates() {
+        return ultimosCombates;
+    }
+
+    /**
+     * @param ultimosCombates the ultimosCombates to set
+     */
+    public void setUltimosCombates(List<Combate> ultimosCombates) {
+        this.ultimosCombates = ultimosCombates;
     }
 }
