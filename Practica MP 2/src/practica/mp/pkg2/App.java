@@ -37,7 +37,7 @@ public class App {
         //pregunta en bucle que hacer y le dice al usuario que lo haga
         
         if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
-            cliente= (Cliente) user;
+            Cliente cliente= (Cliente) user;
             while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
                 pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
                 switch (accionCliente) {
@@ -70,7 +70,7 @@ public class App {
             }
         } 
         else {
-            op= (OperadorSistema) user;
+            OperadorSistema op= (OperadorSistema) user;
             while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
                 pedirAccionOperador(accionOp);
                 switch (accionOp) {

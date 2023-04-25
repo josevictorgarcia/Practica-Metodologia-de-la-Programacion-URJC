@@ -15,6 +15,14 @@ public class Usuario {
     private String nombre;
     private String nickname;
     private String contrasena;
+    private boolean baneado;
+    
+    public Usuario (String nombre, String nickname, String contrasena) {
+        this.baneado=false;
+        this.nombre=nombre;
+        this.nickname=nickname;
+        this.contrasena=contrasena;
+    }
     
     public void darseBaja(BaseUsuarios baseUsuarios) {
         baseUsuarios.eliminar(this.getNombre());
@@ -60,6 +68,20 @@ public class Usuario {
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    /**
+     * @return the baneado
+     */
+    public boolean isBaneado() {
+        return baneado;
+    }
+
+    /**
+     * @param baneado the baneado to set
+     */
+    public void setBaneado(boolean baneado) {
+        this.baneado = baneado;
     }
     
     

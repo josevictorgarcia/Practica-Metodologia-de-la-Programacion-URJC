@@ -47,5 +47,14 @@ public class OperadorSistema extends Usuario{
         des.validar();
     }
     
+    public void banear() {
+        Usuario user = menu.mostrarRanking(ranking); //elige un usuario a banear
+        user.setBaneado(true);
+    }
+    
+    public void desbanear() {
+        Usuario user = menu.mostrarRanking(ranking);
+        user.setBaneado(false);
+    }
     
 }
