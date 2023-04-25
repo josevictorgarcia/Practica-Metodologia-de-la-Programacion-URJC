@@ -66,6 +66,6 @@ public class App {
     
     private void loadRanking() {
         ranking= new Ranking();
-        ranking.load();
+        ranking.mostrarRanking();
     }
 }
