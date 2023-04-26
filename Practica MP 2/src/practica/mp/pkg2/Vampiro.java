@@ -11,8 +11,8 @@ package practica.mp.pkg2;
 public class Vampiro extends Personaje {
     private int sangre;
 
-    public Vampiro(String s){
-        super(s);
+    public Vampiro(String nombre, int poder, Disciplina disciplina){
+        super(nombre, poder, disciplina);
         this.sangre = 5;            //NOTA: Hay que inicializar el valor de la sangre a algun numero. No se puede quedar como constante 5
     }
 

@@ -10,4 +10,9 @@ package practica.mp.pkg2;
  */
 public class Don extends Habilidad{
     private int valorMin;
+    
+    public Don (String nombre, int ataque, int defensa, int rabia_min) {
+        super(nombre, ataque, defensa);
+        this.valorMin=rabia_min;
+    }
 }

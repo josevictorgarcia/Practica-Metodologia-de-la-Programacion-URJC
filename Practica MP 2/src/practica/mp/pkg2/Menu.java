@@ -416,4 +416,48 @@ public Usuario askUsuarioDesbanear (Ranking ranking) {
     return user;
 }
 
+public Personaje askPersonajeNuevo() {
+    String nombre = pedirString("Escribe nombre personaje: ");
+    int poder = pedirInt("Escribe poder entre 1-5");
+    int tipo = pedirInt("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador");
+    if (tipo==0) {
+        Disciplina disciplina = menu.askDisciplinaNueva();
+        Vampiro vampiro = new Vampiro(nombre, poder, disciplina);
+        return vampiro;
+    }
+    else if (tipo==1) {
+        Don don = menu.askDonNuevo();
+        Licantropo licantropo = new Licantropo(nombre, poder, don);
+        return licantropo;
+    }
+    else {
+        Talento talento = menu.askTalentoNuevo();
+        Cazador cazador = new Cazador(nombre, poder, talento);
+        return cazador;
+    }
+}
+
+public Disciplina askDisciplinaNueva() {
+    String nombre = pedirString("Escribe nombre disciplina :");
+    int ataque = pedirInt("Escribe valor ataque 1-3");
+    int defensa=pedirInt("Escribe valor defensa 1-3");
+    int coste=pedirInt("Escribe coste 1-3");
+    return new Disciplina(nombre,ataque,defensa,coste);
+}
+
+public Don askDonNuevo() {
+    String nombre = pedirString("Escribe nombre don :");
+    int ataque = pedirInt("Escribe valor ataque 1-3");
+    int defensa=pedirInt("Escribe valor defensa 1-3");
+    int rabia_minima=pedirInt("Escribe rabia minima 1-3");
+    return new Don(nombre,ataque,defensa,rabia_minima);
+}
+
+public Talento askTalentoNuevo() {
+    String nombre = pedirString("Escribe nombre talento :");
+    int ataque = pedirInt("Escribe valor ataque 1-3");
+    int defensa=pedirInt("Escribe valor defensa 1-3");
+    return new Talento(nombre,ataque,defensa);
+}
+
 }

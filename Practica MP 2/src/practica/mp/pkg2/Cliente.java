@@ -23,10 +23,8 @@ public class Cliente extends Usuario{
     }
     
     public void cambiarPersonaje() {
-        String nombrePersonaje;
-        nombrePersonaje= menu.askNombrePersonaje();
         //ranking.eliminar(personaje) ??? Si cambias de personaje lo eliminamos del ranking?
-        setPersonaje(new Personaje(nombrePersonaje));
+        setPersonaje(menu.askPersonajeNuevo());
         //baseUsuarios.save() ?? para que el cambio quede reflejado a los que le desafien despues mientras aun no ha finalizado el programa?  En general en cualquier cambio a 
         //personaje también
         

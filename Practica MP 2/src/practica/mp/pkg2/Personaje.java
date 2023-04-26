@@ -25,12 +25,20 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     private int potencial_ataque;                       //Valor entre 0 y 5 --> Determinado por el numero de exitos.
     private int desafios_ganados;
 
-    public Personaje (String nombre) {
+    public Personaje (String nombre, int poder, Habilidad habilidad) {
         this.nombre=nombre;
+        this.poder=poder;
+        this.habilidad_especial=habilidad;
+        
+        this.modificadores=new ArrayList();
         this.equipo= new ArrayList();
         this.armas_activas = new ArrayList();
-        this.modificadores= new ArrayList();
+        this.esbirros= new ArrayList();
+        this.oro=0;
+        this.salud=5;
+        this.potencial_ataque=0;
         this.desafios_ganados=0;
+        
     }
     
     @Override

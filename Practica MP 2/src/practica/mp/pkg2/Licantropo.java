@@ -10,4 +10,9 @@ package practica.mp.pkg2;
  */
 public class Licantropo extends Personaje {
     private int rabia;
+    
+    public Licantropo (String nombre, int poder, Don don) {
+        super(nombre, poder, don);
+        this.rabia=0;
+    }
 }

@@ -10,4 +10,9 @@ package practica.mp.pkg2;
  */
 public class Cazador extends Personaje{
     private int voluntad;
+    
+    public Cazador (String nombre, int poder, Talento talento) {
+        super(nombre, poder, talento);
+        this.voluntad=3;
+    }
 }
