@@ -62,7 +62,7 @@ public class Desafio {
     }
     
     public void rechazar() {
-        int oro_restante= (int) this.desafiado.getOro()*0.9;
+        int oro_restante= (int) (this.desafiado.getOro()*0.9);
         this.desafiado.setOro(oro_restante);
     }
     

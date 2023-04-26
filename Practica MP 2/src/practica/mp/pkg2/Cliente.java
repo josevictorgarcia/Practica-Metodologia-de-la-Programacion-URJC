@@ -59,7 +59,7 @@ public class Cliente extends Usuario{
             if (i.isValidado()) {
                 boolean respuesta = menu.askDesafio(i); //pide si quiere responder el desafio o no
                 if (respuesta) {
-                    i.aceptar();
+                    i.aceptar(menu);
                 }
                 else {
                     i.rechazar();

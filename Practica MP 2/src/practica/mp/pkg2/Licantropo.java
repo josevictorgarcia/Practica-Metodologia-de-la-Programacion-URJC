@@ -17,6 +17,7 @@ public class Licantropo extends Personaje {
         this.rabia=0;
     }
     
+   
     public int getPotencialAtaque() {
         int extra_don=0;
         Don don = (Don) this.getHabilidad_especial();

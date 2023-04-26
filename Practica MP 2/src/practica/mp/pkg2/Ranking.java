@@ -53,6 +53,7 @@ public class Ranking implements Serializable{
     }
     public void actualizarRanking () {
         Collections.sort(getRanking());
+        /*
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.txt");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
@@ -62,7 +63,10 @@ public class Ranking implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
+    
+    //ya lo muestra el menu
     public void mostrarRanking(){
         System.out.println("\nRanking:");
         for (Usuario u : getRanking()) {
@@ -76,8 +80,11 @@ public class Ranking implements Serializable{
             }
         }
         return null;
+    }
     
     public void eliminarUsuario(String nombreUsuario){
+        /*
+    }
         List<Usuario> ranking = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("ranking.txt"))) {
             while (true) {
@@ -89,6 +96,7 @@ public class Ranking implements Serializable{
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
         // Buscar el usuario que deseas eliminar
         Usuario usuarioEliminado = null;
@@ -104,7 +112,8 @@ public class Ranking implements Serializable{
         } else {
             ranking.remove(usuarioEliminado); // Eliminar el usuario de la lista
             Collections.sort(ranking);
-
+            
+            /*
             // Escribir las instancias actualizadas de la clase Usuario en el fichero
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ranking.txt"))) {
                 for (Usuario usuario : ranking) {
@@ -113,6 +122,7 @@ public class Ranking implements Serializable{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            */
             System.out.println("El usuario ha sido eliminado correctamente.");
         }
     }
