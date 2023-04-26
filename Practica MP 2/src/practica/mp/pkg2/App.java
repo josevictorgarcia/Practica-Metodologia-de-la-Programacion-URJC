@@ -27,7 +27,7 @@ public class App {
     public App() {
         ranking = loadRanking();
         equipos = loadEquipos();
-        menu = new Menu();
+        this.menu = new Menu();
         tienda = new Tienda(equipos);
     }
     
