@@ -8,6 +8,7 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public enum Lealtad {
+import java.io.*;
+public enum Lealtad implements Serializable{
     ALTA, MEDIA, BAJA
 }

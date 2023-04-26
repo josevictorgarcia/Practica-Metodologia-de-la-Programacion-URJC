@@ -9,8 +9,8 @@ package practica.mp.pkg2;
  * @author Alex
  */
 
-
-public class OperadorSistema extends Usuario{
+import java.io.*;
+public class OperadorSistema extends Usuario implements Serializable{
     
     private Menu menu;
     public OperadorSistema (String nombre, String nick, String contrasena, Menu menu){

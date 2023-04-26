@@ -9,8 +9,9 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.util.*;
+import java.io.*;
 
-public class Demonio extends Esbirro{
+public class Demonio extends Esbirro implements Serializable{
     private String pacto;
     private List<Esbirro> esbirros;
     

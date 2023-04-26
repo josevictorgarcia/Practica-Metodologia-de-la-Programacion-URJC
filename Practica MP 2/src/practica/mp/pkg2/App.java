@@ -35,7 +35,7 @@ public class App {
     public void run() throws InterruptedException {
         Usuario user = null;
         while (user==null || user.isBaneado()){
-            user = menu.inicio();
+            user = menu.inicio(ranking);
         }
         //loadBase();
         //loadRanking();
@@ -121,6 +121,7 @@ public class App {
             }
         }
         
+        menu.mostrarRanking(ranking); //debugging
         saveRanking();
         saveEquipos();
     }
@@ -131,7 +132,6 @@ public class App {
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
             Ranking rank = (Ranking) rankingEntrada.readObject();
             rankingEntrada.close();
-            archivo.close();
             return rank;
         }
         catch(IOException | ClassNotFoundException e) {
@@ -144,12 +144,13 @@ public class App {
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.ser");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(ranking);
+            rankingSalida.writeObject(this.ranking);
             rankingSalida.close();
-            archivo.close();
         }
         catch (Exception ex) {
-        System.out.println("Error clase App method saveRanking");}
+            ex.printStackTrace();
+            System.out.println("Error clase App method saveRanking");
+        }
     }
     
     public Equipos loadEquipos() {
@@ -158,7 +159,6 @@ public class App {
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
             Equipos equip = (Equipos) rankingEntrada.readObject();
             rankingEntrada.close();
-            archivo.close();
             return equip;
         }
         catch(IOException | ClassNotFoundException e) {
@@ -173,7 +173,6 @@ public class App {
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
             rankingSalida.writeObject(equipos);
             rankingSalida.close();
-            archivo.close();
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveEquipos");}

@@ -11,8 +11,9 @@ package practica.mp.pkg2;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.*;
 
-public class Combate {
+public class Combate implements Serializable{
     private String id_combate;
     private Date fecha;
     private int n_desafios;

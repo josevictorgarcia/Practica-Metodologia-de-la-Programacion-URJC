@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Cazador extends Personaje{
+import java.io.*;
+public class Cazador extends Personaje implements Serializable{
 
     private int voluntad;
     

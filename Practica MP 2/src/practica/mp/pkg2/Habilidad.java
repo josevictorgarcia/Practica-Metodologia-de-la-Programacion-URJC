@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Habilidad {
+import java.io.*;
+public class Habilidad implements Serializable{
     private String nombre;
     private int ataque;
     private int defensa;

@@ -9,9 +9,10 @@ package practica.mp.pkg2;
  * @author Alex
  */
 
+import java.io.Serializable;
+import java.util.*;
 
-
-public class Usuario implements Comparable<Usuario>{
+public class Usuario implements Serializable,Comparable<Usuario>{
     private String nombre;
     private String nickname;
     private String contrasena;

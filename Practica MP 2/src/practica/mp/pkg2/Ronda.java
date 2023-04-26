@@ -10,7 +10,8 @@ import java.lang.*;
  *
  * @author Alex
  */
-public class Ronda {
+import java.io.*;
+public class Ronda implements Serializable{
     private String combate;
     private Personaje personaje1, personaje2;
     private int numRonda;

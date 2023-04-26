@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Modificador {
+import java.io.*;
+public class Modificador implements Serializable{
     private String nombre;
     private int sensible;
     private boolean fortaleza; //true = fortaleza, false=debilidad

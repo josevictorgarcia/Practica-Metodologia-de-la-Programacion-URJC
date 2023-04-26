@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Licantropo extends Personaje {
+import java.io.*;
+public class Licantropo extends Personaje implements Serializable{
     
     private int rabia;
     

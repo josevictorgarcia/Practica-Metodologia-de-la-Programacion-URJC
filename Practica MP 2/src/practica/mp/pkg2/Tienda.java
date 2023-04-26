@@ -10,7 +10,8 @@ import java.util.*;
  *
  * @author migue
  */
-public class Tienda {
+import java.io.*;
+public class Tienda implements Serializable{
     private Equipos items;
     
     public Tienda (Equipos equipos) {

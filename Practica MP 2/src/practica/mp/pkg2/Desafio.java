@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Desafio {
+import java.io.*;
+public class Desafio implements Serializable{
 
 
     private String id_desafio;

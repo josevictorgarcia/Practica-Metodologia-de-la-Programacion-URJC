@@ -8,9 +8,10 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
+import java.io.*;
 import java.util.*;
 //guarda la informacion del Cliente y se le llama para hacer las acciones a las que tiene derecho
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable{
     private String numRegistro;
     private Personaje personaje;
     private List<Desafio> desafiosPendientes;

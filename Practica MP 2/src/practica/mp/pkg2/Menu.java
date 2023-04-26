@@ -3,21 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package practica.mp.pkg2;
-import java.util.List;
+import java.util.*;
 import java.util.Scanner;
 /**
  *
  * @author Alex
  */
-
+import java.io.*;
 //es una pantalla, hace de interfaz con el usuario. Es quien le muestra o le pide cosas al usuario.
-public class Menu {
+public class Menu implements Serializable{
     //Ranking ranking;
     private Usuario p;
     
-    public Usuario inicio() throws InterruptedException{
+    public Usuario inicio(Ranking ranking) throws InterruptedException{
         Scanner scanner = new Scanner(System.in);
-        Ranking ranking= new Ranking();
         System.out.println("Pulse '1' para iniciar sesión o '2' para registrarse:");
         if ("1".equals(scanner.nextLine())){
             System.out.println("Escriba su nombre de usuario (nickname)");
@@ -50,7 +49,7 @@ public class Menu {
             if(user!=null){
                 System.out.println("Nombre de usuario ya registrado");
                 Thread.sleep(3000);
-                inicio();
+                inicio(ranking);
             }else{
                 System.out.println("Escriba la contrasena");
                 String contra = scanner.nextLine();

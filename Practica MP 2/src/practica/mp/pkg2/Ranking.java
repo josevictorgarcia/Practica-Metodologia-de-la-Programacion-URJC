@@ -46,13 +46,14 @@ public class Ranking implements Serializable{
             ranking.add(pos-1, per);
         }
         */
-        getRanking().add(user);
+        this.ranking.add(user);
+        System.out.println(this.ranking.size()); //debugging
         actualizarRanking();
         
         
     }
     public void actualizarRanking () {
-        Collections.sort(getRanking());
+        // debugging Collections.sort(getRanking());
         /*
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.txt");
@@ -74,8 +75,8 @@ public class Ranking implements Serializable{
         }
     }
     public Usuario getUsuario (String nickname) {
-        for (Usuario i: getRanking()) {
-            if (i.getNickname()==nickname) {
+        for (Usuario i: this.ranking) {
+            if (i.getNickname().equals(nickname)) {
                 return i;
             }
         }

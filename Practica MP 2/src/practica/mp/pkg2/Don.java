@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Don extends Habilidad{
+import java.io.*;
+public class Don extends Habilidad implements Serializable{
     private int valorMin;
     
     public Don (String nombre, int ataque, int defensa, int rabia_min) {

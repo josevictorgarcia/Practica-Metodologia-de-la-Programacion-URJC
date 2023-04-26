@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Humano extends Esbirro{
+import java.io.*;
+public class Humano extends Esbirro implements Serializable{
     private Lealtad lealtad;
     
     public Humano (String nombre, int salud, Lealtad lealtad) {

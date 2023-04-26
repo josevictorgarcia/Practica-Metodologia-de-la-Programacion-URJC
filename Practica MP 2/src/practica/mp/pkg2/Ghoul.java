@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Ghoul extends Esbirro{
+import java.io.*;
+public class Ghoul extends Esbirro implements Serializable{
     private int dependencia;
     
     public Ghoul (String nombre, int salud, int dependencia) {

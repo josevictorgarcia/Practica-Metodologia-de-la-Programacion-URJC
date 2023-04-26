@@ -8,7 +8,9 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Vampiro extends Personaje {
+
+import java.io.*;
+public class Vampiro extends Personaje implements Serializable{
 
     private int sangre;
 

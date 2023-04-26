@@ -8,7 +8,9 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Esbirro {
+import java.io.*;
+
+public class Esbirro implements Serializable{
 
     private String nombre;
     private int salud;

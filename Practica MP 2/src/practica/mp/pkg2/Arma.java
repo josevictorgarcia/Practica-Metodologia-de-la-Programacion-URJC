@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Arma extends Equipo{
+import java.io.*;
+public class Arma extends Equipo implements Serializable{
     private int manos;
     
     public Arma(String nombre, int ataque, int defensa, int coste,int manos) {

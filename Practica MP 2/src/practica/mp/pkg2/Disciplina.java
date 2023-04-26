@@ -8,7 +8,8 @@ package practica.mp.pkg2;
  *
  * @author Alex
  */
-public class Disciplina extends Habilidad{
+import java.io.*;
+public class Disciplina extends Habilidad implements Serializable{
     private int coste;
     
     public Disciplina (String nombre, int ataque, int defensa, int coste) {
