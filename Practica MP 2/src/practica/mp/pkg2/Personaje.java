@@ -220,7 +220,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     /**
      * @param armas_activas the armas_activas to set
      */
-    public void setArmas_activas(List<Equipo> armas_activas) {
+    public void setArmas_activas(List<Arma> armas_activas) {
         this.armas_activas = armas_activas;
     }
 

@@ -48,13 +48,12 @@ public class App {
         boolean end=false;
         if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
             Cliente cliente= (Cliente) user;
-            AccionCliente accionCliente;
             while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
                 if (cliente.hayDesafios()) { //comprueba si hay desafios validados que deba responder inmediatamente
                     cliente.responderDesafios();
                 }
                 else {
-                    menu.pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
+                    AccionCliente accionCliente= menu.pedirAccionCliente(); //pide al usuario que elija una accion
                     switch (accionCliente) {
                         case DarseBaja:
                             cliente.darseBaja(ranking);
@@ -90,9 +89,8 @@ public class App {
         } 
         else {
             OperadorSistema op= (OperadorSistema) user;
-            AccionOp accionOp;
             while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
-                menu.pedirAccionOperador(accionOp);
+                AccionOp accionOp=menu.pedirAccionOperador();
                 switch (accionOp) {
                     case DarseBaja:
                         op.darseBaja(ranking);
@@ -102,19 +100,19 @@ public class App {
                         end=true;
                         break;
                     case EditarPersonaje:
-                        op.editarPersonaje(ranking, menu);
+                        op.editarPersonaje(ranking);
                         break;
                     case CompletarPersonaje:
-                        op.completarPersonaje(ranking, menu);
+                        op.completarPersonaje(ranking, equipos);
                         break;
                     case ValidarDesafios:
-                        op.validarDesafios(ranking,menu);
+                        op.validarDesafios(ranking);
                         break;
                     case Banear:
-                        op.banear(menu);
+                        op.banear(ranking);
                         break;
                     case Desbanear:
-                        op.desbanear(menu);
+                        op.desbanear(ranking);
                         break;
                     case AñadirItemTienda:
                         op.añadirItemTienda(equipos);

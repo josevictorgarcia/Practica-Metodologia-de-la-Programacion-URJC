@@ -20,7 +20,7 @@ public class Cliente extends Usuario{
     public Cliente (String nombre, String nickname, String contrasena, Menu menu) {
         super(nombre, nickname,contrasena);
         this.menu=menu;
-        this.numRegistro=generarNumRegistro();
+        //this.numRegistro=generarNumRegistro(); FALTA REGISTROS E IDS
         personaje= new Personaje(this.getNombre(), 0, new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
     }
     

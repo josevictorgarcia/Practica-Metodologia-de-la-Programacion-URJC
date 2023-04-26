@@ -42,11 +42,11 @@ public Usuario inicio() throws InterruptedException{
             }
             else{
                 System.out.println("Contraseña incorrecta");
-                return null;};
+                return null;}
         }
         else{
             System.out.println("Nickname no registrado");
-            return null;};
+            return null;}
     }else{
         System.out.println("Escriba su nombre de usuario (nickname)");
         String nickname = scanner.nextLine();
@@ -62,77 +62,63 @@ public Usuario inicio() throws InterruptedException{
             String tipo = scanner.nextLine();
             if ("c".equals(tipo)) {
                 Cliente cliente = new Cliente(nickname, nickname, contra, this);
-                ranking.add(cliente);
+                ranking.añadirUsuario(cliente);
                 System.out.println("Cliente registrado");
                 return cliente;
             }
             else {
-                OperadorSistema op = new OperadorSistema(nickname, nickname, contra);
-                ranking.add(op);
+                OperadorSistema op = new OperadorSistema(nickname, nickname, contra, this);
+                ranking.añadirUsuario(op);
                 System.out.println("Operador de Sistema registrado");
                 return op;
             }
         }
     }
-
-
+    return null;
 }
 
 
-public void pedirAccionCliente(AccionCliente accionCliente)throws InterruptedException{
+public AccionCliente pedirAccionCliente(){
     String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem'");
     switch (respuesta) {
         case "DarseBaja":
-            accionCliente= AccionCliente.DarseBaja;
-            break;
+            return AccionCliente.DarseBaja;
         case "SalirSistema":
-            accionCliente= AccionCliente.SalirSistema;
-            break;
+            return AccionCliente.SalirSistema;
         case "CambiarPersonaje":
-            accionCliente= AccionCliente.CambiarPersonaje;
-            break;
+            return AccionCliente.CambiarPersonaje;
         case "ElegirEquipo":
-            accionCliente= AccionCliente.ElegirEquipo;
-            break;
+            return AccionCliente.ElegirEquipo;
         case "Desafiar":
-            accionCliente= AccionCliente.Desafiar;
-            break;
+            return AccionCliente.Desafiar;
         case "ResponderDesafios":
-            accionCliente= AccionCliente.ResponderDesafios;
-            break;
+            return AccionCliente.ResponderDesafios;
         case "ConsultaCombates":
-            accionCliente= AccionCliente.ConsultaCombates;
-            break;
+            return AccionCliente.ConsultaCombates;
         case "ComprarItem":
-            accionCliente= AccionCliente.ComprarItem;
-            break;
+            return AccionCliente.ComprarItem;
     }
+    return null;
 }
-public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
+public AccionOp pedirAccionOperador(){
     String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda'");
     switch (respuesta) {
         case "DarseBaja":
-            accionOp= AccionOp.DarseBaja;
-            break;
+            return AccionOp.DarseBaja;
         case "SalirSistema":
-            accionOp= AccionOp.SalirSistema;
-            break;
+            return AccionOp.SalirSistema;
         case "CompletarPersonaje":
-            accionOp= AccionOp.EditarPersonaje;
-            break;
+            return AccionOp.EditarPersonaje;
         case "ValidarDesafio":
-            accionOp= AccionOp.CompletarPersonaje;
-            break;
+            return AccionOp.CompletarPersonaje;
         case "Banear":
-            accionOp= AccionOp.Banear;
-            break;
+            return AccionOp.Banear;
         case "Desbanear":
-            accionOp= AccionOp.Desbanear;
-            break;
+            return AccionOp.Desbanear;
         case "AñadirItemTienda":
-            accionOp= AccionOp.AñadirItemTienda;
-            break;
+            return AccionOp.AñadirItemTienda;
     }
+    return null;
 }
 
 private String pedirString (String mensaje) {
@@ -198,6 +184,7 @@ public Arma askArma(List<Equipo> equipo, List<Arma> armasActivas) {
     catch (Exception ex){
         System.out.println("Error class menu method askArma");
     }
+    return null;
 }
 
 public Armadura askArmadura (List<Equipo> equipo) {
@@ -217,6 +204,7 @@ public Armadura askArmadura (List<Equipo> equipo) {
     catch (Exception ex){
         System.out.println("Error class menu method askArmadura");
     }
+    return null;
 }
 
 public Cliente askDesafiado (Ranking ranking) {
@@ -385,11 +373,13 @@ public Esbirro askEsbirroNuevo(boolean vampiro) {
         while (!end) {
             end=pedirBool("Escribe 's' para acabar, escribe cualquier otra cosa para añadir un nuevo esbirro al demonio");
             if (!end) {
-                Esbirro esbirroDemonio= menu.askEsbirroNuevo();
+                Esbirro esbirroDemonio= askEsbirroNuevo(false);
                 demonio.anadirEsbirro(esbirroDemonio);
             }
         }
+        esbirro=demonio;
     }
+    return esbirro;
 }
 
 public Desafio askDesafioValidar (Ranking rank) {
@@ -443,17 +433,17 @@ public Personaje askPersonajeNuevo() {
     int poder = pedirInt("Escribe poder entre 1-5");
     int tipo = pedirInt("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador");
     if (tipo==0) {
-        Disciplina disciplina = menu.askDisciplinaNueva();
+        Disciplina disciplina = askDisciplinaNueva();
         Vampiro vampiro = new Vampiro(nombre, poder, disciplina);
         return vampiro;
     }
     else if (tipo==1) {
-        Don don = menu.askDonNuevo();
+        Don don = askDonNuevo();
         Licantropo licantropo = new Licantropo(nombre, poder, don);
         return licantropo;
     }
     else {
-        Talento talento = menu.askTalentoNuevo();
+        Talento talento = askTalentoNuevo();
         Cazador cazador = new Cazador(nombre, poder, talento);
         return cazador;
     }

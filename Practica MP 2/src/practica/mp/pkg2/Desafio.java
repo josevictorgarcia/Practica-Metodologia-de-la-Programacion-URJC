@@ -25,7 +25,7 @@ public class Desafio {
         this.desafiante= desafiante;
         this.desafiado= desafiado;
         this.oro_apostado= oro;
-        this.id_desafio=generarID();
+        //this.id_desafio=generarID();
     }
     
     public void validar() {
