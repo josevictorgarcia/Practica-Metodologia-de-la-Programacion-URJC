@@ -102,6 +102,37 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     }
     
     
+    public int calcularAtaqueEquipo () {
+        int result=0;
+        for (Arma i: this.armas_activas) {
+            result+=i.getAtaque();
+        }
+        return result;
+    }
+    
+    public int calcularModificadoresAtaque() {
+        int result =0;
+        for (Modificador i: this.modificadores) {
+            if (i.isFortaleza()) {
+                result+=i.getSensible();
+            }
+        }
+        return result;
+    }
+    
+    public int calcularModificadoresDefensa() {
+        int result=0;
+        for (Modificador i: this.modificadores) {
+            if (!i.isFortaleza()) {
+                result+=i.getSensible();
+            }
+        }
+        return result;
+    }
+    
+    
+    
+    
     
     
     

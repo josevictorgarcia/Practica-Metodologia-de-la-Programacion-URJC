@@ -25,9 +25,35 @@ public class Vampiro extends Personaje {
     }
     */
     
+    
     public int getPotencialAtaque() {
         Disciplina disciplina = (Disciplina) this.getHabilidad_especial();
-        int potencial=  this.getPoder() + disciplina.getAtaque() + this.calcularAtaqueEquipo() + 
+        int extra_sangre =0;
+        if (sangre>=5) {
+            extra_sangre=2;
+        }
+        int extra_disciplina=0;
+        if (sangre>=disciplina.getCoste()) {
+            extra_disciplina=disciplina.getAtaque();
+            sangre-= disciplina.getCoste();
+        }
+        int potencial=  this.getPoder() + extra_disciplina + this.calcularAtaqueEquipo() + extra_sangre + this.calcularModificadoresAtaque();
+        return potencial;
+    }
+    
+    public int getPotencialDefensa() {
+        Disciplina disciplina = (Disciplina) this.getHabilidad_especial();
+        int extra_sangre =0;
+        if (sangre>=5) {
+            extra_sangre=2;
+        }
+        int extra_disciplina=0;
+        if (sangre>=disciplina.getCoste()) {
+            extra_disciplina=disciplina.getDefensa();
+            sangre-= disciplina.getCoste();
+        }
+        int potencial=  this.getPoder() + extra_disciplina + this.getArmadura_activa().getDefensa()+ extra_sangre + this.calcularModificadoresDefensa();
+        return potencial;
     }
     
     

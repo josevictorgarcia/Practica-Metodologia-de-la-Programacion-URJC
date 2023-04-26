@@ -37,9 +37,13 @@ public class Ronda {
             if (this.personaje1.getSalud_esbirros()>0) {
                 this.personaje1.setSalud(this.personaje1.getSalud()-1);}      //reduce la salud en 1 punto
             }
-        else{
-            this.personaje1.setSalud_esbirros(this.personaje1.getSalud_esbirros()-1);
-        }
+            else{
+                this.personaje1.setSalud_esbirros(this.personaje1.getSalud_esbirros()-1);
+            }
+            if (personaje1 instanceof Vampiro) {
+                Vampiro vampiro= (Vampiro) personaje1;
+                vampiro.setSangre(vampiro.getSangre()+4);
+            }
         //turno ataque jugador 2
         p1 = calculoNumExitosAtaque(this.personaje2);
         p2 = calculoNumExitosDefensa(this.personaje1);
@@ -50,6 +54,10 @@ public class Ronda {
             else{
                 this.personaje2.setSalud_esbirros(this.personaje2.getSalud_esbirros()-1);
             }
+            if (personaje2 instanceof Vampiro) {
+                    Vampiro vampiro= (Vampiro) personaje2;
+                    vampiro.setSangre(vampiro.getSangre()+4);
+                }
     }
 
     //calculoPotencialAtaque(){} no puede ir en esta clase. Debe ir en

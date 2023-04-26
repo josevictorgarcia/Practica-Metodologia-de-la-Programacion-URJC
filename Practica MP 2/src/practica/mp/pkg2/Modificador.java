@@ -46,6 +46,21 @@ public class Modificador {
     public void setSensible(int sensible) {
         this.sensible = sensible;
     }
+
+    /**
+     * @return the fortaleza
+     */
+    public boolean isFortaleza() {
+        return fortaleza;
+    }
+
+    /**
+     * @param fortaleza the fortaleza to set
+     */
+    public void setFortaleza(boolean fortaleza) {
+        this.fortaleza = fortaleza;
+    }
+    
     
     
 }

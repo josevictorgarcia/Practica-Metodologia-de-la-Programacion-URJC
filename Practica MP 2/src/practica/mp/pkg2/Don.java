@@ -15,4 +15,20 @@ public class Don extends Habilidad{
         super(nombre, ataque, defensa);
         this.valorMin=rabia_min;
     }
+
+    /**
+     * @return the valorMin
+     */
+    public int getValorMin() {
+        return valorMin;
+    }
+
+    /**
+     * @param valorMin the valorMin to set
+     */
+    public void setValorMin(int valorMin) {
+        this.valorMin = valorMin;
+    }
+    
+    
 }
