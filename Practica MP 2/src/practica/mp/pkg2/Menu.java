@@ -26,7 +26,7 @@ public Usuario inicio() throws InterruptedException{
     if ("1".equals(scanner.nextLine())){
         System.out.println("Escriba su nombre de usuario (nickname)");
         String nickname = scanner.nextLine();
-        Usuario user =ranking.buscarUsuario(nickname);
+        Usuario user =ranking.getUsuario(nickname);
         if(user!=null){
             System.out.println("Escriba su contraseña:");
             String contra = scanner.nextLine();
@@ -50,7 +50,7 @@ public Usuario inicio() throws InterruptedException{
     }else{
         System.out.println("Escriba su nombre de usuario (nickname)");
         String nickname = scanner.nextLine();
-        Usuario user =ranking.buscarUsuario(nickname);
+        Usuario user =ranking.getUsuario(nickname);
         if(user!=null){
             System.out.println("Nombre de usuario ya registrado");
             Thread.sleep(3000);
@@ -61,13 +61,13 @@ public Usuario inicio() throws InterruptedException{
             System.out.println("Escriba 'c' para Cliente o 'op' para Operador de Sistema");
             String tipo = scanner.nextLine();
             if ("c".equals(tipo)) {
-                Cliente cliente = new Cliente(nickname, contra);
+                Cliente cliente = new Cliente(nickname, nickname, contra, this);
                 ranking.add(cliente);
                 System.out.println("Cliente registrado");
                 return cliente;
             }
             else {
-                OperadorSistema op = new OperadorSistema(nickname, contra);
+                OperadorSistema op = new OperadorSistema(nickname, nickname, contra);
                 ranking.add(op);
                 System.out.println("Operador de Sistema registrado");
                 return op;

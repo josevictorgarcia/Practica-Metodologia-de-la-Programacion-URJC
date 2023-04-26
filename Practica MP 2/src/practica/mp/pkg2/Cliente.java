@@ -15,11 +15,13 @@ public class Cliente extends Usuario{
     private Personaje personaje;
     private List<Desafio> desafiosPendientes;
     private List<Combate> ultimosCombates;
+    private Menu menu;
     
-    public Cliente (String nombre, String nickname, String contrasena) {
+    public Cliente (String nombre, String nickname, String contrasena, Menu menu) {
         super(nombre, nickname,contrasena);
+        this.menu=menu;
         this.numRegistro=generarNumRegistro();
-        personaje= new Personaje(this.getNombre()); //por defecto crea un personaje con su mismo nombre
+        personaje= new Personaje(this.getNombre(), 0, new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
     }
     
     public void cambiarPersonaje() {
@@ -38,13 +40,13 @@ public class Cliente extends Usuario{
             this.getPersonaje().ponerArmaActiva(arma);  //cambia la última arma de la lista por la que le pasamos como parámetro
         }
         else {
-            Armadura armadura = menu.askArmadura(this.getPersonaje().getEquipo(), this.getPersonaje().getArmadura_activa()); //muestra armaduras y pide elegir una para ponerla activa
+            Armadura armadura = menu.askArmadura(this.getPersonaje().getEquipo()); //muestra armaduras y pide elegir una para ponerla activa
             this.getPersonaje().setArmadura_activa(armadura);
         }
     }
     
-    public void desafiar () {
-        Cliente desafiado= menu.askDesafiado();
+    public void desafiar (Ranking ranking) {
+        Cliente desafiado= menu.askDesafiado(ranking);
         int oro=menu.askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
         Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro);
         enviarDesafio(des, desafiado); //añade el desafio a desafiosPendientes del desafiado

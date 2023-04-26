@@ -13,9 +13,7 @@ package practica.mp.pkg2;
 public class OperadorSistema extends Usuario{
     
     public OperadorSistema (String nombre, String nick, String contrasena){
-        this.setNombre(nombre);
-        this.setNickname(nick);
-        this.setContrasena(contrasena);
+        super(nombre, nick, contrasena);
     }
     
     public void editarPersonaje(Ranking rank, Menu menu) {
