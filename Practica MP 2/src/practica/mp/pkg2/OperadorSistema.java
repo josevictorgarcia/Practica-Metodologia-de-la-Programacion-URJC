@@ -12,19 +12,13 @@ package practica.mp.pkg2;
 
 public class OperadorSistema extends Usuario{
     
-    public OperadorSistema (String nombre, String nick, String contrasena){
-        this.setNombre(nombre);
-        this.setNickname(nick);
-        this.setContrasena(contrasena);
-    }
-    
-    public void editarPersonaje(Ranking rank, Menu menu) {
+    public void editarPersonaje(Ranking rank) {
         Personaje per;
         per= menu.askEditarPersonaje(rank);  //muestra ranking y pide que elija un personaje
         menu.askDatosPersonaje(per); //pide los datos (nombre, etc) para cambiar al personaje y los cambia
     }
     
-    public void completarPersonaje (Ranking rank, Menu menu) {
+    public void completarPersonaje (Ranking rank ) {
         Personaje per;
         per= menu.askPersonaje(rank);  //muestra ranking y pide que elija un personaje para completar
         String opcion = menu.askAñadir();
@@ -49,17 +43,17 @@ public class OperadorSistema extends Usuario{
     }
     
     
-    public void validarDesafios (Menu menu) {
+    public void validarDesafios () {
         Desafio des =menu.askDesafioValidar(baseDesafiosPendientes); //muestra desafios pendientes no validados y pide que elija uno para validarlo
         des.validar();
     }
     
-    public void banear(Menu menu) {
+    public void banear() {
         Usuario user = menu.mostrarRanking(ranking); //elige un usuario a banear
         user.setBaneado(true);
     }
     
-    public void desbanear(Menu menu) {
+    public void desbanear() {
         Usuario user = menu.mostrarRanking(ranking);
         user.setBaneado(false);
     }

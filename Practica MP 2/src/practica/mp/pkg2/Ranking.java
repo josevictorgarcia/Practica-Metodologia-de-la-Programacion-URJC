@@ -76,7 +76,6 @@ public class Ranking implements Serializable{
             }
         }
         return null;
-    }
     
     public void eliminarUsuario(String nombreUsuario){
         List<Usuario> ranking = new ArrayList<>();

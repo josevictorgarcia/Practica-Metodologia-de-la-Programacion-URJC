@@ -42,12 +42,11 @@ public Usuario inicio() throws InterruptedException{
             }
             else{
                 System.out.println("Contraseña incorrecta");
-                return null;
-            }
+                return null;};
         }
         else{
             System.out.println("Nickname no registrado");
-            return null;}
+            return null;};
     }else{
         System.out.println("Escriba su nombre de usuario (nickname)");
         String nickname = scanner.nextLine();
@@ -57,31 +56,30 @@ public Usuario inicio() throws InterruptedException{
             Thread.sleep(3000);
             inicio();
         }else{
-            System.out.println("Escriba su nombre");
-            String nombre = scanner.nextLine();
             System.out.println("Escriba la contrasena");
             String contra = scanner.nextLine();
             System.out.println("Escriba 'c' para Cliente o 'op' para Operador de Sistema");
             String tipo = scanner.nextLine();
             if ("c".equals(tipo)) {
-                Cliente cliente = new Cliente(nombre, nickname, contra);
-                ranking.añadirUsuario(cliente);
+                Cliente cliente = new Cliente(nickname, contra);
+                ranking.add(cliente);
                 System.out.println("Cliente registrado");
                 return cliente;
             }
             else {
-                OperadorSistema op = new OperadorSistema(nombre, nickname, contra);
-                ranking.añadirUsuario(op);
+                OperadorSistema op = new OperadorSistema(nickname, contra);
+                ranking.add(op);
                 System.out.println("Operador de Sistema registrado");
                 return op;
             }
         }
     }
+
+
 }
 
 
-public AccionCliente pedirAccionCliente()throws InterruptedException{
-    AccionCliente accionCliente= null;
+public void pedirAccionCliente(AccionCliente accionCliente)throws InterruptedException{
     Scanner scanner = new Scanner(System.in);
     System.out.println("Elija lo que quiere hacer: ");
     if ("DarseBaja".equals(scanner.nextLine())){            
@@ -101,11 +99,8 @@ public AccionCliente pedirAccionCliente()throws InterruptedException{
     }else if ("ConsultaRanking".equals(scanner.nextLine())){
         accionCliente= accionCliente.ConsultaRanking;
     }
-    return accionCliente;
 }
-
-public AccionOp pedirAccionOperador()throws InterruptedException{
-    AccionOp accionOp=null;
+public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
     Scanner scanner = new Scanner(System.in);
     System.out.println("Elija lo que quiere hacer: ");
     if ("DarseBaja".equals(scanner.nextLine())){            
@@ -123,7 +118,6 @@ public AccionOp pedirAccionOperador()throws InterruptedException{
     }else if ("ConsultaCombates".equals(scanner.nextLine())){
         accionOp= accionOp.Desbanear;
     }
-    return accionOp; 
 }
 
 private String pedirString (String mensaje) {
