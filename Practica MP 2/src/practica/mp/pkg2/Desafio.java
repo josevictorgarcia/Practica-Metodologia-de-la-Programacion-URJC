@@ -31,19 +31,23 @@ public class Desafio {
     public void validar() {
         this.setValidado(true);
     }
+    
+    /*
     public void comenzarDesafio(){
         this.setCombate(new Combate(getDesafiante(), getDesafiado()));
         getCombate().desarrolloCombate();
-    }
+    } 
+    */
     
-    public void aceptar() {
+    public void aceptar(Menu menu) {
+        prepararDesafiado(menu);
         this.setCombate(new Combate(this.getDesafiante(), this.getDesafiado()));
         this.getCombate().desarrolloCombate();
         this.setVencedor(this.getCombate().getGanador());
         if (this.getVencedor()==null) {
             menu.empate();}
         else{
-            if (this.vencedor.getNombre() == this.desafiante.getNombre()) {
+            if (this.vencedor.getNombre().equals(this.desafiante.getNombre())) {
                 this.desafiado.setOro(this.getDesafiado().getOro()-this.getOro_apostado());  //resta oro apostado a perdedor
                 this.desafiante.setOro(this.getDesafiante().getOro()+this.getOro_apostado()); //suma oro apostado a ganador
                 this.desafiante.setDesafios_ganados(this.desafiante.getDesafios_ganados()+1); //suma uno a desafios ganados
@@ -62,7 +66,12 @@ public class Desafio {
         this.desafiado.setOro(oro_restante);
     }
     
-    
+    private void prepararDesafiado(Menu menu) {
+        Arma arma = menu.askArma(this.desafiado.getEquipo(), this.desafiado.getArmas_activas());
+        this.desafiado.ponerArmaActiva(arma);
+        Armadura armadura= menu.askArmadura(this.desafiado.getEquipo());
+        this.desafiado.setArmadura_activa(armadura);
+    }
     
     
     

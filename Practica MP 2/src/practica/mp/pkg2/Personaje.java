@@ -16,7 +16,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     private Habilidad habilidad_especial;
     private List<Modificador> modificadores;
     private List<Equipo> equipo;
-    private List<Equipo> armas_activas;
+    private List<Arma> armas_activas;
     private Equipo armadura_activa;
     private List<Esbirro> esbirros;
     private int oro;
@@ -134,7 +134,10 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     
     
     
-    
+    //se va a overridear
+    public int getPotencialDefensa() {
+        return 0;
+    }
     
     //getters setters
     public String getNombre() {
@@ -210,7 +213,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     /**
      * @return the armas_activas
      */
-    public List<Equipo> getArmas_activas() {
+    public List<Arma> getArmas_activas() {
         return armas_activas;
     }
 

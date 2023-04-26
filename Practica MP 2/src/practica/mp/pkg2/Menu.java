@@ -262,6 +262,13 @@ public void mostrarCombates (List<Combate> list) {
         else {
             mostrarString("Ganador :" + i.getGanador().getNombre());
         }
+        mostrarString("Desarrollo del combate: ");
+        for (Ronda j: i.getRondas()) {
+            mostrarString("Ronda "+j.getNumRonda());
+            mostrarString("Daño a personaje 1: "+j.getAtaqueAPersonaje1());
+            mostrarString("Daño a personaje 2: "+j.getAtaqueAPersonaje2());
+        }
+        mostrarString("Fin combate");
     }
 }
 
@@ -460,4 +467,11 @@ public Talento askTalentoNuevo() {
     return new Talento(nombre,ataque,defensa);
 }
 
+public void empate() {
+    mostrarString("Empate");
+}
+
+public void mostrarGanador (Personaje per) {
+    mostrarString("El ganador es: "+per.getNombre());
+}
 }
