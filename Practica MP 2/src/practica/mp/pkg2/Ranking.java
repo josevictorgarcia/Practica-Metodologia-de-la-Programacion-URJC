@@ -23,7 +23,7 @@ public class Ranking implements Serializable{
     private List<Usuario> ranking;
 
     public Ranking() {
-       
+       this.ranking= new ArrayList();
     }
 
     //introduce personaje ordenado por desafios_ganados

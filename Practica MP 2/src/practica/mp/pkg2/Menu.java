@@ -121,7 +121,6 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println(mensaje);
         String respuesta = scanner.nextLine();
-        scanner.close();
         return respuesta;
     }
 
