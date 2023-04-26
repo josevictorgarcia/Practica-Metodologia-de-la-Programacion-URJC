@@ -11,6 +11,17 @@ package practica.mp.pkg2;
 import java.util.*;
 
 public class Demonio extends Esbirro{
+    private String pacto;
     private List<Esbirro> esbirros;
+    
+    public Demonio(String nombre, int salud, String pacto) {
+        super(nombre, salud);
+        this.pacto=pacto;
+        this.esbirros=new ArrayList();
+    }
+    
+    public void anadirEsbirro(Esbirro es) {
+        this.esbirros.add(es);
+    }
     
 }

@@ -10,6 +10,11 @@ package practica.mp.pkg2;
  */
 public class Arma extends Equipo{
     private int manos;
+    
+    public Arma(String nombre, int ataque, int defensa, int coste,int manos) {
+        super(nombre,ataque,defensa,coste);
+        this.manos=manos;
+    }
 
     /**
      * @return the manos

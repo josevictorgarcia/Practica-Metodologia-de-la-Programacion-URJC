@@ -50,7 +50,7 @@ public class App {
                     cliente.responderDesafios();
                 }
                 else {
-                    menu.pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
+                    AccionCliente accionCliente=menu.pedirAccionCliente(); //pide al usuario que elija una accion
                     switch (accionCliente) {
                         case DarseBaja:
                             cliente.darseBaja(ranking);
@@ -85,7 +85,7 @@ public class App {
             OperadorSistema op= (OperadorSistema) user;
             AccionOp accionOp;
             while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
-                menu.pedirAccionOperador(accionOp);
+                AccionOp accionOp= menu.pedirAccionOperador();
                 switch (accionOp) {
                     case DarseBaja:
                         op.darseBaja(ranking);
@@ -95,19 +95,19 @@ public class App {
                         end=true;
                         break;
                     case EditarPersonaje:
-                        op.editarPersonaje(ranking);
+                        op.editarPersonaje(ranking, menu);
                         break;
                     case CompletarPersonaje:
-                        op.completarPersonaje(ranking);
+                        op.completarPersonaje(ranking, menu);
                         break;
                     case ValidarDesafios:
-                        op.validarDesafios();
+                        op.validarDesafios(menu);
                         break;
                     case Banear:
-                        op.banear();
+                        op.banear(menu);
                         break;
                     case Desbanear:
-                        op.desbanear();
+                        op.desbanear(menu);
                         break;
                 }
             }

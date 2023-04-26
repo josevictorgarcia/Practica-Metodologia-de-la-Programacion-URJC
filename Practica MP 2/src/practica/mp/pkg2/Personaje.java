@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class Personaje implements Serializable, Comparable<Personaje>{
     private String nombre;
     private Habilidad habilidad_especial;
+    private List<Modificador> modificadores;
     private List<Equipo> equipo;
     private List<Equipo> armas_activas;
     private Equipo armadura_activa;
@@ -28,6 +29,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         this.nombre=nombre;
         this.equipo= new ArrayList();
         this.armas_activas = new ArrayList();
+        this.modificadores= new ArrayList();
         this.desafios_ganados=0;
     }
     
@@ -55,6 +57,35 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         }
     }
 
+    @Override
+    public boolean equals(Object o){ 
+        if (o==this) {return true;}
+        else if (!(o instanceof Personaje)) {return false;}
+        else {
+            Personaje p = (Personaje) o;
+            return (p.getNombre()==this.getNombre());
+        }
+    }
+    
+    public boolean oroSuficiente(int oro){
+        if(oro<=this.oro){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    
+    public void añadirModificador(Modificador mod ) {
+        this.modificadores.add(mod);
+    }
+    
+    public void añadirEsbirro(Esbirro es) {
+        this.esbirros.add(es);
+    }
+    
+    
+    //getters setters
     public String getNombre() {
         return nombre;
     }
@@ -89,24 +120,6 @@ public class Personaje implements Serializable, Comparable<Personaje>{
 
     public int getPoder(){
         return this.poder;
-    }
-
-    @Override
-    public boolean equals(Object o){ 
-        if (o==this) {return true;}
-        else if (!(o instanceof Personaje)) {return false;}
-        else {
-            Personaje p = (Personaje) o;
-            return (p.getNombre()==this.getNombre());
-        }
-    }
-    
-    public boolean oroSuficiente(int oro){
-        if(oro<=this.oro){
-            return true;
-        }else{
-            return false;
-        }
     }
     /**
      * @param nombre the nombre to set

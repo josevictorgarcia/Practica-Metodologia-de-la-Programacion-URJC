@@ -295,4 +295,79 @@ public void askDatosPersonaje(Personaje per) {
 }
    
 
+public Personaje askPersonaje (Ranking rank) {
+    for (Usuario i: rank.getRanking()) {
+        if (i instanceof Cliente) {
+            mostrarString(i.getNickname());
+        }
+    }
+    String respuesta =pedirString("Escribe el nickname del personaje que quieres completar");
+    Cliente cliente = (Cliente) rank.getUsuario(respuesta);
+    return cliente.getPersonaje();
+} 
+public String askAñadirAPersonaje () {
+    return pedirString("Escribe que quieres añadir al personaje: 'armas', 'armaduras', 'modificador' o 'esbirros' ");
+}
+
+public Arma askArmaNueva() {
+    String nombre= pedirString("Escribe el nombre del arma: ");
+    int ataque = pedirInt("Escribe el ataque del arma: ");
+    int coste = pedirInt("Introduce el coste del arma: ");
+    int manos = pedirInt("Escriba si es de 1 o 2 manos: ");
+    return new Arma(nombre, ataque, 0, coste, manos);
+}
+
+public Armadura askArmaduraNueva() {
+    String nombre= pedirString("Escribe el nombre de la armadura: ");
+    int defensa = pedirInt("Escribe la defensa de la armadura: ");
+    int coste = pedirInt("Introduce el coste de la armadura: ");
+    return new Armadura(nombre, 0, defensa, coste);
+}
+
+public Modificador askModificadorNuevo() {
+    String nombre = pedirString("Escribe el nombre del modificador: ");
+    int sensibilidad = pedirInt("Escribe la sensibilidad: ");
+    boolean fortaleza = pedirBool("Escribe 's' para fortaleza o cualquier otra cosa para debilidad");
+    return new Modificador(nombre, sensibilidad, fortaleza);
+}
+
+public Esbirro askEsbirroNuevo(boolean vampiro) {
+    String nombre=pedirString("Escribe el nombre del esbirro: ");
+    int salud= pedirInt("Escribe la salud del esbirro: ");
+    String tipo = pedirString("Escribe 'humano', 'ghoul' o 'demonio'");
+    Esbirro esbirro=null;
+    if (tipo.equals("humano")) {
+        int lealtad = pedirInt("Escribe entero de lealtad: 0 baja, 1 normal, 2 alta");
+        Lealtad leal;
+        if (lealtad==0) {
+            leal=Lealtad.BAJA;
+        }
+        else if (lealtad==1) {
+            leal=Lealtad.MEDIA;
+        }
+        else{
+            leal=Lealtad.ALTA;
+        }
+        Humano humano = new Humano(nombre, salud, leal);
+        esbirro=humano;
+    }
+    else if (tipo.equals("ghoul")) {
+        int dependencia = pedirInt("Escribe entero dependencia: ");
+        Ghoul ghoul = new Ghoul(nombre, salud, dependencia);
+        esbirro=ghoul;
+    }
+    else{
+        String pacto = pedirString("Escribe el pacto: ");
+        Demonio demonio = new Demonio (nombre, salud, pacto);
+        boolean end=false;
+        while (!end) {
+            end=pedirBool("Escribe 's' para acabar, escribe cualquier otra cosa para añadir un nuevo esbirro al demonio");
+            if (!end) {
+                Esbirro esbirroDemonio= menu.askEsbirroNuevo();
+                demonio.anadirEsbirro(esbirroDemonio);
+            }
+        }
+    }
+}
+
 }

@@ -10,16 +10,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author eloys
  */
-public class Equipos {
+public class Equipos implements Serializable{
     private List<Equipo> equipos;
     
     public Equipos() {
+        /*
        try {
             FileInputStream archivo = new FileInputStream("equipos.txt");
             ObjectInputStream equiposEntrada = new ObjectInputStream(archivo);
@@ -29,8 +31,11 @@ public class Equipos {
        }catch(IOException | ClassNotFoundException e) {
             System.out.println("Error al leer el objeto desde el archivo: " + e.getMessage());
         }
+       */
+        this.equipos= new ArrayList();
     }
     public void anadirEquipo(){
+        /*
         // Leer el fichero y cargar las instancias en una lista
         List<Equipo> equipos = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
@@ -43,6 +48,7 @@ public class Equipos {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
         // Pedir los atributos del nuevo equipo
         Scanner scanner = new Scanner(System.in);
@@ -62,8 +68,9 @@ public class Equipos {
         Equipo nuevoEquipo = new Equipo(nombre, ataque, defensa, coste);
 
         // Agregar el nuevo equipo a la lista
-        equipos.add(nuevoEquipo);
-
+        this.getEquipos().add(nuevoEquipo);
+        
+        /*
         // Escribir las instancias actualizadas de la clase Equipo en el fichero
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("equipos.dat"))) {
             for (Equipo equipo : equipos) {
@@ -72,12 +79,18 @@ public class Equipos {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
         System.out.println("El nuevo equipo ha sido añadido correctamente.");
     }
     
+    public void anadirEquipo (Equipo equipo) {
+        this.getEquipos().add(equipo);
+    }
+    
+    
     public void modificarEquipo(){
-        
+        /*
         // Leer el fichero y cargar las instancias en una lista
         List<Equipo> equipos = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
@@ -90,6 +103,8 @@ public class Equipos {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        */
         // Pedir el nombre del equipo a modificar
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el nombre del equipo a modificar:");
@@ -97,7 +112,7 @@ public class Equipos {
 
         // Buscar el equipo que deseas modificar
         Equipo equipoModificado = null;
-        for (Equipo equipo : equipos) {
+        for (Equipo equipo : this.getEquipos()) {
             if (equipo.getNombre().equals(nombreEquipo)) {
                 equipoModificado = equipo;
                 break;
@@ -135,6 +150,7 @@ public class Equipos {
                     break;
             }
 
+            /*
             // Escribir las instancias actualizadas de la clase Equipo en el fichero
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("equipos.txt"))) {
                 for (Equipo equipo : equipos) {
@@ -143,10 +159,12 @@ public class Equipos {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            */
         }
     }
     public void eliminarEquipo(){
         
+        /*
         // Leer el fichero y cargar las instancias en una lista
         List<Equipo> equipos = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.dat"))) {
@@ -158,7 +176,7 @@ public class Equipos {
             // Fin del archivo
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        */
 
         // Pedir el nombre del equipo a eliminar
         Scanner scanner = new Scanner(System.in);
@@ -167,7 +185,7 @@ public class Equipos {
 
         // Buscar el equipo que deseas eliminar
         Equipo equipoEliminado = null;
-        for (Equipo equipo : equipos) {
+        for (Equipo equipo : getEquipos()) {
             if (equipo.getNombre().equals(nombreEquipo)) {
                 equipoEliminado = equipo;
                 break;
@@ -177,7 +195,9 @@ public class Equipos {
         if (equipoEliminado == null) {
             System.out.println("No se encontró un equipo con ese nombre.");
         } else {
-            equipos.remove(equipoEliminado); // Eliminar el equipo de la lista
+            getEquipos().remove(equipoEliminado); // Eliminar el equipo de la lista
+            
+            /*
 
             // Escribir las instancias actualizadas de la clase Equipo en el fichero
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("equipos.dat"))) {
@@ -187,6 +207,7 @@ public class Equipos {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            */
 
             System.out.println("El equipo ha sido eliminado correctamente.");
         }
@@ -196,7 +217,7 @@ public class Equipos {
         try {
             FileOutputStream archivo = new FileOutputStream("equipos.txt");
             ObjectOutputStream equipoSalida = new ObjectOutputStream(archivo);
-            equipoSalida.writeObject(equipos);
+            equipoSalida.writeObject(getEquipos());
             equipoSalida.close();
             System.out.println("La lista de equipos ha sido actalizado");
         } catch (IOException e) {
@@ -226,4 +247,20 @@ public class Equipos {
             System.out.println("-------------");
         }
     }
+
+    /**
+     * @return the equipos
+     */
+    public List<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    /**
+     * @param equipos the equipos to set
+     */
+    public void setEquipos(List<Equipo> equipos) {
+        this.equipos = equipos;
+    }
+    
+    
 }

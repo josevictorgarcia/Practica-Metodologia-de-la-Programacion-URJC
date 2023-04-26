@@ -21,7 +21,7 @@ public class Tienda {
 
         // Buscar el equipo que deseas modificar
         Equipo equipoBuscado = null;
-        for (Equipo equipo : items) {
+        for (Equipo equipo : items.getEquipos()) {
             if (equipo.getNombre().equals(nombreEquipo)) {
                 equipoBuscado = equipo;
                 break;
