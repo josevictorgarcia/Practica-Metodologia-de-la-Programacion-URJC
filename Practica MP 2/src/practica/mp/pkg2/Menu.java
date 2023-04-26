@@ -80,24 +80,32 @@ public Usuario inicio() throws InterruptedException{
 
 
 public void pedirAccionCliente(AccionCliente accionCliente)throws InterruptedException{
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Elija lo que quiere hacer: ");
-    if ("DarseBaja".equals(scanner.nextLine())){            
-        accionCliente= accionCliente.DarseBaja;
-    }else if ("SalirSistema".equals(scanner.nextLine())){
-        accionCliente= accionCliente.SalirSistema;
-    }else if ("CambiarPersonaje".equals(scanner.nextLine())){
-        accionCliente= accionCliente.CambiarPersonaje;
-    }else if ("ElegirEquipo".equals(scanner.nextLine())){
-        accionCliente= accionCliente.ElegirEquipo;
-    }else if ("Desafiar".equals(scanner.nextLine())){
-        accionCliente= accionCliente.Desafiar;
-    }else if ("ResponderDesafios".equals(scanner.nextLine())){
-        accionCliente= accionCliente.ResponderDesafios;
-    }else if ("ConsultaCombates".equals(scanner.nextLine())){
-        accionCliente= accionCliente.ConsultaCombates;
-    }else if ("ConsultaRanking".equals(scanner.nextLine())){
-        accionCliente= accionCliente.ConsultaRanking;
+    String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem'");
+    switch (respuesta) {
+        case "DarseBaja":
+            accionCliente= AccionCliente.DarseBaja;
+            break;
+        case "SalirSistema":
+            accionCliente= AccionCliente.SalirSistema;
+            break;
+        case "CambiarPersonaje":
+            accionCliente= AccionCliente.CambiarPersonaje;
+            break;
+        case "ElegirEquipo":
+            accionCliente= AccionCliente.ElegirEquipo;
+            break;
+        case "Desafiar":
+            accionCliente= AccionCliente.Desafiar;
+            break;
+        case "ResponderDesafios":
+            accionCliente= AccionCliente.ResponderDesafios;
+            break;
+        case "ConsultaCombates":
+            accionCliente= AccionCliente.ConsultaCombates;
+            break;
+        case "ComprarItem":
+            accionCliente= AccionCliente.ComprarItem;
+            break;
     }
 }
 public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
@@ -128,7 +136,7 @@ private String pedirString (String mensaje) {
     return respuesta;
 }
 
-private void mostrarString (String mensaje) {
+public void mostrarString (String mensaje) {
     System.out.println(mensaje);
 }
 
@@ -474,4 +482,22 @@ public void empate() {
 public void mostrarGanador (Personaje per) {
     mostrarString("El ganador es: "+per.getNombre());
 }
+
+public Equipo pedirItemTienda(Tienda tienda) {
+    mostrarString("Los items de la tienda son :");
+    int pos=0;
+    for (Equipo i: tienda.getItems().getEquipos()) {
+        mostrarString(pos+": Nombre: "+i.getNombre() + "Oro: "+ i.getCoste()+ "Ataque: " + i.getAtaque() + "Defensa: " + i.getDefensa());
+        pos++;
+    }
+    int respuesta = pedirInt("Escribe el numero para comprar, o escribe 33 para salir");
+    if (respuesta ==33) {
+        return null;
+    }
+    else {
+        return tienda.getItems().getEquipos().get(respuesta);
+    }
+}
+
+
 }

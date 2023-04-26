@@ -13,15 +13,19 @@ import java.util.*;
 public class Tienda {
     private Equipos items;
     
+    public Tienda (Equipos equipos) {
+        this.items=new Equipos (equipos);
+    }
+    
     public void comprar(Personaje personaje){
-        items.mostrarEquipos();
+        getItems().mostrarEquipos();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el nombre del equipo a comprar:");
         String nombreEquipo = scanner.nextLine();
 
         // Buscar el equipo que deseas modificar
         Equipo equipoBuscado = null;
-        for (Equipo equipo : items.getEquipos()) {
+        for (Equipo equipo : getItems().getEquipos()) {
             if (equipo.getNombre().equals(nombreEquipo)) {
                 equipoBuscado = equipo;
                 break;
@@ -39,4 +43,20 @@ public class Tienda {
             }
         }
     }
+
+    /**
+     * @return the items
+     */
+    public Equipos getItems() {
+        return items;
+    }
+
+    /**
+     * @param items the items to set
+     */
+    public void setItems(Equipos items) {
+        this.items = items;
+    }
+    
+    
 }

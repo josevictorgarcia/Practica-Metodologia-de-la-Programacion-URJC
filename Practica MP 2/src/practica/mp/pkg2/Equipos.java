@@ -34,6 +34,9 @@ public class Equipos implements Serializable{
        */
         this.equipos= new ArrayList();
     }
+    public Equipos (Equipos equip) {
+        this.equipos = new ArrayList(equip.getEquipos());
+    }
     public void anadirEquipo(){
         /*
         // Leer el fichero y cargar las instancias en una lista

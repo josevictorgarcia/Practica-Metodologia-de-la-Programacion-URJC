@@ -11,6 +11,6 @@ package practica.mp.pkg2;
 
 //enumerado de acciones que puede realizar un Cliente
 public enum AccionCliente {
-    DarseBaja, SalirSistema, CambiarPersonaje, ElegirEquipo, Desafiar, ResponderDesafios, ConsultaCombates, ConsultaRanking
+    DarseBaja, SalirSistema, CambiarPersonaje, ElegirEquipo, Desafiar, ResponderDesafios, ConsultaCombates, ConsultaRanking, ComprarItem
 }
 //prueba

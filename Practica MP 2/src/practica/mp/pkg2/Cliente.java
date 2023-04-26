@@ -89,6 +89,23 @@ public class Cliente extends Usuario{
     public void enviarDesafio(Desafio des, Cliente desafiado) {
         desafiado.desafiosPendientes.add(des);
     }
+    
+    public void comprarItem (Tienda tienda) {
+        menu.mostrarString("El oro que tienes es: " + this.getPersonaje().getOro());
+        Equipo item= menu.pedirItemTienda(tienda);
+        if (item!=null) {
+            if (item.getCoste() <= this.getPersonaje().getOro()) {
+                this.getPersonaje().setOro(this.getPersonaje().getOro()-item.getCoste());
+                this.getPersonaje().anadirItem(item);
+                menu.mostrarString("Comprado");
+            }
+            else {
+                menu.mostrarString("No tienes suficiente oro");
+            }
+        }
+    }
+    
+   
 
     
     

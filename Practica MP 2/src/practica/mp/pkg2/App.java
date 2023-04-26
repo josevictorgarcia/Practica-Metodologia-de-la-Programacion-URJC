@@ -21,10 +21,14 @@ public class App {
     private Ranking ranking;
     private Menu menu;
     private Usuario usuarioActivo;
+    private Tienda tienda;
+    private Equipos equipos;
 
     public App() {
         ranking = loadRanking();
+        equipos = loadEquipos();
         menu = new Menu();
+        tienda = new Tienda(equipos);
     }
     
     //es el main pero sin ser estático
@@ -77,6 +81,9 @@ public class App {
                         case ConsultaRanking:
                             cliente.consultaRanking(ranking);
                             break;
+                        case ComprarItem:
+                            cliente.comprarItem(tienda);
+                            break;
                     }
                 }
             }
@@ -111,7 +118,10 @@ public class App {
                         break;
                 }
             }
-        }    
+        }
+        
+        saveRanking();
+        saveEquipos();
     }
     
     public Ranking loadRanking() {
@@ -139,6 +149,33 @@ public class App {
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveRanking");}
+    }
+    
+    public Equipos loadEquipos() {
+        try {
+            FileInputStream archivo = new FileInputStream("equipos.ser");
+            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
+            Equipos equip = (Equipos) rankingEntrada.readObject();
+            rankingEntrada.close();
+            archivo.close();
+            return equip;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new Equipos();
+        }
+    }
+    
+    public void saveEquipos() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("equipos.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(equipos);
+            rankingSalida.close();
+            archivo.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveEquipos");}
     }
    
 }
