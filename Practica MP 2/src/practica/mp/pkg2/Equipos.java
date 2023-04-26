@@ -32,7 +32,7 @@ public class Equipos {
     }
     public void anadirEquipo(){
         // Leer el fichero y cargar las instancias en una lista
-        List<Equipo> equipos = new List<>();
+        List<Equipo> equipos = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
             while (true) {
                 Equipo equipo = (Equipo) in.readObject();
@@ -79,7 +79,7 @@ public class Equipos {
     public void modificarEquipo(){
         
         // Leer el fichero y cargar las instancias en una lista
-        List<Equipo> equipos = new List<>();
+        List<Equipo> equipos = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
             while (true) {
                 Equipo equipo = (Equipo) in.readObject();
@@ -148,7 +148,7 @@ public class Equipos {
     public void eliminarEquipo(){
         
         // Leer el fichero y cargar las instancias en una lista
-        List<Equipo> equipos = new List<>();
+        List<Equipo> equipos = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.dat"))) {
             while (true) {
                 Equipo equipo = (Equipo) in.readObject();

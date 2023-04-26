@@ -35,6 +35,14 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         return this.desafios_ganados - p.desafios_ganados;
     }
     
+    public void anadirItem(Equipo item){
+        equipo.add(item);
+    }
+    
+    public void modificarOro(int cant){
+        oro=oro-cant;
+    }
+    
     public void ponerArmaActiva (Arma arma) {
         if (arma.getManos()==2) {
                 armas_activas.clear();
@@ -98,7 +106,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         }else{
             return false;
         }
-
+    }
     /**
      * @param nombre the nombre to set
      */

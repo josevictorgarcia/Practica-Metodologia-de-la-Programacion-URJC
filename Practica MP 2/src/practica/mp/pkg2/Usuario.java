@@ -11,7 +11,7 @@ package practica.mp.pkg2;
 
 
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
     private String nombre;
     private String nickname;
     private String contrasena;
@@ -24,9 +24,13 @@ public class Usuario {
         this.nickname=nickname;
         this.contrasena=contrasena;
     }
+    @Override
+    public int compareTo(Usuario o) {
+        return Integer.compare(this.personaje.getDesafios_ganados(), o.getPersonaje().getDesafios_ganados());
+    }
     
     public void darseBaja(Ranking ranking) {
-        ranking.eliminar(this.getNombre());
+        ranking.eliminarUsuario(this.getNombre());
     }
 
     /**
