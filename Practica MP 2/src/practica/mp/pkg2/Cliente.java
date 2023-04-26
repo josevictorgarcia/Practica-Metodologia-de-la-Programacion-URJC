@@ -41,16 +41,15 @@ public class Cliente extends Usuario{
         }
         else {
             Armadura armadura = menu.askArmadura(this.getPersonaje().getEquipo(), this.getPersonaje().getArmadura_activa()); //muestra armaduras y pide elegir una para ponerla activa
-            this.getPersonaje().ponerArmaduraActiva(armadura);
+            this.getPersonaje().setArmadura_activa(armadura);
         }
     }
     
     public void desafiar () {
-        String desafiado;
-        int oro;
-        menu.askDesafio(desafiado, oro); //pide el nombre de usuario y el oro que desea apostar
-        Desafio des = new Desafio(this.getNombre(), desafiado, oro);
-        enviarDesafio(Desafio, desafiado); //sube el desafio a baseDesafiosPendientes
+        Cliente desafiado= menu.askDesafiado();
+        int oro=menu.askOroApostado(this.getPersonaje().getOro());
+        Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro);
+        enviarDesafio(des, desafiado); //añade el desafio a desafiosPendientes del desafiado
     }
     
     
@@ -66,6 +65,10 @@ public class Cliente extends Usuario{
     
     public void consultaRanking (Ranking rank) {
         menu.mostrarRanking(rank);
+    }
+    
+    public void enviarDesafio(Desafio des, Cliente desafiado) {
+        desafiado.desafiosPendientes.add(des);
     }
 
     /**

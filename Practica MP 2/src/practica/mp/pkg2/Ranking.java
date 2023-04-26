@@ -69,6 +69,13 @@ public class Ranking implements Serializable{
             System.out.println("Nombre: " + u.getNombre() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
         }
     }
+    public Usuario getUsuario (String nickname) {
+        for (Usuario i: ranking) {
+            if (i.getNickname()==nickname) {
+                return i;
+            }
+        }
+        return null;
     
     public void eliminarUsuario(String nombreUsuario){
         List<Usuario> ranking = new ArrayList<>();

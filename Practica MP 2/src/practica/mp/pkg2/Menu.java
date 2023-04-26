@@ -132,6 +132,18 @@ private void mostrarString (String mensaje) {
     System.out.println(mensaje);
 }
 
+private int pedirInt(String mensaje) {
+    String respuesta = pedirString(mensaje);
+    try {
+        int num = Integer.parseInt(respuesta);
+        return num;
+    }
+    catch (Exception ex){
+        System.out.println("Error class menu method pedirInt");
+    }
+    return 0;
+}
+
 public String askNombrePersonaje () {
     return pedirString("Introduzca nombre para su nuevo personaje");
 }
@@ -161,6 +173,62 @@ public Arma askArma(List<Equipo> equipo, List<Arma> armasActivas) {
     catch (Exception ex){
         System.out.println("Error class menu method askArma");
     }
+}
+
+public Armadura askArmadura (List<Equipo> equipo) {
+    mostrarString("Las armaduras en tu inventario son:");
+    int pos =0;
+    for (Equipo i: equipo) {
+            if (i instanceof Armadura) {
+                mostrarString(pos + ": " +i.getNombre());
+            }
+            pos++;
+        }
+    String respuesta = pedirString("Escriba el numero de la armadura que desea incluir como activa");
+    try {
+        int num = Integer.parseInt(respuesta);
+        return (Armadura) equipo.get(num); 
+    }
+    catch (Exception ex){
+        System.out.println("Error class menu method askArmadura");
+    }
+}
+
+public Cliente askDesafiado (Ranking ranking) {
+    boolean end=false;
+    Usuario user=null;
+    while (!end) {
+        String respuesta=pedirString("Escribe el nickname del usuario al que deseas desafiar");
+        user = ranking.getUsuario(respuesta);
+        if (ranking.getUsuario(respuesta)==null) {
+            mostrarString("el usuario no existe");
+        }
+        else {
+            if (user instanceof OperadorSistema) {
+                mostrarString("el usuario es un operador de sistema");
+            }
+            else {
+                end=true;
+            }
+        }
+    }
+    Cliente cliente = (Cliente) user;
+    return cliente;
+}
+
+public int askOroApostado(int oro_max) {
+    boolean end=false;
+    int respuesta=0;
+    while (!end) {
+        respuesta=pedirInt("introduzca oro apostado");
+        if (respuesta<=oro_max) {
+            end=true;
+        }
+        else {
+            mostrarString("Estas apostando mas oro del que dispones");
+        }
+    }
+    return respuesta;
 }
 
     
