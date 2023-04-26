@@ -42,7 +42,7 @@ public class Combate {
     }
 
     public String getID(){
-        return this.id_combate;
+        return this.getId_combate();
     }
 
     public void nuevaRonda(){
@@ -56,14 +56,14 @@ public class Combate {
             nuevaRonda();
             }
         if (this.personaje1.getSalud()==0 && this.personaje2.getSalud()==0) {
-            this.ganador=null;
+            this.setGanador(null);
         }
         else {
             if (this.personaje1.getSalud()==0) {
-                this.ganador=this.personaje1;
+                this.setGanador(this.personaje1);
             }
             else{
-                this.ganador=this.personaje2;
+                this.setGanador(this.personaje2);
             }
         }
     }
@@ -72,5 +72,85 @@ public class Combate {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
         String strDate = dateFormat.format(fecha);
         return p1.getNombre()+p2.getNombre()+strDate;
+    }
+    
+    
+    
+    
+    /**
+     * @return the id_combate
+     */
+    public String getId_combate() {
+        return id_combate;
+    }
+
+    /**
+     * @param id_combate the id_combate to set
+     */
+    public void setId_combate(String id_combate) {
+        this.id_combate = id_combate;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the n_desafios
+     */
+    public int getN_desafios() {
+        return n_desafios;
+    }
+
+    /**
+     * @param n_desafios the n_desafios to set
+     */
+    public void setN_desafios(int n_desafios) {
+        this.n_desafios = n_desafios;
+    }
+
+    /**
+     * @param rondas the rondas to set
+     */
+    public void setRondas(List<Ronda> rondas) {
+        this.rondas = rondas;
+    }
+
+    /**
+     * @param personaje1 the personaje1 to set
+     */
+    public void setPersonaje1(Personaje personaje1) {
+        this.personaje1 = personaje1;
+    }
+
+    /**
+     * @param personaje2 the personaje2 to set
+     */
+    public void setPersonaje2(Personaje personaje2) {
+        this.personaje2 = personaje2;
+    }
+
+    /**
+     * @return the ganador
+     */
+    public Personaje getGanador() {
+        return ganador;
+    }
+
+    /**
+     * @param ganador the ganador to set
+     */
+    public void setGanador(Personaje ganador) {
+        this.ganador = ganador;
     }
 }

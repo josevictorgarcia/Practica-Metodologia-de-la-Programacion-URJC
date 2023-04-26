@@ -28,6 +28,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         this.nombre=nombre;
         this.equipo= new ArrayList();
         this.armas_activas = new ArrayList();
+        this.desafios_ganados=0;
     }
     
     @Override

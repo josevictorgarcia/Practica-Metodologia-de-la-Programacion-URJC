@@ -47,7 +47,7 @@ public class Cliente extends Usuario{
     
     public void desafiar () {
         Cliente desafiado= menu.askDesafiado();
-        int oro=menu.askOroApostado(this.getPersonaje().getOro());
+        int oro=menu.askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
         Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro);
         enviarDesafio(des, desafiado); //añade el desafio a desafiosPendientes del desafiado
     }
@@ -55,8 +55,27 @@ public class Cliente extends Usuario{
     
     //el usuario solo acepta desafios, no los rechaza. Si no quiere 
     public void responderDesafios () {
-        Desafio des= menu.mostrarDesafios(this.getDesafiosPendientes());
-        des.aceptar();
+        for (Desafio i: this.desafiosPendientes) {
+            if (i.isValidado()) {
+                boolean respuesta = menu.askDesafio(i); //pide si quiere responder el desafio o no
+                if (respuesta) {
+                    i.aceptar();
+                }
+                else {
+                    i.rechazar();
+                }
+            }
+        }
+    }
+    
+    public boolean hayDesafios () {
+        boolean result=false;
+        for (Desafio i: this.desafiosPendientes) {
+            if (i.isValidado()) {
+                result=true;
+            }
+        }
+        return result;
     }
     
     public void consultaCombates () {
@@ -71,6 +90,11 @@ public class Cliente extends Usuario{
         desafiado.desafiosPendientes.add(des);
     }
 
+    
+    
+    
+    
+    //getters y setters
     /**
      * @return the numRegistro
      */

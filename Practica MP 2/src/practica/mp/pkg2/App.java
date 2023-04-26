@@ -46,33 +46,38 @@ public class App {
             Cliente cliente= (Cliente) user;
             AccionCliente accionCliente;
             while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
-                menu.pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
-                switch (accionCliente) {
-                    case DarseBaja:
-                        cliente.darseBaja(ranking);
-                        end=true;
-                        break;
-                    case SalirSistema:
-                        end=true;
-                        break;
-                    case CambiarPersonaje:
-                        cliente.cambiarPersonaje();
-                        break;
-                    case ElegirEquipo:
-                        cliente.elegirEquipo();
-                        break;
-                    case Desafiar:
-                        cliente.desafiar();
-                        break;
-                    case ResponderDesafios:
-                        cliente.responderDesafios();
-                        break;
-                    case ConsultaCombates:
-                        cliente.consultaCombates();
-                        break;
-                    case ConsultaRanking:
-                        cliente.consultaRanking(ranking);
-                        break;
+                if (cliente.hayDesafios()) { //comprueba si hay desafios validados que deba responder inmediatamente
+                    cliente.responderDesafios();
+                }
+                else {
+                    menu.pedirAccionCliente(accionCliente); //pide al usuario que elija una accion
+                    switch (accionCliente) {
+                        case DarseBaja:
+                            cliente.darseBaja(ranking);
+                            end=true;
+                            break;
+                        case SalirSistema:
+                            end=true;
+                            break;
+                        case CambiarPersonaje:
+                            cliente.cambiarPersonaje();
+                            break;
+                        case ElegirEquipo:
+                            cliente.elegirEquipo();
+                            break;
+                        case Desafiar:
+                            cliente.desafiar();
+                            break;
+                        case ResponderDesafios:
+                            cliente.responderDesafios();
+                            break;
+                        case ConsultaCombates:
+                            cliente.consultaCombates();
+                            break;
+                        case ConsultaRanking:
+                            cliente.consultaRanking(ranking);
+                            break;
+                    }
                 }
             }
         } 

@@ -144,6 +144,16 @@ private int pedirInt(String mensaje) {
     return 0;
 }
 
+private boolean pedirBool (String mensaje) {
+    String respuesta = pedirString(mensaje);
+    if (respuesta.equals("s")) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 public String askNombrePersonaje () {
     return pedirString("Introduzca nombre para su nuevo personaje");
 }
@@ -216,21 +226,57 @@ public Cliente askDesafiado (Ranking ranking) {
     return cliente;
 }
 
-public int askOroApostado(int oro_max) {
+public int askOroApostado(int oro_max, int oro_rival) {
     boolean end=false;
     int respuesta=0;
     while (!end) {
         respuesta=pedirInt("introduzca oro apostado");
-        if (respuesta<=oro_max) {
+        if (respuesta<=oro_max && respuesta>0 && respuesta<=oro_rival) {
             end=true;
         }
         else {
-            mostrarString("Estas apostando mas oro del que dispones");
+            mostrarString("Estas apostando mas oro del que dispones o apostando oro negativo");
         }
     }
     return respuesta;
 }
 
+public boolean askDesafio (Desafio des) {
+    mostrarString("Desafio pendiente: ");
+    mostrarString("Nombre personaje desafiante: " + des.getDesafiante().getNombre());
+    mostrarString("Oro apostado: "+des.getOro_apostado());
+    mostrarString("ID desafio: " + des.getId_desafio());
+    return pedirBool("Escribe 's' si quieres aceptar el desafio o cualquier otra cosa para rechazarlo");
+}
+
+public void mostrarCombates (List<Combate> list) {
+    mostrarString("Los ultimos combates son: ");
+    for (Combate i: list) {
+        mostrarString("Combate id: " + i.getID());
+        mostrarString("Personaje 1: " + i.getPersonaje1().getNombre());
+        mostrarString("Personaje 2: " + i.getPersonaje2().getNombre());
+        mostrarString("Rondas "+ i.getRondas().size());
+        if (i.getGanador()==null) {
+            mostrarString("Empate");
+        }
+        else {
+            mostrarString("Ganador :" + i.getGanador().getNombre());
+        }
+    }
+}
+
+
+public void mostrarRanking (Ranking rank) {
+    int pos =0;
+    for (Usuario i: rank.getRanking()) {
+        pos++;
+        mostrarString(pos+ ": " + i.getNickname());
+        if (i instanceof Cliente) {
+            Cliente cliente= (Cliente) i;
+            mostrarString("Desafios ganados: " + cliente.getPersonaje().getDesafios_ganados());
+        }
+    }
+}
     
    
 

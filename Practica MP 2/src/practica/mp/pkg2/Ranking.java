@@ -46,17 +46,17 @@ public class Ranking implements Serializable{
             ranking.add(pos-1, per);
         }
         */
-        ranking.add(user);
+        getRanking().add(user);
         actualizarRanking();
         
         
     }
     public void actualizarRanking () {
-        Collections.sort(ranking);
+        Collections.sort(getRanking());
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.txt");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(ranking);
+            rankingSalida.writeObject(getRanking());
             rankingSalida.close();
             System.out.println("El ranking ha sido actalizado");
         } catch (IOException e) {
@@ -65,12 +65,12 @@ public class Ranking implements Serializable{
     }
     public void mostrarRanking(){
         System.out.println("\nRanking:");
-        for (Usuario u : ranking) {
+        for (Usuario u : getRanking()) {
             System.out.println("Nombre: " + u.getNombre() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
         }
     }
     public Usuario getUsuario (String nickname) {
-        for (Usuario i: ranking) {
+        for (Usuario i: getRanking()) {
             if (i.getNickname()==nickname) {
                 return i;
             }
@@ -115,5 +115,22 @@ public class Ranking implements Serializable{
             }
             System.out.println("El usuario ha sido eliminado correctamente.");
         }
+    }
+    
+    
+    
+//getters setters
+    /**
+     * @return the ranking
+     */
+    public List<Usuario> getRanking() {
+        return ranking;
+    }
+
+    /**
+     * @param ranking the ranking to set
+     */
+    public void setRanking(List<Usuario> ranking) {
+        this.ranking = ranking;
     }
 }
