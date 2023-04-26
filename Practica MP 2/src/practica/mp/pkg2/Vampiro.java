@@ -9,17 +9,41 @@ package practica.mp.pkg2;
  * @author Alex
  */
 public class Vampiro extends Personaje {
+
     private int sangre;
 
     public Vampiro(String nombre, int poder, Disciplina disciplina){
         super(nombre, poder, disciplina);
-        this.sangre = 5;            //NOTA: Hay que inicializar el valor de la sangre a algun numero. No se puede quedar como constante 5
+        this.sangre = 0;
     }
 
+    /*
     @Override
     public void setPotencialAtaque(){
-        int potencial = this.sangre + super.getPoder();     //Aqui habria que anadir el valor de ataque de su disciplina, equipo etc.
+        int potencial = this.getSangre() + super.getPoder();     //Aqui habria que anadir el valor de ataque de su disciplina, equipo etc.
         super.setPotencialAtaque(potencial);                //Tambien habria que anadir el correspondiente calculo del potencial de ataque en las clases que extienden (heredan) de personaje
+    }
+    */
+    
+    public int getPotencialAtaque() {
+        Disciplina disciplina = (Disciplina) this.getHabilidad_especial();
+        int potencial=  this.getPoder() + disciplina.getAtaque() + this.calcularAtaqueEquipo() + 
+    }
+    
+    
+    
+    /**
+     * @return the sangre
+     */
+    public int getSangre() {
+        return sangre;
+    }
+
+    /**
+     * @param sangre the sangre to set
+     */
+    public void setSangre(int sangre) {
+        this.sangre = sangre;
     }
 
 }

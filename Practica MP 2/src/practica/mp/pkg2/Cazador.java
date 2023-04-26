@@ -9,6 +9,20 @@ package practica.mp.pkg2;
  * @author Alex
  */
 public class Cazador extends Personaje{
+
+    /**
+     * @return the voluntad
+     */
+    public int getVoluntad() {
+        return voluntad;
+    }
+
+    /**
+     * @param voluntad the voluntad to set
+     */
+    public void setVoluntad(int voluntad) {
+        this.voluntad = voluntad;
+    }
     private int voluntad;
     
     public Cazador (String nombre, int poder, Talento talento) {

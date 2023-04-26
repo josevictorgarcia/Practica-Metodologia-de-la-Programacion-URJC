@@ -15,4 +15,20 @@ public class Disciplina extends Habilidad{
         super(nombre, ataque, defensa);
         this.coste=coste;
     }
+
+    /**
+     * @return the coste
+     */
+    public int getCoste() {
+        return coste;
+    }
+
+    /**
+     * @param coste the coste to set
+     */
+    public void setCoste(int coste) {
+        this.coste = coste;
+    }
+    
+    
 }

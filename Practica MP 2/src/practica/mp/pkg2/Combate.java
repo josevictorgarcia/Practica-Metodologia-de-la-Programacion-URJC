@@ -52,6 +52,7 @@ public class Combate {
     }
 
     public void desarrolloCombate(){
+        condicionesIniciales();
         while (this.personaje1.getSalud()!=0 && this.personaje2.getSalud()!=0){     //Bucle. Hasta que la salud de alguno de los personajes no sea cero:
             nuevaRonda();
             }
@@ -74,6 +75,38 @@ public class Combate {
         return p1.getNombre()+p2.getNombre()+strDate;
     }
     
+    private void condicionesIniciales() {
+        this.personaje1.setSalud(5);
+        this.personaje2.setSalud(5);
+        this.personaje1.calcularSaludEsbirros();
+        this.personaje2.calcularSaludEsbirros();
+        //personaje1
+        if (personaje1 instanceof Licantropo) {
+            Licantropo licantropo = (Licantropo) personaje1;
+            licantropo.setRabia(0);
+        } 
+        if (personaje1 instanceof Cazador) {
+            Cazador cazador = (Cazador) personaje1;
+            cazador.setVoluntad(3);
+        }
+        if (personaje1 instanceof Vampiro) {
+            Vampiro vampiro = (Vampiro) personaje1;
+            vampiro.setSalud(0);
+        }
+        //personaje2
+        if (personaje2 instanceof Licantropo) {
+            Licantropo licantropo = (Licantropo) personaje2;
+            licantropo.setRabia(0);
+        } 
+        if (personaje2 instanceof Cazador) {
+            Cazador cazador = (Cazador) personaje2;
+            cazador.setVoluntad(3);
+        }
+        if (personaje2 instanceof Vampiro) {
+            Vampiro vampiro = (Vampiro) personaje2;
+            vampiro.setSalud(0);
+        }
+    }
     
     
     

@@ -9,11 +9,43 @@ package practica.mp.pkg2;
  * @author Alex
  */
 public class Esbirro {
+
     private String nombre;
     private int salud;
     
     public Esbirro(String nombre, int salud) {
         this.nombre=nombre;
         this.salud=salud;
+    }
+    
+    
+    
+    
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the salud
+     */
+    public int getSalud() {
+        return salud;
+    }
+
+    /**
+     * @param salud the salud to set
+     */
+    public void setSalud(int salud) {
+        this.salud = salud;
     }
 }

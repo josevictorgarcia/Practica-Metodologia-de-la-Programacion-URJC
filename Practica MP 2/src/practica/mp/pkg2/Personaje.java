@@ -24,6 +24,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     private int poder;                                  //Valor entre 1 y 5
     private int potencial_ataque;                       //Valor entre 0 y 5 --> Determinado por el numero de exitos.
     private int desafios_ganados;
+    private int salud_esbirros;
 
     public Personaje (String nombre, int poder, Habilidad habilidad) {
         this.nombre=nombre;
@@ -38,6 +39,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         this.salud=5;
         this.potencial_ataque=0;
         this.desafios_ganados=0;
+        this.salud_esbirros=0;
         
     }
     
@@ -91,6 +93,16 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     public void añadirEsbirro(Esbirro es) {
         this.esbirros.add(es);
     }
+    
+    public void calcularSaludEsbirros() {
+        this.setSalud_esbirros(0);
+        for (Esbirro i: this.esbirros) {
+            this.setSalud_esbirros(this.getSalud_esbirros() + i.getSalud());
+        }
+    }
+    
+    
+    
     
     
     //getters setters
@@ -233,4 +245,20 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     public void setPotencial_ataque(int potencial_ataque) {
         this.potencial_ataque = potencial_ataque;
     }
+
+    /**
+     * @return the salud_esbirros
+     */
+    public int getSalud_esbirros() {
+        return salud_esbirros;
+    }
+
+    /**
+     * @param salud_esbirros the salud_esbirros to set
+     */
+    public void setSalud_esbirros(int salud_esbirros) {
+        this.salud_esbirros = salud_esbirros;
+    }
+    
+    
 }

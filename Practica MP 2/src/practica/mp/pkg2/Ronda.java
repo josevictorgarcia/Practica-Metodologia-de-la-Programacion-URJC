@@ -34,12 +34,22 @@ public class Ronda {
         p1 = calculoNumExitosAtaque(this.personaje1);
         p2 = calculoNumExitosDefensa(this.personaje2);
         if (p1>p2) {
-            this.personaje1.setSalud(this.personaje1.getSalud()-1);}      //reduce la salud en 1 punto
+            if (this.personaje1.getSalud_esbirros()>0) {
+                this.personaje1.setSalud(this.personaje1.getSalud()-1);}      //reduce la salud en 1 punto
+            }
+        else{
+            this.personaje1.setSalud_esbirros(this.personaje1.getSalud_esbirros()-1);
+        }
         //turno ataque jugador 2
         p1 = calculoNumExitosAtaque(this.personaje2);
-        p2 = calculoNumExitos(this.personaje1);
+        p2 = calculoNumExitosDefensa(this.personaje1);
         if (p1>p2) {
-            this.personaje1.setSalud(this.personaje2.getSalud()-1);}      //reduce la salud en 1 punto
+            if (this.personaje2.getSalud_esbirros()>0) {
+                this.personaje2.setSalud(this.personaje2.getSalud()-1);}      //reduce la salud en 1 punto
+            }
+            else{
+                this.personaje2.setSalud_esbirros(this.personaje2.getSalud_esbirros()-1);
+            }
     }
 
     //calculoPotencialAtaque(){} no puede ir en esta clase. Debe ir en

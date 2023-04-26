@@ -18,5 +18,50 @@ public class Habilidad {
         this.ataque=ataque;
         this.defensa=defensa;
     }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the ataque
+     */
+    public int getAtaque() {
+        return ataque;
+    }
+
+    /**
+     * @param ataque the ataque to set
+     */
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
+
+    /**
+     * @return the defensa
+     */
+    public int getDefensa() {
+        return defensa;
+    }
+
+    /**
+     * @param defensa the defensa to set
+     */
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
+    
+    
+    
     
 }
