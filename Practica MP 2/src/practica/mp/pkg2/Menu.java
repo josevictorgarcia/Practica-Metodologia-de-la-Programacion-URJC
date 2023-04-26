@@ -277,7 +277,22 @@ public void mostrarRanking (Ranking rank) {
         }
     }
 }
+
+public Personaje askEditarPersonaje(Ranking rank) {
+    for (Usuario i: rank.getRanking()) {
+        if (i instanceof Cliente) {
+            mostrarString(i.getNickname());
+        }
+    }
+    String respuesta =pedirString("Escribe el nickname del personaje que quieres editar");
+    Cliente cliente = (Cliente) rank.getUsuario(respuesta);
+    return cliente.getPersonaje();
+}
     
+public void askDatosPersonaje(Personaje per) {
+    String respuesta = pedirString("Escribe el nuevo nombre del personaje");
+    per.setNombre(respuesta);
+}
    
 
 }

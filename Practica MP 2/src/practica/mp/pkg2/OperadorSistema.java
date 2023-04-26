@@ -14,8 +14,8 @@ public class OperadorSistema extends Usuario{
     
     public void editarPersonaje(Ranking rank) {
         Personaje per;
-        per= menu.askPersonaje(rank);  //muestra ranking y pide que elija un personaje
-        menu.askCambiarPersonaje(per); //pide los datos (nombre, etc) para cambiar al personaje y los cambia
+        per= menu.askEditarPersonaje(rank);  //muestra ranking y pide que elija un personaje
+        menu.askDatosPersonaje(per); //pide los datos (nombre, etc) para cambiar al personaje y los cambia
     }
     
     public void completarPersonaje (Ranking rank ) {
