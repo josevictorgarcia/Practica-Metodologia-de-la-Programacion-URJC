@@ -14,7 +14,7 @@ public class Tienda {
     private Equipos items;
     
     public Tienda (Equipos equipos) {
-        this.items=new Equipos (equipos);
+        this.items= equipos;
     }
     
     public void comprar(Personaje personaje){

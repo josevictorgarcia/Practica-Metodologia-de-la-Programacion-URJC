@@ -116,6 +116,9 @@ public class App {
                     case Desbanear:
                         op.desbanear(menu);
                         break;
+                    case AñadirItemTienda:
+                        op.añadirItemTienda(equipos);
+                        break;
                 }
             }
         }

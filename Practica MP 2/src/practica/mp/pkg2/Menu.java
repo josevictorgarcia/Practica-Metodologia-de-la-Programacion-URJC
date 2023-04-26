@@ -109,22 +109,29 @@ public void pedirAccionCliente(AccionCliente accionCliente)throws InterruptedExc
     }
 }
 public void pedirAccionOperador(AccionOp accionOp)throws InterruptedException{
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Elija lo que quiere hacer: ");
-    if ("DarseBaja".equals(scanner.nextLine())){            
-        accionOp= accionOp.DarseBaja;
-    }else if ("SalirSistema".equals(scanner.nextLine())){
-        accionOp= accionOp.SalirSistema;
-    }else if ("CambiarPersonaje".equals(scanner.nextLine())){
-        accionOp= accionOp.EditarPersonaje;
-    }else if ("ElegirEquipo".equals(scanner.nextLine())){
-        accionOp= accionOp.CompletarPersonaje;
-    }else if ("Desafiar".equals(scanner.nextLine())){
-        accionOp= accionOp.ValidarDesafios;
-    }else if ("ResponderDesafios".equals(scanner.nextLine())){
-        accionOp= accionOp.Banear;
-    }else if ("ConsultaCombates".equals(scanner.nextLine())){
-        accionOp= accionOp.Desbanear;
+    String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda'");
+    switch (respuesta) {
+        case "DarseBaja":
+            accionOp= AccionOp.DarseBaja;
+            break;
+        case "SalirSistema":
+            accionOp= AccionOp.SalirSistema;
+            break;
+        case "CompletarPersonaje":
+            accionOp= AccionOp.EditarPersonaje;
+            break;
+        case "ValidarDesafio":
+            accionOp= AccionOp.CompletarPersonaje;
+            break;
+        case "Banear":
+            accionOp= AccionOp.Banear;
+            break;
+        case "Desbanear":
+            accionOp= AccionOp.Desbanear;
+            break;
+        case "AñadirItemTienda":
+            accionOp= AccionOp.AñadirItemTienda;
+            break;
     }
 }
 
@@ -497,6 +504,20 @@ public Equipo pedirItemTienda(Tienda tienda) {
     else {
         return tienda.getItems().getEquipos().get(respuesta);
     }
+}
+
+public Equipo askItemNuevo() {
+    Equipo equipo = null;
+    String respuesta= pedirString ("Escribe que quiere añadir: 'arma' o 'armadura'");
+    if (respuesta.equals("arma")) {
+        Arma arma = askArmaNueva();
+        equipo=arma;
+    }
+    else {
+        Armadura armadura = askArmaduraNueva();
+        equipo=armadura;
+    }
+    return equipo;
 }
 
 

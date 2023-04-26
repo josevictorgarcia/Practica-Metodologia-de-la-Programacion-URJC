@@ -71,4 +71,9 @@ public class OperadorSistema extends Usuario{
         }
     }
     
+    public void añadirItemTienda(Equipos equipos) {
+        Equipo equipo = menu.askItemNuevo();
+        equipos.anadirEquipo(equipo);
+    }
+    
 }
