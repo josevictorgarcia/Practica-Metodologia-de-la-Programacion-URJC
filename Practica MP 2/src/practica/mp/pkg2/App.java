@@ -30,7 +30,7 @@ public class App {
     //es el main pero sin ser estático
     public void run() throws InterruptedException {
         Usuario user = null;
-        while (user==null){
+        while (user==null || user.isBaneado()){
             user = menu.inicio();
         }
         //loadBase();

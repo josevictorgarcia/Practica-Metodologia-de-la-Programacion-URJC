@@ -370,4 +370,50 @@ public Esbirro askEsbirroNuevo(boolean vampiro) {
     }
 }
 
+public Desafio askDesafioValidar (Ranking rank) {
+    Desafio des=null;
+    for (Usuario i: rank.getRanking()) {
+        if (i instanceof Cliente) {
+            Cliente cliente= (Cliente) i;
+            for (Desafio j: cliente.getDesafiosPendientes()) {
+                if (!j.isValidado()) {
+                    mostrarString("Desafio ID: " + j.getId_desafio());
+                    mostrarString("Desafiado: "+j.getDesafiado().getNombre());
+                    mostrarString("Desafiante: " + j.getDesafiante().getNombre());
+                    mostrarString("Oro apostado: " + j.getOro_apostado());
+                    boolean respuesta= pedirBool("Escribe 's' para validar, cualquier otra cosa para pasar al siguiente");
+                    if (respuesta) {
+                        return j;
+                    }
+                }
+            }
+        }
+    }
+    return des;
+}
+
+public Usuario askUsuarioBanear(Ranking ranking) {
+    Usuario user =null;
+    for (Usuario i: ranking.getRanking()) {
+        mostrarString("Nombre Usuario: "+i.getNickname());
+        boolean respuesta= pedirBool("Escribe 's' para banear, cualquier otra cosa para pasar al siguiente");
+        if (respuesta) {
+            return i;
+        }
+    }
+    return user;
+} 
+
+public Usuario askUsuarioDesbanear (Ranking ranking) {
+    Usuario user =null;
+    for (Usuario i: ranking.getRanking()) {
+        mostrarString("Nombre Usuario: "+i.getNickname());
+        boolean respuesta= pedirBool("Escribe 's' para desbanear, cualquier otra cosa para pasar al siguiente");
+        if (respuesta) {
+            return i;
+        }
+    }
+    return user;
+}
+
 }

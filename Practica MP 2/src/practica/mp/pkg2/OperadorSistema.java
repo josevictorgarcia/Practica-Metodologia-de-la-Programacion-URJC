@@ -52,19 +52,25 @@ public class OperadorSistema extends Usuario{
     }
     
     
-    public void validarDesafios (Menu menu) {
-        Desafio des =menu.askDesafioValidar(baseDesafiosPendientes); //muestra desafios pendientes no validados y pide que elija uno para validarlo
-        des.validar();
+    public void validarDesafios (Ranking ranking, Menu menu) {
+        Desafio des =menu.askDesafioValidar(ranking); //muestra desafios pendientes no validados y pide que elija uno para validarlo
+        if (des!=null) {
+            des.validar();
+        }
     }
     
     public void banear(Menu menu) {
-        Usuario user = menu.mostrarRanking(ranking); //elige un usuario a banear
-        user.setBaneado(true);
+        Usuario user = menu.askUsuarioBanearranking); //elige un usuario a banear
+        if (user!=null) {
+            user.setBaneado(true);
+        }
     }
     
     public void desbanear(Menu menu) {
-        Usuario user = menu.mostrarRanking(ranking);
-        user.setBaneado(false);
+        Usuario user = menu.askUsuarioDesbanear(ranking);
+        if (user!=null) {
+            user.setBaneado(false);
+        }
     }
     
 }
