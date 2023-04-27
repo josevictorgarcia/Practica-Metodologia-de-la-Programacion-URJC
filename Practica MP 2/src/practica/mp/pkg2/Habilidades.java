@@ -57,4 +57,34 @@ public class Habilidades {
     public void añadirHabilidad(Habilidad habilidad){
         this.habilidades.add(habilidad);
     }
+    
+     public Disciplina getDisciplina (String nombre) {
+        for (Habilidad i: this.habilidades) {
+            if ((i.getClass()==Disciplina.class) && (i.getNombre().equals(nombre))) {
+                Disciplina disciplina=(Disciplina) i;
+                return disciplina;
+            }
+        }
+        return null;
+    }
+    
+    public Talento getTalento (String nombre) {
+        for (Habilidad i: this.habilidades) {
+            if ((i.getClass()==Talento.class) && (i.getNombre().equals(nombre))) {
+                Talento talento=(Talento) i;
+                return talento;
+            }
+        }
+        return null;
+    }
+    
+    public Don getDon (String nombre) {
+        for (Habilidad i: this.habilidades) {
+            if ((i.getClass()==Don.class) && (i.getNombre().equals(nombre))) {
+                Don don=(Don) i;
+                return don;
+            }
+        }
+        return null;
+    }
 }

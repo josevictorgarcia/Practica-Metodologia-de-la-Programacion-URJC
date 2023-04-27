@@ -97,7 +97,7 @@ public class Menu implements Serializable{
         return null;
     }
     public AccionOp pedirAccionOperador(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AñadirHabilidad'");
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AnadirHabilidad'");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionOp.DarseBaja;
@@ -115,13 +115,13 @@ public class Menu implements Serializable{
                 return AccionOp.Desbanear;
             case "AñadirItemTienda":
                 return AccionOp.AñadirItemTienda;
-            case "EditarHabilidad":
-                return AccionOp.AñadirHabilidad;
+            case "AnadirHabilidad":
+                return AccionOp.AnadirHabilidad;
         }
         return null;
     }
 
-    private String pedirString (String mensaje) {
+    public String pedirString (String mensaje) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(mensaje);
         String respuesta = scanner.nextLine();
@@ -444,24 +444,23 @@ public class Menu implements Serializable{
         String nombre = pedirString("Escribe nombre personaje: ");
         int tipo = pedirInt("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador");
         if (tipo==0) {
-            Disciplina disciplina = askDisciplinaNueva();
+            Disciplina disciplina = askDisciplina(habilidades);
             Vampiro vampiro = new Vampiro(nombre, disciplina);
             return vampiro;
         }
         else if (tipo==1) {
-            Don don = askDonNuevo();
+            Don don = askDon(habilidades);
             Licantropo licantropo = new Licantropo(nombre, don);
             return licantropo;
         }
         else {
-            Talento talento = askTalentoNuevo();
+            Talento talento = askTalento(habilidades);
             Cazador cazador = new Cazador(nombre, talento);
             return cazador;
         }
     }
 
     public Disciplina askDisciplinaNueva() throws FileNotFoundException {
-        FileOutputStream file=new FileOutputStream("habilidades.ser");
         String nombre = pedirString("Elija nombre disciplina");      
         int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
         int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
@@ -535,5 +534,23 @@ public class Menu implements Serializable{
             Talento talento = askTalentoNuevo();
             return talento;
         }
+    }
+    
+     public Disciplina askDisciplina(Habilidades habilidades){
+        habilidades.mostrarDisciplinas();
+        String respuesta= pedirString ("Escribe el nombre de la disciplina elegida");
+        return habilidades.getDisciplina(respuesta);
+    }
+    
+    public Don askDon(Habilidades habilidades){
+        habilidades.mostrarDones();
+        String respuesta= pedirString ("Escribe el nombre del don elegido");
+        return habilidades.getDon(respuesta);
+    }
+    
+    public Talento askTalento(Habilidades habilidades){
+        habilidades.mostrarTalentos();
+        String respuesta= pedirString ("Escribe el nombre del talento elegida");
+        return habilidades.getTalento(respuesta);
     }
 }

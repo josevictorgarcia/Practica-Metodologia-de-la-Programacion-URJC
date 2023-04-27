@@ -122,7 +122,7 @@ public class App {
                     case AñadirItemTienda:
                         op.añadirItemTienda(equipos);
                         break;
-                    case AñadirHabilidad:
+                    case AnadirHabilidad:
                         op.añadirHabilidad(habilidades);
                         break;
                 }

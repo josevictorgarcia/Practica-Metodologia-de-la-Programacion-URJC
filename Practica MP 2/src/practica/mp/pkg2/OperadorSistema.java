@@ -78,8 +78,15 @@ public class OperadorSistema extends Usuario implements Serializable{
         equipos.anadirEquipo(equipo);
     }
     
-    public void añadirHabilidad(Habilidades habilidades){
-        
-    }
+     public void añadirHabilidad(Habilidades habilidades) throws FileNotFoundException{
+        String respuesta = menu.pedirString("Desea añadir una disciplina, don o talento");
+        if (respuesta.equals("disciplina")){
+            menu.askDisciplinaNueva();
+        } else if(respuesta.equals("don")){
+            menu.askDonNuevo();
+        }else {
+            menu.askTalentoNuevo();
+        }
+     }
     
 }
