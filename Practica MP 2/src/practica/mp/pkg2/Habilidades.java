@@ -4,6 +4,12 @@
  */
 package practica.mp.pkg2;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
@@ -12,7 +18,9 @@ import java.io.*;
  *
  * @author migue
  */
-public class Habilidades implements Serializable{
+
+public class Habilidades implements Serializable {
+
     private List<Habilidad> habilidades;
     
     public Habilidades(){
@@ -60,7 +68,7 @@ public class Habilidades implements Serializable{
     }
     
     public void añadirHabilidad(Habilidad habilidad){
-        this.getHabilidades().add(habilidad);
+        this.habilidades.add(habilidad);
     }
     
      public Disciplina getDisciplina (String nombre) {
@@ -92,8 +100,9 @@ public class Habilidades implements Serializable{
         }
         return null;
     }
+    
 
-    public Habilidades loadHabilidades(){
+    /*public Habilidades loadHabilidades(){
         try {
             FileInputStream archivo = new FileInputStream("Habilidades.ser");
             ObjectInputStream habilidadesEntrada = new ObjectInputStream(archivo);
@@ -119,7 +128,7 @@ public class Habilidades implements Serializable{
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveHabilidades");}
-    }
+    }*/
     
     public List<Habilidad> getHabilidades() {
         return habilidades;
@@ -128,6 +137,5 @@ public class Habilidades implements Serializable{
     public void setHabilidades(List<Habilidad> habilidades) {
         this.habilidades = habilidades;
     }
-    
-    
+ 
 }
