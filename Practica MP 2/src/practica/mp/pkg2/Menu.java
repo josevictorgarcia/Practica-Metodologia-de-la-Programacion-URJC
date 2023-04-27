@@ -343,7 +343,7 @@ public class Menu implements Serializable{
         String nombre= pedirString("Escribe el nombre de la armadura: ");
         int defensa = pedirInt("Escribe la defensa de la armadura: ");
         int coste = pedirInt("Introduce el coste de la armadura: ");
-        return new Armadura(nombre, 0, defensa, coste);
+        return new Armadura(nombre, defensa,0 , coste);
     }
 
     public Modificador askModificadorNuevo() {
