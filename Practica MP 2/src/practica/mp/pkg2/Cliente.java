@@ -113,7 +113,8 @@ public class Cliente extends Usuario implements Serializable{
     
     public void comprarItem (Tienda tienda) {
         getMenu().mostrarString("El oro que tienes es: " + this.getPersonaje().getOro());
-        Equipo item= getMenu().pedirItemTienda(tienda);
+        //Equipo item= getMenu().pedirItemTienda(tienda);
+        Equipo item= tienda.pedirItemTienda();
         if (item!=null) {
             if (item.getCoste() <= this.getPersonaje().getOro()) {
                 this.getPersonaje().setOro(this.getPersonaje().getOro()-item.getCoste());

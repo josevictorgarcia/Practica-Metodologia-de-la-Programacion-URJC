@@ -541,9 +541,9 @@ public class Menu implements Serializable{
     public void mostrarGanador (Personaje per) {
         mostrarString("El ganador es: "+per.getNombre());
     }
-
-    public Equipo pedirItemTienda(Tienda tienda) {
-        mostrarString("Los items de la tienda son :");
+    
+    /*public Equipo pedirItemTienda(Tienda tienda) {
+        mostrarString("Los items de la tienda son:");
         int pos=0;
         for (Equipo i: tienda.getItems().getEquipos()) {
             mostrarString(pos+": Nombre: "+i.getNombre() + " Oro: "+ i.getCoste()+ " Ataque: " + i.getAtaque() + " Defensa: " + i.getDefensa());
@@ -557,7 +557,7 @@ public class Menu implements Serializable{
         else {
             return tienda.getItems().getEquipos().get(respuesta);
         }
-    }
+    }*/
 
     public Equipo askItemNuevo() {
         Equipo equipo = null;

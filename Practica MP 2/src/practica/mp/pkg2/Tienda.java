@@ -18,9 +18,29 @@ public class Tienda implements Serializable{
         this.items= equipos;
     }
     
-    public void comprar(Personaje personaje){
-        getItems().mostrarEquipos();
+    public Equipo pedirItemTienda() {
+        System.out.println("Los items de la tienda son:");
+        int pos=0;
+        for (Equipo i: items.getEquipos()) {
+            System.out.println(pos+": Nombre: "+i.getNombre() + " Oro: "+ i.getCoste()+ " Ataque: " + i.getAtaque() + " Defensa: " + i.getDefensa());
+            pos++;
+        }
+        int size=items.getEquipos().size();
+        System.out.println("Escribe el numero para comprar, o escribe "+size+" para salir");
         Scanner scanner = new Scanner(System.in);
+        
+        int respuesta =  scanner.nextInt();
+        if (respuesta ==size) {
+            return null;
+        }
+        else {
+            return items.getEquipos().get(respuesta);
+        }
+    }
+    
+    public void comprar(Personaje personaje){
+        Scanner scanner = new Scanner(System.in);
+        getItems().mostrarEquipos();
         System.out.println("Introduce el nombre del equipo a comprar:");
         String nombreEquipo = scanner.nextLine();
 
@@ -30,17 +50,16 @@ public class Tienda implements Serializable{
             if (equipo.getNombre().equals(nombreEquipo)) {
                 equipoBuscado = equipo;
                 break;
+                }
             }
-        }
         if (equipoBuscado == null) {
             System.out.println("No se encontró un equipo con ese nombre.");
         } else {
             if (personaje.oroSuficiente(equipoBuscado.getCoste())==true){
                 personaje.anadirItem(equipoBuscado);
                 personaje.modificarOro(equipoBuscado.getCoste());
-            }
-            else{
-            System.out.println("No tiene dinero suficiente");
+            } else{
+                System.out.println("No tiene dinero suficiente");
             }
         }
     }
