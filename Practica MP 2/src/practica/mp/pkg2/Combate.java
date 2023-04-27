@@ -93,7 +93,7 @@ public class Combate implements Serializable{
         }
         if (personaje1 instanceof Vampiro) {
             Vampiro vampiro = (Vampiro) personaje1;
-            vampiro.setSalud(0);
+            vampiro.setSangre(0);
         }
         //personaje2
         if (personaje2 instanceof Licantropo) {
@@ -106,7 +106,7 @@ public class Combate implements Serializable{
         }
         if (personaje2 instanceof Vampiro) {
             Vampiro vampiro = (Vampiro) personaje2;
-            vampiro.setSalud(0);
+            vampiro.setSangre(0);
         }
     }
     
