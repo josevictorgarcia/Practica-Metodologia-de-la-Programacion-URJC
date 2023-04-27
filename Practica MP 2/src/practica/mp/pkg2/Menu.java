@@ -15,7 +15,7 @@ public class Menu implements Serializable{
     //Ranking ranking;
     private Usuario p;
     
-    public Usuario inicio(Ranking ranking, GeneradorIDs generador) throws InterruptedException{
+    public Usuario inicio(Ranking ranking, GeneradorIDs generador, Habilidades habilidades) throws InterruptedException, FileNotFoundException{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Pulse '1' para iniciar sesión o '2' para registrarse:");
         if ("1".equals(scanner.nextLine())){
@@ -49,7 +49,7 @@ public class Menu implements Serializable{
             if(user!=null){
                 System.out.println("Nombre de usuario ya registrado");
                 Thread.sleep(3000);
-                inicio(ranking, generador);
+                inicio(ranking, generador, habilidades);
             }else{
                 System.out.println("Escriba la contrasena");
                 String contra = scanner.nextLine();
@@ -59,7 +59,7 @@ public class Menu implements Serializable{
                     Cliente cliente = new Cliente(nickname, nickname, contra, this, generador);
                     ranking.añadirUsuario(cliente);
                     System.out.println("Cliente registrado");
-                    cliente.cambiarPersonaje();
+                    cliente.cambiarPersonaje(habilidades);
                     return cliente;
                 }
                 else {
@@ -97,7 +97,7 @@ public class Menu implements Serializable{
         return null;
     }
     public AccionOp pedirAccionOperador(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda'");
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AñadirHabilidad'");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionOp.DarseBaja;
@@ -115,6 +115,8 @@ public class Menu implements Serializable{
                 return AccionOp.Desbanear;
             case "AñadirItemTienda":
                 return AccionOp.AñadirItemTienda;
+            case "EditarHabilidad":
+                return AccionOp.AñadirHabilidad;
         }
         return null;
     }
@@ -438,7 +440,7 @@ public class Menu implements Serializable{
         return user;
     }
 
-    public Personaje askPersonajeNuevo() {
+    public Personaje askPersonajeNuevo(Habilidades habilidades) throws FileNotFoundException {
         String nombre = pedirString("Escribe nombre personaje: ");
         int tipo = pedirInt("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador");
         if (tipo==0) {
@@ -458,59 +460,27 @@ public class Menu implements Serializable{
         }
     }
 
-    public Disciplina askDisciplinaNueva() {
-        String nombre = pedirString("Elija nombre disciplina");
-        mostrarString("Disciplina 1:");
-        mostrarString("Valor ataque: 1");
-        mostrarString("Valor defensa: 0");
-        mostrarString("Coste: 1");
-        mostrarString("Disciplina 2:");
-        mostrarString("Valor ataque: 2");
-        mostrarString("Valor defensa: 1");
-        mostrarString("Coste: 2");
-        mostrarString("Disciplina 3:");
-        mostrarString("Valor ataque: 3");
-        mostrarString("Valor defensa: 2");
-        mostrarString("Coste: 3");
-        int opcionElegida = pedirInt("Elija 1, 2 o 3");
-        int defensa = opcionElegida-1;
-        int ataque = opcionElegida;
-        int coste= opcionElegida;
+    public Disciplina askDisciplinaNueva() throws FileNotFoundException {
+        FileOutputStream file=new FileOutputStream("habilidades.ser");
+        String nombre = pedirString("Elija nombre disciplina");      
+        int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
+        int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
+        int coste= pedirInt("Elija un coste entre 1 y 3");
         return new Disciplina(nombre,ataque,defensa,coste);
     }
 
     public Don askDonNuevo() {
         String nombre = pedirString("Escribe nombre don :");
-        mostrarString("Disciplina 1:");
-        mostrarString("Valor ataque: 1");
-        mostrarString("Valor defensa: 0");
-        mostrarString("Rabia minima: 1");
-        mostrarString("Disciplina 2:");
-        mostrarString("Valor ataque: 2");
-        mostrarString("Valor defensa: 1");
-        mostrarString("Rabia minima: 2");
-        mostrarString("Disciplina 3:");
-        mostrarString("Valor ataque: 3");
-        mostrarString("Valor defensa: 2");
-        mostrarString("Rabia minima: 3");
-        int opcionElegida = pedirInt("Elija 1, 2 o 3");
-        int defensa = opcionElegida-1;
-        int ataque = opcionElegida;
-        int rabia_minima= opcionElegida;
+        int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
+        int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
+        int rabia_minima= pedirInt("Elija una rabia minima entre 1 y 3");
         return new Don(nombre,ataque,defensa,rabia_minima);
     }
 
     public Talento askTalentoNuevo() {
         String nombre = pedirString("Escribe nombre talento :");
-        mostrarString("Talento 0:");
-        mostrarString("Valor ataque: 1");
-        mostrarString("Valor defensa: 0");
-        mostrarString("Disciplina 1:");
-        mostrarString("Valor ataque: 0");
-        mostrarString("Valor defensa: 1");
-        int opcionElegida = pedirInt("Elija 0 o 1");
-        int defensa = opcionElegida;
-        int ataque = (opcionElegida+1)%2;
+        int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
+        int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
         return new Talento(nombre,ataque,defensa);
     }
 
@@ -551,6 +521,19 @@ public class Menu implements Serializable{
         }
         return equipo;
     }
-
-
+    
+    public Habilidad askHabilidadNueva() throws FileNotFoundException{
+        String respuesta= pedirString ("Escribe que quiere añadir: 'disciplina', 'don' o 'talento'");
+        if (respuesta.equals("disciplina")) {
+            Disciplina disciplina = askDisciplinaNueva();
+            return disciplina;
+        }
+        else if (respuesta.equals("don")){
+            Don don = askDonNuevo();
+            return don;
+        } else{
+            Talento talento = askTalentoNuevo();
+            return talento;
+        }
+    }
 }

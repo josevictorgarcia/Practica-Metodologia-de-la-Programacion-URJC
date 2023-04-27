@@ -2,6 +2,7 @@
 package practica.mp.pkg2;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,6 +25,7 @@ public class App {
     private Tienda tienda;
     private Equipos equipos;
     private GeneradorIDs generador;
+    private Habilidades habilidades;
 
     public App() {
         ranking = loadRanking();
@@ -31,13 +33,14 @@ public class App {
         generador = loadGenerador();
         this.menu = new Menu();
         tienda = new Tienda(equipos);
+        habilidades= loadHabilidades();
     }
     
     //es el main pero sin ser estático
-    public void run() throws InterruptedException {
+    public void run() throws InterruptedException, FileNotFoundException {
         Usuario user = null;
         while (user==null || user.isBaneado()){
-            user = menu.inicio(ranking, generador);
+            user = menu.inicio(ranking, generador, habilidades);
         }
         //loadBase();
         //loadRanking();
@@ -65,7 +68,7 @@ public class App {
                             end=true;
                             break;
                         case CambiarPersonaje:
-                            cliente.cambiarPersonaje();
+                            cliente.cambiarPersonaje(habilidades);
                             break;
                         case ElegirEquipo:
                             cliente.elegirEquipo();
@@ -118,6 +121,9 @@ public class App {
                         break;
                     case AñadirItemTienda:
                         op.añadirItemTienda(equipos);
+                        break;
+                    case AñadirHabilidad:
+                        op.añadirHabilidad(habilidades);
                         break;
                 }
             }
@@ -202,6 +208,20 @@ public class App {
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveGenerador");}
+    }
+
+    public Habilidades loadHabilidades(){
+        try {
+            FileInputStream archivo = new FileInputStream("Habilidades.ser");
+            ObjectInputStream habilidadesEntrada = new ObjectInputStream(archivo);
+            Habilidades habilidades = (Habilidades) habilidadesEntrada.readObject();
+            habilidadesEntrada.close();
+            return habilidades;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new Habilidades();
+        }
     }
    
 }

@@ -78,4 +78,8 @@ public class OperadorSistema extends Usuario implements Serializable{
         equipos.anadirEquipo(equipo);
     }
     
+    public void añadirHabilidad(Habilidades habilidades){
+        
+    }
+    
 }

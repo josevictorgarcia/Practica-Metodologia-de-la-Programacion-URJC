@@ -4,6 +4,8 @@
  */
 package practica.mp.pkg2;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author Alex
@@ -16,7 +18,7 @@ public class MetProgUrjcGame {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
         // TODO code application logic here
         System.out.println("Inicio");
         App app = new App();

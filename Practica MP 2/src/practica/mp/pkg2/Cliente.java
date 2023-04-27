@@ -27,9 +27,9 @@ public class Cliente extends Usuario implements Serializable{
         personaje= new Personaje(this.getNombre(), new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
     }
     
-    public void cambiarPersonaje() {
+    public void cambiarPersonaje(Habilidades habilidades) throws FileNotFoundException {
         //ranking.eliminar(personaje) ??? Si cambias de personaje lo eliminamos del ranking?
-        setPersonaje(menu.askPersonajeNuevo());
+        setPersonaje(menu.askPersonajeNuevo(habilidades));
         //baseUsuarios.save() ?? para que el cambio quede reflejado a los que le desafien despues mientras aun no ha finalizado el programa?  En general en cualquier cambio a 
         //personaje también
         
