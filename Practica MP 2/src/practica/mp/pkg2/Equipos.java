@@ -127,29 +127,6 @@ public class Equipos implements Serializable{
             */
         }
     }
-    public Equipos loadEquipos() {
-        try {
-            FileInputStream archivo = new FileInputStream("equipos.ser");
-            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
-            Equipos equip = (Equipos) rankingEntrada.readObject();
-            rankingEntrada.close();
-            return equip;
-        }
-        catch(IOException | ClassNotFoundException e) {
-           //lo creamos pues no hay archivo
-            return new Equipos();
-        }
-    }
-    public void saveEquipos() {
-        try {
-            FileOutputStream archivo = new FileOutputStream("equipos.ser");
-            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(equipos);
-            rankingSalida.close();
-        }
-        catch (Exception ex) {
-        System.out.println("Error clase App method saveEquipos");}
-    }
     public void eliminarEquipo(){
         
         /*

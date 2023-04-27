@@ -57,4 +57,29 @@ public class GeneradorIDs implements Serializable{
         }
         return id;
     }
+    
+    public void saveGenerador() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("generador.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(this);
+            rankingSalida.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveGenerador");}
+    }
+    
+    public GeneradorIDs loadGenerador() {
+        try {
+            FileInputStream archivo = new FileInputStream("generador.ser");
+            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
+            GeneradorIDs generador = (GeneradorIDs) rankingEntrada.readObject();
+            rankingEntrada.close();
+            return generador;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new GeneradorIDs();
+        }
+    }
 }
