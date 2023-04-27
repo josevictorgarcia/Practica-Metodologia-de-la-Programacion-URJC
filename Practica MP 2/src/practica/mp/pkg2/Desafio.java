@@ -21,12 +21,12 @@ public class Desafio implements Serializable{
     private boolean validado;
     private Combate combate;
     
-    public Desafio(Personaje desafiante, Personaje desafiado, int oro) {
+    public Desafio(Personaje desafiante, Personaje desafiado, int oro, GeneradorIDs generador) {
         this.validado=false;
         this.desafiante= desafiante;
         this.desafiado= desafiado;
         this.oro_apostado= oro;
-        //this.id_desafio=generarID();
+        this.id_desafio=generador.getID();
     }
     
     public void validar() {

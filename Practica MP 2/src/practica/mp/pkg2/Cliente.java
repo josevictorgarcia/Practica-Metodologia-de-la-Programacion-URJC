@@ -18,12 +18,12 @@ public class Cliente extends Usuario implements Serializable{
     private List<Combate> ultimosCombates;
     private Menu menu;
     
-    public Cliente (String nombre, String nickname, String contrasena, Menu menu) {
+    public Cliente (String nombre, String nickname, String contrasena, Menu menu, GeneradorIDs generador) {
         super(nombre, nickname,contrasena);
         this.menu=menu;
         this.desafiosPendientes=new ArrayList();
         this.ultimosCombates= new ArrayList();
-        //this.numRegistro=generarNumRegistro(); FALTA REGISTROS E IDS
+        this.numRegistro=generador.getID();
         personaje= new Personaje(this.getNombre(), new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
     }
     
@@ -52,10 +52,10 @@ public class Cliente extends Usuario implements Serializable{
         }
     }
     
-    public void desafiar (Ranking ranking) {
+    public void desafiar (Ranking ranking, GeneradorIDs generador) {
         Cliente desafiado= menu.askDesafiado(ranking);
         int oro=menu.askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
-        Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro);
+        Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro, generador);
         enviarDesafio(des, desafiado); //añade el desafio a desafiosPendientes del desafiado
     }
     

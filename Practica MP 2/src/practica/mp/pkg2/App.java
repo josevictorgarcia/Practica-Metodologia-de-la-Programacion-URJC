@@ -23,10 +23,12 @@ public class App {
     private Usuario usuarioActivo;
     private Tienda tienda;
     private Equipos equipos;
+    private GeneradorIDs generador;
 
     public App() {
         ranking = loadRanking();
         equipos = loadEquipos();
+        generador = loadGenerador();
         this.menu = new Menu();
         tienda = new Tienda(equipos);
     }
@@ -35,7 +37,7 @@ public class App {
     public void run() throws InterruptedException {
         Usuario user = null;
         while (user==null || user.isBaneado()){
-            user = menu.inicio(ranking);
+            user = menu.inicio(ranking, generador);
         }
         //loadBase();
         //loadRanking();
@@ -69,7 +71,7 @@ public class App {
                             cliente.elegirEquipo();
                             break;
                         case Desafiar:
-                            cliente.desafiar(ranking);
+                            cliente.desafiar(ranking, generador);
                             break;
                         case ResponderDesafios:
                             cliente.responderDesafios();
@@ -120,10 +122,9 @@ public class App {
                 }
             }
         }
-        
-        menu.mostrarRanking(ranking); //debugging
         saveRanking();
         saveEquipos();
+        saveGenerador();
     }
     
     public Ranking loadRanking() {
@@ -176,6 +177,31 @@ public class App {
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveEquipos");}
+    }
+    
+    public GeneradorIDs loadGenerador() {
+        try {
+            FileInputStream archivo = new FileInputStream("generador.ser");
+            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
+            GeneradorIDs generador = (GeneradorIDs) rankingEntrada.readObject();
+            rankingEntrada.close();
+            return generador;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new GeneradorIDs();
+        }
+    }
+    
+    public void saveGenerador() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("generador.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(generador);
+            rankingSalida.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveGenerador");}
     }
    
 }

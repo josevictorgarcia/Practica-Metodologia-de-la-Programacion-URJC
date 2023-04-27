@@ -15,7 +15,7 @@ public class Menu implements Serializable{
     //Ranking ranking;
     private Usuario p;
     
-    public Usuario inicio(Ranking ranking) throws InterruptedException{
+    public Usuario inicio(Ranking ranking, GeneradorIDs generador) throws InterruptedException{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Pulse '1' para iniciar sesión o '2' para registrarse:");
         if ("1".equals(scanner.nextLine())){
@@ -49,14 +49,14 @@ public class Menu implements Serializable{
             if(user!=null){
                 System.out.println("Nombre de usuario ya registrado");
                 Thread.sleep(3000);
-                inicio(ranking);
+                inicio(ranking, generador);
             }else{
                 System.out.println("Escriba la contrasena");
                 String contra = scanner.nextLine();
                 System.out.println("Escriba 'c' para Cliente o 'op' para Operador de Sistema");
                 String tipo = scanner.nextLine();
                 if ("c".equals(tipo)) {
-                    Cliente cliente = new Cliente(nickname, nickname, contra, this);
+                    Cliente cliente = new Cliente(nickname, nickname, contra, this, generador);
                     ranking.añadirUsuario(cliente);
                     System.out.println("Cliente registrado");
                     cliente.cambiarPersonaje();
@@ -526,7 +526,7 @@ public class Menu implements Serializable{
         mostrarString("Los items de la tienda son :");
         int pos=0;
         for (Equipo i: tienda.getItems().getEquipos()) {
-            mostrarString(pos+": Nombre: "+i.getNombre() + "Oro: "+ i.getCoste()+ "Ataque: " + i.getAtaque() + "Defensa: " + i.getDefensa());
+            mostrarString(pos+": Nombre: "+i.getNombre() + " Oro: "+ i.getCoste()+ " Ataque: " + i.getAtaque() + " Defensa: " + i.getDefensa());
             pos++;
         }
         int respuesta = pedirInt("Escribe el numero para comprar, o escribe 33 para salir");

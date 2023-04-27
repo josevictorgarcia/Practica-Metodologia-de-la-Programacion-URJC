@@ -47,7 +47,6 @@ public class Ranking implements Serializable{
         }
         */
         this.ranking.add(user);
-        System.out.println(this.ranking.size()); //debugging
         actualizarRanking();
         
         

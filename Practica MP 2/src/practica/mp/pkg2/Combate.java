@@ -28,6 +28,7 @@ public class Combate implements Serializable{
         this.personaje2=p2;
         this.fecha= new Date();
         this.id_combate= generarID(p1,p2,fecha);
+        this.rondas= new ArrayList();
     }
 
     public Personaje getPersonaje1(){
