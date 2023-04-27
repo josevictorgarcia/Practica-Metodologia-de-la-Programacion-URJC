@@ -18,7 +18,7 @@ public class Tienda implements Serializable{
         this.items= equipos;
     }
     
-    public Equipo pedirItemTienda() {
+    /*public Equipo pedirItemTienda() {
         System.out.println("Los items de la tienda son:");
         int pos=0;
         for (Equipo i: items.getEquipos()) {
@@ -36,7 +36,7 @@ public class Tienda implements Serializable{
         else {
             return items.getEquipos().get(respuesta);
         }
-    }
+    }*/
     
     public void comprar(Personaje personaje){
         Scanner scanner = new Scanner(System.in);
