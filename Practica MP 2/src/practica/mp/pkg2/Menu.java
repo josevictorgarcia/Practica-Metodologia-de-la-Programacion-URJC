@@ -17,7 +17,7 @@ public class Menu implements Serializable{
     
     public Usuario inicio(Ranking ranking, GeneradorIDs generador, Habilidades habilidades) throws InterruptedException, FileNotFoundException{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Pulse '1' para iniciar sesión o '2' para registrarse:");
+        System.out.println("Pulse '1' para iniciar sesión o cualquier otra cosa para registrarse:");
         if ("1".equals(scanner.nextLine())){
             System.out.println("Escriba su nombre de usuario (nickname)");
             String nickname = scanner.nextLine();
@@ -53,6 +53,7 @@ public class Menu implements Serializable{
             }else{
                 System.out.println("Escriba la contrasena");
                 String contra = scanner.nextLine();
+                System.out.println("Escriba 'c' para Cliente o cualquier otra cosa para Operador de Sistema");
                 String tipo = scanner.nextLine();
                 if ("c".equals(tipo)) {
                     Cliente cliente = new Cliente(nickname, nickname, contra, this, generador);
@@ -74,7 +75,7 @@ public class Menu implements Serializable{
 
 
     public AccionCliente pedirAccionCliente(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem'");
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem' o cualquier otra cosa para SalirSistema");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionCliente.DarseBaja;
@@ -90,9 +91,12 @@ public class Menu implements Serializable{
                 return AccionCliente.ConsultaCombates;
             case "ComprarItem":
                 return AccionCliente.ComprarItem;
+            default:
+                return AccionCliente.SalirSistema;
         }
     }
     public AccionOp pedirAccionOperador(){
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AnadirHabilidad' o cualquier otra cosa para SalirSistema");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionOp.DarseBaja;
@@ -110,6 +114,8 @@ public class Menu implements Serializable{
                 return AccionOp.AñadirItemTienda;
             case "AnadirHabilidad":
                 return AccionOp.AnadirHabilidad;
+            default:
+                return AccionOp.SalirSistema;
         }
     }
 
@@ -134,6 +140,28 @@ public class Menu implements Serializable{
             System.out.println("Error class menu method pedirInt");
         }
         return 0;
+    }
+    
+    private int pedirIntRango(String mensaje, int min, int max) {
+        boolean end =false;
+        int num=0;
+        while (!end) {
+            String respuesta = pedirString(mensaje);
+            try {
+                num = Integer.parseInt(respuesta);
+                return num;
+            }
+            catch (Exception ex){
+                System.out.println("Error class menu method pedirInt");
+            }
+            if (num<min || num>max) {
+                mostrarString("el numero esta fuera del rango");
+            }
+            else {
+                end=true;
+            }
+        }
+        return num;
     }
 
     private boolean pedirBool (String mensaje) {
@@ -173,7 +201,20 @@ public class Menu implements Serializable{
         for (Arma i: armasActivas) {
             mostrarString(i.getNombre());
         }
+        int num=-1;
+        while (num<0 || !(equipo.get(num) instanceof Arma)) {
+            String respuesta = pedirString("Escriba el numero del arma que desea incluir como activa");
+            try {
+                num = Integer.parseInt(respuesta);
+            }
+            catch (Exception ex){
+                System.out.println("Error class menu method askArma");
+            }
+            if (!(equipo.get(num) instanceof Arma)) {
+                mostrarString("El numero no corresponde a un arma");
+            }
         }
+        return (Arma) equipo.get(num); 
     }
 
     public Armadura askArmadura (List<Equipo> equipo) {
@@ -191,12 +232,27 @@ public class Menu implements Serializable{
             mostrarString("no tienes armaduras en tu equipo");
             return null;
         }
+        int num=-1;
+        while (num<0 || !(equipo.get(num) instanceof Armadura)) {
+            String respuesta = pedirString("Escriba el numero de la armadura que desea incluir como activa");
+            try {
+                num = Integer.parseInt(respuesta);
+            }
+            catch (Exception ex){
+                System.out.println("Error class menu method askArmadura");
+            }
+            if (!(equipo.get(num) instanceof Armadura)) {
+                mostrarString("El numero no corresponde a una Armadura");
+            }
         }
+        return (Armadura) equipo.get(num); 
     }
 
     public Cliente askDesafiado (Ranking ranking) {
         boolean end=false;
         Usuario user=null;
+        //mostrarRanking(ranking);
+        ranking.mostrarRanking();
         while (!end) {
             String respuesta=pedirString("Escribe el nickname del usuario al que deseas desafiar");
             user = ranking.getUsuario(respuesta);
@@ -263,6 +319,7 @@ public class Menu implements Serializable{
     }
 
 
+    /*public void mostrarRanking (Ranking rank) {
         int pos =0;
         for (Usuario i: rank.getRanking()) {
             pos++;
@@ -272,6 +329,7 @@ public class Menu implements Serializable{
                 mostrarString("Desafios ganados: " + cliente.getPersonaje().getDesafios_ganados());
             }
         }
+    }*/
 
     public Personaje askEditarPersonaje(Ranking rank) {
         for (Usuario i: rank.getRanking()) {
