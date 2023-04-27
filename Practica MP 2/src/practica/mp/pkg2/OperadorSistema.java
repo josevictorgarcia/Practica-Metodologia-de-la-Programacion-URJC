@@ -90,11 +90,7 @@ public class OperadorSistema extends Usuario implements Serializable{
             habilidad=menu.askTalentoNuevo();
         }
         habilidades.añadirHabilidad(habilidad);
-<<<<<<< HEAD
-        habilidades.saveHabilidades();
-=======
         System.out.println(habilidades.getHabilidades().size());
->>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
      }
     
 }

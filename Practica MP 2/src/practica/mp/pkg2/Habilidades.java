@@ -18,11 +18,9 @@ import java.io.*;
  *
  * @author migue
  */
-<<<<<<< HEAD
+
 public class Habilidades implements Serializable {
-=======
-public class Habilidades implements Serializable{
->>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
+
     private List<Habilidad> habilidades;
     
     public Habilidades(){
@@ -70,19 +68,7 @@ public class Habilidades implements Serializable{
     }
     
     public void añadirHabilidad(Habilidad habilidad){
-<<<<<<< HEAD
         this.habilidades.add(habilidad);
-        try {
-            FileInputStream archivo = new FileInputStream("Habilidades.ser");
-            ObjectInputStream habilidadesEntrada = new ObjectInputStream(archivo);
-            Habilidades habilidades = (Habilidades) habilidadesEntrada.readObject();
-            habilidadesEntrada.close();
-        }
-        catch(IOException | ClassNotFoundException e) {
-        }
-=======
-        this.getHabilidades().add(habilidad);
->>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
     }
     
      public Disciplina getDisciplina (String nombre) {
@@ -114,21 +100,7 @@ public class Habilidades implements Serializable{
         }
         return null;
     }
-<<<<<<< HEAD
     
-    public void saveHabilidades() {
-        try {
-            FileOutputStream archivo = new FileOutputStream("habilidades.ser");
-            ObjectOutputStream habilidadesSalida = new ObjectOutputStream(archivo);
-            habilidadesSalida.writeObject(this.habilidades);
-            habilidadesSalida.close();
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error clase App method saveHabilidades");
-        }
-    }
-=======
 
     /**
      * @return the habilidades
@@ -143,7 +115,5 @@ public class Habilidades implements Serializable{
     public void setHabilidades(List<Habilidad> habilidades) {
         this.habilidades = habilidades;
     }
-    
-    
->>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
+ 
 }
