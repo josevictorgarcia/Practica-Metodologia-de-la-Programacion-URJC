@@ -59,6 +59,7 @@ public class Menu implements Serializable{
                     Cliente cliente = new Cliente(nickname, nickname, contra, this);
                     ranking.añadirUsuario(cliente);
                     System.out.println("Cliente registrado");
+                    cliente.cambiarPersonaje();
                     return cliente;
                 }
                 else {
@@ -439,45 +440,77 @@ public class Menu implements Serializable{
 
     public Personaje askPersonajeNuevo() {
         String nombre = pedirString("Escribe nombre personaje: ");
-        int poder = pedirInt("Escribe poder entre 1-5");
         int tipo = pedirInt("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador");
         if (tipo==0) {
             Disciplina disciplina = askDisciplinaNueva();
-            Vampiro vampiro = new Vampiro(nombre, poder, disciplina);
+            Vampiro vampiro = new Vampiro(nombre, disciplina);
             return vampiro;
         }
         else if (tipo==1) {
             Don don = askDonNuevo();
-            Licantropo licantropo = new Licantropo(nombre, poder, don);
+            Licantropo licantropo = new Licantropo(nombre, don);
             return licantropo;
         }
         else {
             Talento talento = askTalentoNuevo();
-            Cazador cazador = new Cazador(nombre, poder, talento);
+            Cazador cazador = new Cazador(nombre, talento);
             return cazador;
         }
     }
 
     public Disciplina askDisciplinaNueva() {
-        String nombre = pedirString("Escribe nombre disciplina :");
-        int ataque = pedirInt("Escribe valor ataque 1-3");
-        int defensa=pedirInt("Escribe valor defensa 1-3");
-        int coste=pedirInt("Escribe coste 1-3");
+        String nombre = pedirString("Elija nombre disciplina");
+        mostrarString("Disciplina 1:");
+        mostrarString("Valor ataque: 1");
+        mostrarString("Valor defensa: 0");
+        mostrarString("Coste: 1");
+        mostrarString("Disciplina 2:");
+        mostrarString("Valor ataque: 2");
+        mostrarString("Valor defensa: 1");
+        mostrarString("Coste: 2");
+        mostrarString("Disciplina 3:");
+        mostrarString("Valor ataque: 3");
+        mostrarString("Valor defensa: 2");
+        mostrarString("Coste: 3");
+        int opcionElegida = pedirInt("Elija 1, 2 o 3");
+        int defensa = opcionElegida-1;
+        int ataque = opcionElegida;
+        int coste= opcionElegida;
         return new Disciplina(nombre,ataque,defensa,coste);
     }
 
     public Don askDonNuevo() {
         String nombre = pedirString("Escribe nombre don :");
-        int ataque = pedirInt("Escribe valor ataque 1-3");
-        int defensa=pedirInt("Escribe valor defensa 1-3");
-        int rabia_minima=pedirInt("Escribe rabia minima 1-3");
+        mostrarString("Disciplina 1:");
+        mostrarString("Valor ataque: 1");
+        mostrarString("Valor defensa: 0");
+        mostrarString("Rabia minima: 1");
+        mostrarString("Disciplina 2:");
+        mostrarString("Valor ataque: 2");
+        mostrarString("Valor defensa: 1");
+        mostrarString("Rabia minima: 2");
+        mostrarString("Disciplina 3:");
+        mostrarString("Valor ataque: 3");
+        mostrarString("Valor defensa: 2");
+        mostrarString("Rabia minima: 3");
+        int opcionElegida = pedirInt("Elija 1, 2 o 3");
+        int defensa = opcionElegida-1;
+        int ataque = opcionElegida;
+        int rabia_minima= opcionElegida;
         return new Don(nombre,ataque,defensa,rabia_minima);
     }
 
     public Talento askTalentoNuevo() {
         String nombre = pedirString("Escribe nombre talento :");
-        int ataque = pedirInt("Escribe valor ataque 1-3");
-        int defensa=pedirInt("Escribe valor defensa 1-3");
+        mostrarString("Talento 0:");
+        mostrarString("Valor ataque: 1");
+        mostrarString("Valor defensa: 0");
+        mostrarString("Disciplina 1:");
+        mostrarString("Valor ataque: 0");
+        mostrarString("Valor defensa: 1");
+        int opcionElegida = pedirInt("Elija 0 o 1");
+        int defensa = opcionElegida;
+        int ataque = (opcionElegida+1)%2;
         return new Talento(nombre,ataque,defensa);
     }
 

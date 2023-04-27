@@ -26,9 +26,8 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     private int desafios_ganados;
     private int salud_esbirros;
 
-    public Personaje (String nombre, int poder, Habilidad habilidad) {
+    public Personaje (String nombre, Habilidad habilidad) {
         this.nombre=nombre;
-        this.poder=poder;
         this.habilidad_especial=habilidad;
         
         this.modificadores=new ArrayList();

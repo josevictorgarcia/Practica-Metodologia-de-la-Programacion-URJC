@@ -13,8 +13,9 @@ public class Licantropo extends Personaje implements Serializable{
     
     private int rabia;
     
-    public Licantropo (String nombre, int poder, Don don) {
-        super(nombre, poder, don);
+    public Licantropo (String nombre, Don don) {
+        super(nombre, don);
+        setPoder(3);
         this.rabia=0;
     }
     

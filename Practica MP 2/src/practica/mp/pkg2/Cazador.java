@@ -13,8 +13,9 @@ public class Cazador extends Personaje implements Serializable{
 
     private int voluntad;
     
-    public Cazador (String nombre, int poder, Talento talento) {
-        super(nombre, poder, talento);
+    public Cazador (String nombre, Talento talento) {
+        super(nombre, talento);
+        setPoder(4);
         this.voluntad=3;
     }
     

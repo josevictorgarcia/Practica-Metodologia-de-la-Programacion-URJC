@@ -14,8 +14,9 @@ public class Vampiro extends Personaje implements Serializable{
 
     private int sangre;
 
-    public Vampiro(String nombre, int poder, Disciplina disciplina){
-        super(nombre, poder, disciplina);
+    public Vampiro(String nombre, Disciplina disciplina){
+        super(nombre, disciplina);
+        setPoder(5);
         this.sangre = 0;
     }
 

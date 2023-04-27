@@ -24,7 +24,7 @@ public class Cliente extends Usuario implements Serializable{
         this.desafiosPendientes=new ArrayList();
         this.ultimosCombates= new ArrayList();
         //this.numRegistro=generarNumRegistro(); FALTA REGISTROS E IDS
-        personaje= new Personaje(this.getNombre(), 0, new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
+        personaje= new Personaje(this.getNombre(), new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
     }
     
     public void cambiarPersonaje() {
