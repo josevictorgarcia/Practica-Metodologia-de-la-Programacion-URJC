@@ -55,7 +55,7 @@ public class Combate implements Serializable{
 
     public void desarrolloCombate(){
         condicionesIniciales();
-        while (this.personaje1.getSalud()!=0 && this.personaje2.getSalud()!=0){     //Bucle. Hasta que la salud de alguno de los personajes no sea cero:
+        while (this.personaje1.getSalud()>0 && this.personaje2.getSalud()>0){     //Bucle. Hasta que la salud de alguno de los personajes no sea cero:
             nuevaRonda();
             }
         if (this.personaje1.getSalud()==0 && this.personaje2.getSalud()==0) {
