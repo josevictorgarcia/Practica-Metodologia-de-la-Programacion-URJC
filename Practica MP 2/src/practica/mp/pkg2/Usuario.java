@@ -12,7 +12,7 @@ package practica.mp.pkg2;
 import java.io.Serializable;
 import java.util.*;
 
-public class Usuario implements Serializable,Comparable<Usuario>{
+public class Usuario implements Serializable, Comparable<Usuario>{
     private String nombre;
     private String nickname;
     private String contrasena;

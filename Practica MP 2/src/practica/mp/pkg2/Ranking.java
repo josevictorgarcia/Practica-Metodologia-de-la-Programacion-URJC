@@ -48,22 +48,32 @@ public class Ranking implements Serializable{
         */
         this.ranking.add(user);
         actualizarRanking();
-        
-        
     }
     public void actualizarRanking () {
-        // debugging Collections.sort(getRanking());
-        /*
-        try {
-            FileOutputStream archivo = new FileOutputStream("ranking.txt");
-            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(getRanking());
-            rankingSalida.close();
-            System.out.println("El ranking ha sido actalizado");
-        } catch (IOException e) {
-            e.printStackTrace();
+        int i, j;
+        for (i = 0; i < ranking.size() - 1; i++) {
+            for (j = 0; j < ranking.size() - i - 1; j++) {
+                Usuario user1= ranking.get(j);
+                Usuario user2= ranking.get(j+1);
+                Usuario aux=null;
+                if (!(user1 instanceof Cliente)){
+                    aux=user1;
+                    ranking.set(j, user2);
+                    ranking.set(j+1, aux);
+                }
+                else {
+                    if (user2 instanceof Cliente) {
+                        Cliente cliente1= (Cliente) user1;
+                        Cliente cliente2= (Cliente) user2;
+                        if (cliente2.getPersonaje().getDesafios_ganados() > cliente1.getPersonaje().getDesafios_ganados()) {
+                            aux=user1;
+                            ranking.set(j, user2);
+                            ranking.set(j, aux);
+                        }
+                    }
+                }
+            }
         }
-        */
     }
     
     //ya lo muestra el menu
@@ -100,19 +110,23 @@ public class Ranking implements Serializable{
 
         // Buscar el usuario que deseas eliminar
         Usuario usuarioEliminado = null;
+        int pos=0;
+        int index=-1;
         for (Usuario usuario : ranking) {
             if (usuario.getNombre().equals(nombreUsuario)) {
                 usuarioEliminado = usuario;
+                index=pos;
                 break;
             }
+            pos++;
         }
 
         if (usuarioEliminado == null) {
             System.out.println("No se encontró un usuario con ese nombre.");
         } else {
-            ranking.remove(usuarioEliminado); // Eliminar el usuario de la lista
-            Collections.sort(ranking);
-            
+            ranking.remove(index); // Eliminar el usuario de la lista
+            //Collections.sort(ranking); CRASHEA
+            actualizarRanking();
             /*
             // Escribir las instancias actualizadas de la clase Usuario en el fichero
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ranking.txt"))) {
