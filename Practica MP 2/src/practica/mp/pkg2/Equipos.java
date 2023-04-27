@@ -21,38 +21,12 @@ public class Equipos implements Serializable{
     private List<Equipo> equipos;
     
     public Equipos() {
-        /*
-       try {
-            FileInputStream archivo = new FileInputStream("equipos.txt");
-            ObjectInputStream equiposEntrada = new ObjectInputStream(archivo);
-            equipos = (List<Equipo>) equiposEntrada.readObject();
-            equiposEntrada.close();
-            archivo.close();
-       }catch(IOException | ClassNotFoundException e) {
-            System.out.println("Error al leer el objeto desde el archivo: " + e.getMessage());
-        }
-       */
         this.equipos= new ArrayList();
     }
     public Equipos (Equipos equip) {
         this.equipos = new ArrayList(equip.getEquipos());
     }
     public void anadirEquipo(){
-        /*
-        // Leer el fichero y cargar las instancias en una lista
-        List<Equipo> equipos = new ArrayList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
-            while (true) {
-                Equipo equipo = (Equipo) in.readObject();
-                equipos.add(equipo);
-            }
-        } catch (EOFException e) {
-            // Fin del archivo
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        */
-
         // Pedir los atributos del nuevo equipo
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el nombre del nuevo equipo:");
@@ -72,18 +46,6 @@ public class Equipos implements Serializable{
 
         // Agregar el nuevo equipo a la lista
         this.getEquipos().add(nuevoEquipo);
-        
-        /*
-        // Escribir las instancias actualizadas de la clase Equipo en el fichero
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("equipos.dat"))) {
-            for (Equipo equipo : equipos) {
-                out.writeObject(equipo);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-
         System.out.println("El nuevo equipo ha sido añadido correctamente.");
     }
     
@@ -165,6 +127,29 @@ public class Equipos implements Serializable{
             */
         }
     }
+    public Equipos loadEquipos() {
+        try {
+            FileInputStream archivo = new FileInputStream("equipos.ser");
+            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
+            Equipos equip = (Equipos) rankingEntrada.readObject();
+            rankingEntrada.close();
+            return equip;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new Equipos();
+        }
+    }
+    public void saveEquipos() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("equipos.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(equipos);
+            rankingSalida.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveEquipos");}
+    }
     public void eliminarEquipo(){
         
         /*
@@ -231,7 +216,7 @@ public class Equipos implements Serializable{
     public void mostrarEquipos(){
         // Leer el fichero y cargar las instancias en una lista
         List<Equipo> equipos = new ArrayList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.dat"))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
             while (true) {
                 Equipo equipo = (Equipo) in.readObject();
                 equipos.add(equipo);

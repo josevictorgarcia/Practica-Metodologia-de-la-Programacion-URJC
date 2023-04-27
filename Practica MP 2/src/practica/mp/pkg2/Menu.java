@@ -53,7 +53,6 @@ public class Menu implements Serializable{
             }else{
                 System.out.println("Escriba la contrasena");
                 String contra = scanner.nextLine();
-                System.out.println("Escriba 'c' para Cliente o 'op' para Operador de Sistema");
                 String tipo = scanner.nextLine();
                 if ("c".equals(tipo)) {
                     Cliente cliente = new Cliente(nickname, nickname, contra, this, generador);
@@ -79,8 +78,6 @@ public class Menu implements Serializable{
         switch (respuesta) {
             case "DarseBaja":
                 return AccionCliente.DarseBaja;
-            case "SalirSistema":
-                return AccionCliente.SalirSistema;
             case "CambiarPersonaje":
                 return AccionCliente.CambiarPersonaje;
             case "ElegirEquipo":
@@ -94,15 +91,11 @@ public class Menu implements Serializable{
             case "ComprarItem":
                 return AccionCliente.ComprarItem;
         }
-        return null;
     }
     public AccionOp pedirAccionOperador(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AnadirHabilidad'");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionOp.DarseBaja;
-            case "SalirSistema":
-                return AccionOp.SalirSistema;
             case "EditarPersonaje":
                 return AccionOp.EditarPersonaje;
             case "CompletarPersonaje":
@@ -118,7 +111,6 @@ public class Menu implements Serializable{
             case "AnadirHabilidad":
                 return AccionOp.AnadirHabilidad;
         }
-        return null;
     }
 
     public String pedirString (String mensaje) {
@@ -181,15 +173,7 @@ public class Menu implements Serializable{
         for (Arma i: armasActivas) {
             mostrarString(i.getNombre());
         }
-        String respuesta = pedirString("Escriba el numero del arma que desea incluir como activa");
-        try {
-            int num = Integer.parseInt(respuesta);
-            return (Arma) equipo.get(num); 
         }
-        catch (Exception ex){
-            System.out.println("Error class menu method askArma");
-        }
-        return null;
     }
 
     public Armadura askArmadura (List<Equipo> equipo) {
@@ -207,21 +191,12 @@ public class Menu implements Serializable{
             mostrarString("no tienes armaduras en tu equipo");
             return null;
         }
-        String respuesta = pedirString("Escriba el numero de la armadura que desea incluir como activa");
-        try {
-            int num = Integer.parseInt(respuesta);
-            return (Armadura) equipo.get(num); 
         }
-        catch (Exception ex){
-            System.out.println("Error class menu method askArmadura");
-        }
-        return null;
     }
 
     public Cliente askDesafiado (Ranking ranking) {
         boolean end=false;
         Usuario user=null;
-        mostrarRanking(ranking);
         while (!end) {
             String respuesta=pedirString("Escribe el nickname del usuario al que deseas desafiar");
             user = ranking.getUsuario(respuesta);
@@ -288,7 +263,6 @@ public class Menu implements Serializable{
     }
 
 
-    public void mostrarRanking (Ranking rank) {
         int pos =0;
         for (Usuario i: rank.getRanking()) {
             pos++;
@@ -298,7 +272,6 @@ public class Menu implements Serializable{
                 mostrarString("Desafios ganados: " + cliente.getPersonaje().getDesafios_ganados());
             }
         }
-    }
 
     public Personaje askEditarPersonaje(Ranking rank) {
         for (Usuario i: rank.getRanking()) {
@@ -306,8 +279,18 @@ public class Menu implements Serializable{
                 mostrarString(i.getNickname());
             }
         }
-        String respuesta =pedirString("Escribe el nickname del personaje que quieres editar");
-        Cliente cliente = (Cliente) rank.getUsuario(respuesta);
+        boolean end = false;
+        Cliente cliente=null;
+        while (!end) {
+            String respuesta =pedirString("Escribe el nickname del personaje que quieres editar");
+            if ((rank.getUsuario(respuesta) != null) && (rank.getUsuario(respuesta) instanceof Cliente)) {
+                cliente = (Cliente) rank.getUsuario(respuesta);
+                end=true;
+            }
+            else {
+                mostrarString("El usuario no esta en el ranking o no es cliente");
+            }
+        }
         return cliente.getPersonaje();
     }
 
@@ -323,19 +306,30 @@ public class Menu implements Serializable{
                 mostrarString(i.getNickname());
             }
         }
-        String respuesta =pedirString("Escribe el nickname del personaje que quieres completar");
-        Cliente cliente = (Cliente) rank.getUsuario(respuesta);
+        boolean end = false;
+        Cliente cliente=null;
+        while (!end) {
+            String respuesta =pedirString("Escribe el nickname del personaje que quieres completar");
+            if ((rank.getUsuario(respuesta) != null) && (rank.getUsuario(respuesta) instanceof Cliente)) {
+                cliente = (Cliente) rank.getUsuario(respuesta);
+                end=true;
+            }
+            else {
+                mostrarString("El usuario no esta en el ranking o no es cliente");
+            }
+        }
         return cliente.getPersonaje();
     } 
+    
     public String askAñadirAPersonaje () {
-        return pedirString("Escribe que quieres añadir al personaje: 'armas', 'armaduras', 'modificador' o 'esbirros' ");
+        return pedirString("Escribe que quieres añadir al personaje: 'armas', 'armaduras', 'modificador' o cualquier otra cosa para esbirros ");
     }
 
     public Arma askArmaNueva() {
         String nombre= pedirString("Escribe el nombre del arma: ");
-        int ataque = pedirInt("Escribe el ataque del arma: ");
-        int coste = pedirInt("Introduce el coste del arma: ");
-        int manos = pedirInt("Escriba si es de 1 o 2 manos: ");
+        int ataque = pedirIntRango("Escribe el ataque del arma  (1-3): ", 1, 3);
+        int coste = pedirIntRango("Introduce el coste del arma  (1-50): ",1,50);
+        int manos = pedirIntRango("Escriba si es de 1 o 2 manos: ",1,2);
         return new Arma(nombre, ataque, 0, coste, manos);
     }
 
@@ -348,18 +342,18 @@ public class Menu implements Serializable{
 
     public Modificador askModificadorNuevo() {
         String nombre = pedirString("Escribe el nombre del modificador: ");
-        int sensibilidad = pedirInt("Escribe la sensibilidad: ");
+        int sensibilidad = pedirIntRango("Escribe la sensibilidad (1-5): ",1,5);
         boolean fortaleza = pedirBool("Escribe 's' para fortaleza o cualquier otra cosa para debilidad");
         return new Modificador(nombre, sensibilidad, fortaleza);
     }
 
     public Esbirro askEsbirroNuevo(boolean vampiro) {
         String nombre=pedirString("Escribe el nombre del esbirro: ");
-        int salud= pedirInt("Escribe la salud del esbirro: ");
-        String tipo = pedirString("Escribe 'humano', 'ghoul' o 'demonio'");
+        int salud= pedirIntRango("Escribe la salud del esbirro (1-3): ", 1,3);
+        String tipo = pedirString("Escribe 'humano', 'ghoul' o cualquier otra cosa para demonio");
         Esbirro esbirro=null;
         if (tipo.equals("humano")) {
-            int lealtad = pedirInt("Escribe entero de lealtad: 0 baja, 1 normal, 2 alta");
+            int lealtad = pedirIntRango("Escribe entero de lealtad: 0 baja, 1 normal, 2 alta", 0,2);
             Lealtad leal;
             if (lealtad==0) {
                 leal=Lealtad.BAJA;
@@ -374,7 +368,7 @@ public class Menu implements Serializable{
             esbirro=humano;
         }
         else if (tipo.equals("ghoul")) {
-            int dependencia = pedirInt("Escribe entero dependencia: ");
+            int dependencia = pedirIntRango("Escribe entero dependencia (1-3): ",1,3);
             Ghoul ghoul = new Ghoul(nombre, salud, dependencia);
             esbirro=ghoul;
         }
@@ -442,7 +436,7 @@ public class Menu implements Serializable{
 
     public Personaje askPersonajeNuevo(Habilidades habilidades) throws FileNotFoundException {
         String nombre = pedirString("Escribe nombre personaje: ");
-        int tipo = pedirInt("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador");
+        int tipo = pedirIntRango("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador",0,2);
         if (tipo==0) {
             Disciplina disciplina = askDisciplina(habilidades);
             Vampiro vampiro = new Vampiro(nombre, disciplina);
@@ -462,24 +456,24 @@ public class Menu implements Serializable{
 
     public Disciplina askDisciplinaNueva() throws FileNotFoundException {
         String nombre = pedirString("Elija nombre disciplina");      
-        int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
-        int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
-        int coste= pedirInt("Elija un coste entre 1 y 3");
+        int defensa = pedirIntRango("Elija valor de defensa entre 1 y 3", 1,3);
+        int ataque = pedirIntRango("Elija valor de ataque entre 1 y 3",1,3);
+        int coste= pedirIntRango("Elija un coste entre 1 y 3",1,3);
         return new Disciplina(nombre,ataque,defensa,coste);
     }
 
     public Don askDonNuevo() {
         String nombre = pedirString("Escribe nombre don :");
-        int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
-        int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
-        int rabia_minima= pedirInt("Elija una rabia minima entre 1 y 3");
+        int defensa = pedirIntRango("Elija valor de defensa entre 1 y 3",1,3);
+        int ataque = pedirIntRango("Elija valor de ataque entre 1 y 3",1,3);
+        int rabia_minima= pedirIntRango("Elija una rabia minima entre 1 y 3",1,3);
         return new Don(nombre,ataque,defensa,rabia_minima);
     }
 
     public Talento askTalentoNuevo() {
         String nombre = pedirString("Escribe nombre talento :");
-        int defensa = pedirInt("Elija valor de defensa entre 1 y 3");
-        int ataque = pedirInt("Elija valor de ataque entre 1 y 3");
+        int defensa = pedirIntRango("Elija valor de defensa entre 1 y 3",1,3);
+        int ataque = pedirIntRango("Elija valor de ataque entre 1 y 3",1,3);
         return new Talento(nombre,ataque,defensa);
     }
 
@@ -490,26 +484,27 @@ public class Menu implements Serializable{
     public void mostrarGanador (Personaje per) {
         mostrarString("El ganador es: "+per.getNombre());
     }
-
-    public Equipo pedirItemTienda(Tienda tienda) {
-        mostrarString("Los items de la tienda son :");
+    
+    /*public Equipo pedirItemTienda(Tienda tienda) {
+        mostrarString("Los items de la tienda son:");
         int pos=0;
         for (Equipo i: tienda.getItems().getEquipos()) {
             mostrarString(pos+": Nombre: "+i.getNombre() + " Oro: "+ i.getCoste()+ " Ataque: " + i.getAtaque() + " Defensa: " + i.getDefensa());
             pos++;
         }
-        int respuesta = pedirInt("Escribe el numero para comprar, o escribe 33 para salir");
-        if (respuesta ==33) {
+        int size=tienda.getItems().getEquipos().size();
+        int respuesta = pedirIntRango("Escribe el numero para comprar, o escribe "+size+" para salir", 0, size);
+        if (respuesta ==size) {
             return null;
         }
         else {
             return tienda.getItems().getEquipos().get(respuesta);
         }
-    }
+    }*/
 
     public Equipo askItemNuevo() {
         Equipo equipo = null;
-        String respuesta= pedirString ("Escribe que quiere añadir: 'arma' o 'armadura'");
+        String respuesta= pedirString ("Escribe que quiere añadir: 'arma' o cualquier otra cosa para armadura");
         if (respuesta.equals("arma")) {
             Arma arma = askArmaNueva();
             equipo=arma;
@@ -522,7 +517,7 @@ public class Menu implements Serializable{
     }
     
     public Habilidad askHabilidadNueva() throws FileNotFoundException{
-        String respuesta= pedirString ("Escribe que quiere añadir: 'disciplina', 'don' o 'talento'");
+        String respuesta= pedirString ("Escribe que quiere añadir: 'disciplina', 'don' o cualquier otra cosa para talento");
         if (respuesta.equals("disciplina")) {
             Disciplina disciplina = askDisciplinaNueva();
             return disciplina;

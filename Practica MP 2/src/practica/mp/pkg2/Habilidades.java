@@ -12,12 +12,17 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 /**
  *
  * @author migue
  */
+<<<<<<< HEAD
 public class Habilidades implements Serializable {
+=======
+public class Habilidades implements Serializable{
+>>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
     private List<Habilidad> habilidades;
     
     public Habilidades(){
@@ -33,34 +38,39 @@ public class Habilidades implements Serializable {
     public void mostrarDisciplinas(){
         System.out.println("\nDisciplinas:");
         Disciplina disciplina;
-        for (Habilidad u :this.habilidades) {
-            if(u.getClass()==Disciplina.class)                
+        for (Habilidad u :this.getHabilidades()) {
+            if(u instanceof Disciplina) {
                 imprimirInfo(u);
                 disciplina = (Disciplina) u;
                 System.out.println("Coste: "+disciplina.getCoste());
+            }
         }
     }
     
     public void mostrarDones(){
         System.out.println("\nDones:");
         Don don;
-        for (Habilidad u :this.habilidades) {
-            if(u.getClass()==Don.class)                
+        for (Habilidad u :this.getHabilidades()) {
+            if(u instanceof Don) {
                 imprimirInfo(u);
                 don = (Don) u;
                 System.out.println("Rabia minima: "+don.getValorMin());
+            }
         }
     }
     
     public void mostrarTalentos(){
         System.out.println("\nTalentos:");
-        for (Habilidad u :this.habilidades) {
-            if(u.getClass()==Disciplina.class)                
+        System.out.println(getHabilidades().size());
+        for (Habilidad u :this.getHabilidades()) {
+            if(u instanceof Talento) {            
                 imprimirInfo(u);
+            }
         }
     }
     
     public void añadirHabilidad(Habilidad habilidad){
+<<<<<<< HEAD
         this.habilidades.add(habilidad);
         try {
             FileInputStream archivo = new FileInputStream("Habilidades.ser");
@@ -70,10 +80,13 @@ public class Habilidades implements Serializable {
         }
         catch(IOException | ClassNotFoundException e) {
         }
+=======
+        this.getHabilidades().add(habilidad);
+>>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
     }
     
      public Disciplina getDisciplina (String nombre) {
-        for (Habilidad i: this.habilidades) {
+        for (Habilidad i: this.getHabilidades()) {
             if ((i.getClass()==Disciplina.class) && (i.getNombre().equals(nombre))) {
                 Disciplina disciplina=(Disciplina) i;
                 return disciplina;
@@ -83,7 +96,7 @@ public class Habilidades implements Serializable {
     }
     
     public Talento getTalento (String nombre) {
-        for (Habilidad i: this.habilidades) {
+        for (Habilidad i: this.getHabilidades()) {
             if ((i.getClass()==Talento.class) && (i.getNombre().equals(nombre))) {
                 Talento talento=(Talento) i;
                 return talento;
@@ -93,7 +106,7 @@ public class Habilidades implements Serializable {
     }
     
     public Don getDon (String nombre) {
-        for (Habilidad i: this.habilidades) {
+        for (Habilidad i: this.getHabilidades()) {
             if ((i.getClass()==Don.class) && (i.getNombre().equals(nombre))) {
                 Don don=(Don) i;
                 return don;
@@ -101,6 +114,7 @@ public class Habilidades implements Serializable {
         }
         return null;
     }
+<<<<<<< HEAD
     
     public void saveHabilidades() {
         try {
@@ -114,4 +128,22 @@ public class Habilidades implements Serializable {
             System.out.println("Error clase App method saveHabilidades");
         }
     }
+=======
+
+    /**
+     * @return the habilidades
+     */
+    public List<Habilidad> getHabilidades() {
+        return habilidades;
+    }
+
+    /**
+     * @param habilidades the habilidades to set
+     */
+    public void setHabilidades(List<Habilidad> habilidades) {
+        this.habilidades = habilidades;
+    }
+    
+    
+>>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
 }

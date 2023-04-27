@@ -43,7 +43,7 @@ public class OperadorSistema extends Usuario implements Serializable{
                 Modificador mod = menu.askModificadorNuevo();
                 per.añadirModificador(mod);
                 break;
-            case "esbirros":
+            default:
                 boolean vampiro = per instanceof Vampiro;
                 Esbirro esbirro = menu.askEsbirroNuevo(vampiro);
                 per.añadirEsbirro(esbirro);
@@ -79,7 +79,8 @@ public class OperadorSistema extends Usuario implements Serializable{
     }
     
      public void añadirHabilidad(Habilidades habilidades) throws FileNotFoundException{
-        String respuesta = menu.pedirString("Desea añadir una disciplina, don o talento");
+        System.out.println(habilidades.getHabilidades().size());
+        String respuesta = menu.pedirString("Escriba lo que quiera añadir: 'disciplina', 'don' o cualquier otra cosa para talento");
         Habilidad habilidad;
         if (respuesta.equals("disciplina")){
             habilidad=menu.askDisciplinaNueva();
@@ -89,7 +90,11 @@ public class OperadorSistema extends Usuario implements Serializable{
             habilidad=menu.askTalentoNuevo();
         }
         habilidades.añadirHabilidad(habilidad);
+<<<<<<< HEAD
         habilidades.saveHabilidades();
+=======
+        System.out.println(habilidades.getHabilidades().size());
+>>>>>>> a3bf355a9a71788062ce8ab6f3ea2dc9284d8fae
      }
     
 }

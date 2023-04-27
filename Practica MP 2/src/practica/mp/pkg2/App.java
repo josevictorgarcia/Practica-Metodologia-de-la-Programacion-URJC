@@ -28,12 +28,17 @@ public class App {
     private Habilidades habilidades;
 
     public App() {
-        ranking = loadRanking();
-        equipos = loadEquipos();
+        //ranking = loadRanking();
+        ranking = new Ranking();
+        ranking.loadRanking();
+        //equipos = loadEquipos();
+        equipos = new Equipos();
+        equipos.loadEquipos();                
         generador = loadGenerador();
         this.menu = new Menu();
         tienda = new Tienda(equipos);
         habilidades= loadHabilidades();
+        //System.out.println("habil: "+habilidades.getHabilidades().size());
     }
     
     //es el main pero sin ser estático
@@ -55,7 +60,7 @@ public class App {
             Cliente cliente= (Cliente) user;
             while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
                 if (cliente.hayDesafios()) { //comprueba si hay desafios validados que deba responder inmediatamente
-                    cliente.responderDesafios();
+                    cliente.responderDesafios(ranking);
                 }
                 else {
                     AccionCliente accionCliente= menu.pedirAccionCliente(); //pide al usuario que elija una accion
@@ -77,7 +82,7 @@ public class App {
                             cliente.desafiar(ranking, generador);
                             break;
                         case ResponderDesafios:
-                            cliente.responderDesafios();
+                            cliente.responderDesafios(ranking);
                             break;
                         case ConsultaCombates:
                             cliente.consultaCombates();
@@ -128,12 +133,13 @@ public class App {
                 }
             }
         }
-        saveRanking();
-        saveEquipos();
+        ranking.saveRanking();
+        equipos.saveEquipos();
         saveGenerador();
+        saveHabilidades();
     }
     
-    public Ranking loadRanking() {
+    /*public Ranking loadRanking() {
         try {
             FileInputStream archivo = new FileInputStream("ranking.ser");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
@@ -145,9 +151,9 @@ public class App {
            //lo creamos pues no hay archivo
             return new Ranking();
         }
-    }
+    }*/
     
-    public void saveRanking() {
+    /*public void saveRanking() {
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.ser");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
@@ -158,9 +164,9 @@ public class App {
             ex.printStackTrace();
             System.out.println("Error clase App method saveRanking");
         }
-    }
+    }*/
     
-    public Equipos loadEquipos() {
+    /*public Equipos loadEquipos() {
         try {
             FileInputStream archivo = new FileInputStream("equipos.ser");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
@@ -172,9 +178,9 @@ public class App {
            //lo creamos pues no hay archivo
             return new Equipos();
         }
-    }
+    }*/
     
-    public void saveEquipos() {
+    /*public void saveEquipos() {
         try {
             FileOutputStream archivo = new FileOutputStream("equipos.ser");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
@@ -183,7 +189,7 @@ public class App {
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveEquipos");}
-    }
+    }*/
     
     public GeneradorIDs loadGenerador() {
         try {
@@ -220,8 +226,23 @@ public class App {
         }
         catch(IOException | ClassNotFoundException e) {
            //lo creamos pues no hay archivo
-            return new Habilidades();
+            Habilidades habilidades = new Habilidades();
+            habilidades.añadirHabilidad(new Disciplina("por defecto",1,1,1));
+            habilidades.añadirHabilidad(new Don("por defecto",1,1,1));
+            habilidades.añadirHabilidad(new Talento("por defecto",1,1));
+            return habilidades;
         }
+    }
+    
+    public void saveHabilidades() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("Habilidades.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(habilidades);
+            rankingSalida.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveHabilidades");}
     }
    
 }
