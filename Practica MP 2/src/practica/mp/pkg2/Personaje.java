@@ -33,7 +33,13 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         
         this.modificadores=new ArrayList();
         this.equipo= new ArrayList();
+        Arma arma = new Arma ("por defecto", 1,0,1,2) ; //arma por defecto
+        Armadura armadura = new Armadura ("por defecto", 1, 0, 1);
+        equipo.add(arma);
+        equipo.add(armadura);
         this.armas_activas = new ArrayList();
+        armas_activas.add(arma);
+        this.armadura_activa=armadura;
         this.esbirros= new ArrayList();
         this.oro=50;  //50 de oro inicial
         this.salud=5;
