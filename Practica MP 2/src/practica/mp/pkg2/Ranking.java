@@ -28,49 +28,30 @@ public class Ranking implements Serializable{
 
     //introduce personaje ordenado por desafios_ganados
     public void añadirUsuario (Usuario user) {
-        /*Iterator<String> iterator = ranking.iterator();
-        boolean end = true;
-        Personaje aux;
-        int pos = 0;
-        while (iterator.hasNext() & end){
-            aux=iterator.next();
-            if (aux.getDesafios_ganados() < per.getDesafios_ganados()) {
-                end=false;
-            }
-            pos++;   
-        }
-        if (pos==0) {
-            ranking.add(per); 
-        }
-        else {
-            ranking.add(pos-1, per);
-        }
-        */
         this.ranking.add(user);
         actualizarRanking();
         
         
     }
     public void actualizarRanking () {
-        // debugging Collections.sort(getRanking());
-        /*
-        try {
-            FileOutputStream archivo = new FileOutputStream("ranking.txt");
-            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(getRanking());
-            rankingSalida.close();
-            System.out.println("El ranking ha sido actalizado");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
     }
     
     //ya lo muestra el menu
-    public void mostrarRanking(){
+    /*public void mostrarRanking(){
         System.out.println("\nRanking:");
         for (Usuario u : getRanking()) {
             System.out.println("Nombre: " + u.getNombre() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
+        }
+    }*/
+    public void mostrarRanking () {
+        int pos =0;
+        for (Usuario i: ranking) {
+            pos++;
+            System.out.println(pos+ ": " + i.getNickname());
+            if (i instanceof Cliente) {
+                Cliente cliente= (Cliente) i;
+                System.out.println("Desafios ganados: " + cliente.getPersonaje().getDesafios_ganados());
+            }
         }
     }
     public Usuario getUsuario (String nickname) {
@@ -83,21 +64,7 @@ public class Ranking implements Serializable{
     }
     
     public void eliminarUsuario(String nombreUsuario){
-        /*
-    }
-        List<Usuario> ranking = new ArrayList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("ranking.txt"))) {
-            while (true) {
-                Usuario usuario = (Usuario) in.readObject();
-                ranking.add(usuario);
-            }
-        } catch (EOFException e) {
-            // Fin del archivo
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        */
-
+        
         // Buscar el usuario que deseas eliminar
         Usuario usuarioEliminado = null;
         for (Usuario usuario : ranking) {
@@ -112,35 +79,43 @@ public class Ranking implements Serializable{
         } else {
             ranking.remove(usuarioEliminado); // Eliminar el usuario de la lista
             Collections.sort(ranking);
-            
-            /*
-            // Escribir las instancias actualizadas de la clase Usuario en el fichero
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ranking.txt"))) {
-                for (Usuario usuario : ranking) {
-                    out.writeObject(usuario);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            */
             System.out.println("El usuario ha sido eliminado correctamente.");
         }
     }
+    public Ranking loadRanking() {
+        try {
+            FileInputStream archivo = new FileInputStream("ranking.ser");
+            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
+            Ranking rank = (Ranking) rankingEntrada.readObject();
+            rankingEntrada.close();
+            return rank;
+        }
+        catch(IOException | ClassNotFoundException e) {
+           //lo creamos pues no hay archivo
+            return new Ranking();
+        }
+    }
     
-    
+    public void saveRanking() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("ranking.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(this.ranking);
+            rankingSalida.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error clase App method saveRanking");
+        }
+    }
     
 //getters setters
-    /**
-     * @return the ranking
-     */
     public List<Usuario> getRanking() {
         return ranking;
     }
 
-    /**
-     * @param ranking the ranking to set
-     */
     public void setRanking(List<Usuario> ranking) {
         this.ranking = ranking;
     }
+    
 }

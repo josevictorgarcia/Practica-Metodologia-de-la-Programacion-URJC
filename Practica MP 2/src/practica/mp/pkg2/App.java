@@ -28,13 +28,17 @@ public class App {
     private Habilidades habilidades;
 
     public App() {
-        ranking = loadRanking();
-        equipos = loadEquipos();
+        //ranking = loadRanking();
+        ranking = new Ranking();
+        ranking.loadRanking();
+        //equipos = loadEquipos();
+        equipos = new Equipos();
+        equipos.loadEquipos();                
         generador = loadGenerador();
         this.menu = new Menu();
         tienda = new Tienda(equipos);
         habilidades= loadHabilidades();
-        System.out.println("habil: "+habilidades.getHabilidades().size());
+        //System.out.println("habil: "+habilidades.getHabilidades().size());
     }
     
     //es el main pero sin ser estático
@@ -129,13 +133,13 @@ public class App {
                 }
             }
         }
-        saveRanking();
-        saveEquipos();
+        ranking.saveRanking();
+        equipos.saveEquipos();
         saveGenerador();
         saveHabilidades();
     }
     
-    public Ranking loadRanking() {
+    /*public Ranking loadRanking() {
         try {
             FileInputStream archivo = new FileInputStream("ranking.ser");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
@@ -147,9 +151,9 @@ public class App {
            //lo creamos pues no hay archivo
             return new Ranking();
         }
-    }
+    }*/
     
-    public void saveRanking() {
+    /*public void saveRanking() {
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.ser");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
@@ -160,9 +164,9 @@ public class App {
             ex.printStackTrace();
             System.out.println("Error clase App method saveRanking");
         }
-    }
+    }*/
     
-    public Equipos loadEquipos() {
+    /*public Equipos loadEquipos() {
         try {
             FileInputStream archivo = new FileInputStream("equipos.ser");
             ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
@@ -174,9 +178,9 @@ public class App {
            //lo creamos pues no hay archivo
             return new Equipos();
         }
-    }
+    }*/
     
-    public void saveEquipos() {
+    /*public void saveEquipos() {
         try {
             FileOutputStream archivo = new FileOutputStream("equipos.ser");
             ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
@@ -185,7 +189,7 @@ public class App {
         }
         catch (Exception ex) {
         System.out.println("Error clase App method saveEquipos");}
-    }
+    }*/
     
     public GeneradorIDs loadGenerador() {
         try {

@@ -251,7 +251,8 @@ public class Menu implements Serializable{
     public Cliente askDesafiado (Ranking ranking) {
         boolean end=false;
         Usuario user=null;
-        mostrarRanking(ranking);
+        //mostrarRanking(ranking);
+        ranking.mostrarRanking();
         while (!end) {
             String respuesta=pedirString("Escribe el nickname del usuario al que deseas desafiar");
             user = ranking.getUsuario(respuesta);
@@ -318,7 +319,7 @@ public class Menu implements Serializable{
     }
 
 
-    public void mostrarRanking (Ranking rank) {
+    /*public void mostrarRanking (Ranking rank) {
         int pos =0;
         for (Usuario i: rank.getRanking()) {
             pos++;
@@ -328,7 +329,7 @@ public class Menu implements Serializable{
                 mostrarString("Desafios ganados: " + cliente.getPersonaje().getDesafios_ganados());
             }
         }
-    }
+    }*/
 
     public Personaje askEditarPersonaje(Ranking rank) {
         for (Usuario i: rank.getRanking()) {
