@@ -64,19 +64,11 @@ public class Tienda implements Serializable{
         }
     }
 
-    /**
-     * @return the items
-     */
     public Equipos getItems() {
         return items;
     }
 
-    /**
-     * @param items the items to set
-     */
     public void setItems(Equipos items) {
         this.items = items;
-    }
-    
-    
+    }  
 }

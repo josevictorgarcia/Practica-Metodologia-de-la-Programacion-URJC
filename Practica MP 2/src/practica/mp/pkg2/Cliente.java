@@ -105,7 +105,8 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     public void consultaRanking (Ranking rank) {
-        getMenu().mostrarRanking(rank);
+        //getMenu().mostrarRanking(rank);
+        rank.mostrarRanking();
     }
     
     public void enviarDesafio(Desafio des, Cliente desafiado) {
@@ -128,79 +129,44 @@ public class Cliente extends Usuario implements Serializable{
         }
     }
     
-   
-
-    
-    
-    
-    
     //getters y setters
-    /**
-     * @return the numRegistro
-     */
+    
     public String getNumRegistro() {
         return numRegistro;
     }
 
-    /**
-     * @param numRegistro the numRegistro to set
-     */
     public void setNumRegistro(String numRegistro) {
         this.numRegistro = numRegistro;
     }
-
-    /**
-     * @return the personaje
-     */
+   
     public Personaje getPersonaje() {
         return personaje;
     }
 
-    /**
-     * @param personaje the personaje to set
-     */
     public void setPersonaje(Personaje personaje) {
         this.personaje = personaje;
     }
 
-    /**
-     * @return the desafiosPendientes
-     */
     public List<Desafio> getDesafiosPendientes() {
         return desafiosPendientes;
     }
 
-    /**
-     * @param desafiosPendientes the desafiosPendientes to set
-     */
     public void setDesafiosPendientes(List<Desafio> desafiosPendientes) {
         this.desafiosPendientes = desafiosPendientes;
     }
 
-    /**
-     * @return the ultimosCombates
-     */
     public List<Combate> getUltimosCombates() {
         return ultimosCombates;
     }
 
-    /**
-     * @param ultimosCombates the ultimosCombates to set
-     */
     public void setUltimosCombates(List<Combate> ultimosCombates) {
         this.ultimosCombates = ultimosCombates;
     }
 
-    /**
-     * @return the menu
-     */
     public Menu getMenu() {
         return menu;
     }
 
-    /**
-     * @param menu the menu to set
-     */
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
