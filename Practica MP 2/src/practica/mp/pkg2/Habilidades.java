@@ -28,10 +28,11 @@ public class Habilidades {
         System.out.println("\nDisciplinas:");
         Disciplina disciplina;
         for (Habilidad u :this.habilidades) {
-            if(u.getClass()==Disciplina.class)                
+            if(u instanceof Disciplina) {
                 imprimirInfo(u);
                 disciplina = (Disciplina) u;
                 System.out.println("Coste: "+disciplina.getCoste());
+            }
         }
     }
     
@@ -39,18 +40,20 @@ public class Habilidades {
         System.out.println("\nDones:");
         Don don;
         for (Habilidad u :this.habilidades) {
-            if(u.getClass()==Don.class)                
+            if(u instanceof Don) {
                 imprimirInfo(u);
                 don = (Don) u;
                 System.out.println("Rabia minima: "+don.getValorMin());
+            }
         }
     }
     
     public void mostrarTalentos(){
         System.out.println("\nTalentos:");
         for (Habilidad u :this.habilidades) {
-            if(u.getClass()==Disciplina.class)                
+            if(u instanceof Talento) {            
                 imprimirInfo(u);
+            }
         }
     }
     

@@ -220,7 +220,11 @@ public class App {
         }
         catch(IOException | ClassNotFoundException e) {
            //lo creamos pues no hay archivo
-            return new Habilidades();
+            Habilidades habilidades = new Habilidades();
+            habilidades.añadirHabilidad(new Disciplina("por defecto",1,1,1));
+            habilidades.añadirHabilidad(new Don("por defecto",1,1,1));
+            habilidades.añadirHabilidad(new Talento("por defecto",1,1));
+            return habilidades;
         }
     }
    
