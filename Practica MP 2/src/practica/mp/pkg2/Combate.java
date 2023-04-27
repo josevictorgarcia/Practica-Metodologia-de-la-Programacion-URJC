@@ -63,10 +63,10 @@ public class Combate implements Serializable{
         }
         else {
             if (this.personaje1.getSalud()==0) {
-                this.setGanador(this.personaje1);
+                this.setGanador(this.personaje2);
             }
             else{
-                this.setGanador(this.personaje2);
+                this.setGanador(this.personaje1);
             }
         }
     }
