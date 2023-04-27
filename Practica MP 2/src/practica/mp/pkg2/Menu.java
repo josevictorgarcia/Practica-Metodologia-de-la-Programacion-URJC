@@ -96,16 +96,18 @@ public class Menu implements Serializable{
         return null;
     }
     public AccionOp pedirAccionOperador(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda'");
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'SalirSistema', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda'");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionOp.DarseBaja;
             case "SalirSistema":
                 return AccionOp.SalirSistema;
-            case "CompletarPersonaje":
+            case "EditarPersonaje":
                 return AccionOp.EditarPersonaje;
-            case "ValidarDesafio":
+            case "CompletarPersonaje":
                 return AccionOp.CompletarPersonaje;
+            case "ValidarDesafio":
+                return AccionOp.ValidarDesafios;
             case "Banear":
                 return AccionOp.Banear;
             case "Desbanear":
@@ -158,14 +160,20 @@ public class Menu implements Serializable{
     }
 
     public Arma askArma(List<Equipo> equipo, List<Arma> armasActivas) {
+        boolean vacio=true;
         mostrarString("Las armas en tu inventario son:");
         int pos =0;
         for (Equipo i: equipo) {
                 if (i instanceof Arma) {
-                    mostrarString(pos + ": " +i.getNombre());
+                    mostrarString(pos + ": " +i.getNombre() + " ataque: " + i.getAtaque() + " manos: " + ((Arma) i).getManos());
+                    vacio=false;
                 }
                 pos++;
             }
+        if (vacio) {
+            mostrarString("No hay armas en tu equipo");
+            return null;
+        }
         mostrarString("Las armas activas son :");
         for (Arma i: armasActivas) {
             mostrarString(i.getNombre());
@@ -182,14 +190,20 @@ public class Menu implements Serializable{
     }
 
     public Armadura askArmadura (List<Equipo> equipo) {
+        boolean vacio=true;
         mostrarString("Las armaduras en tu inventario son:");
         int pos =0;
         for (Equipo i: equipo) {
                 if (i instanceof Armadura) {
-                    mostrarString(pos + ": " +i.getNombre());
+                    mostrarString(pos + ": " +i.getNombre() + " defensa: " + i.getDefensa());
+                    vacio=false;
                 }
                 pos++;
             }
+        if (vacio) {
+            mostrarString("no tienes armaduras en tu equipo");
+            return null;
+        }
         String respuesta = pedirString("Escriba el numero de la armadura que desea incluir como activa");
         try {
             int num = Integer.parseInt(respuesta);
@@ -204,6 +218,7 @@ public class Menu implements Serializable{
     public Cliente askDesafiado (Ranking ranking) {
         boolean end=false;
         Usuario user=null;
+        mostrarRanking(ranking);
         while (!end) {
             String respuesta=pedirString("Escribe el nickname del usuario al que deseas desafiar");
             user = ranking.getUsuario(respuesta);
