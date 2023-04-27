@@ -6,12 +6,13 @@ package practica.mp.pkg2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 /**
  *
  * @author migue
  */
-public class Habilidades {
+public class Habilidades implements Serializable{
     private List<Habilidad> habilidades;
     
     public Habilidades(){
@@ -27,7 +28,7 @@ public class Habilidades {
     public void mostrarDisciplinas(){
         System.out.println("\nDisciplinas:");
         Disciplina disciplina;
-        for (Habilidad u :this.habilidades) {
+        for (Habilidad u :this.getHabilidades()) {
             if(u instanceof Disciplina) {
                 imprimirInfo(u);
                 disciplina = (Disciplina) u;
@@ -39,7 +40,7 @@ public class Habilidades {
     public void mostrarDones(){
         System.out.println("\nDones:");
         Don don;
-        for (Habilidad u :this.habilidades) {
+        for (Habilidad u :this.getHabilidades()) {
             if(u instanceof Don) {
                 imprimirInfo(u);
                 don = (Don) u;
@@ -50,7 +51,8 @@ public class Habilidades {
     
     public void mostrarTalentos(){
         System.out.println("\nTalentos:");
-        for (Habilidad u :this.habilidades) {
+        System.out.println(getHabilidades().size());
+        for (Habilidad u :this.getHabilidades()) {
             if(u instanceof Talento) {            
                 imprimirInfo(u);
             }
@@ -58,11 +60,11 @@ public class Habilidades {
     }
     
     public void añadirHabilidad(Habilidad habilidad){
-        this.habilidades.add(habilidad);
+        this.getHabilidades().add(habilidad);
     }
     
      public Disciplina getDisciplina (String nombre) {
-        for (Habilidad i: this.habilidades) {
+        for (Habilidad i: this.getHabilidades()) {
             if ((i.getClass()==Disciplina.class) && (i.getNombre().equals(nombre))) {
                 Disciplina disciplina=(Disciplina) i;
                 return disciplina;
@@ -72,7 +74,7 @@ public class Habilidades {
     }
     
     public Talento getTalento (String nombre) {
-        for (Habilidad i: this.habilidades) {
+        for (Habilidad i: this.getHabilidades()) {
             if ((i.getClass()==Talento.class) && (i.getNombre().equals(nombre))) {
                 Talento talento=(Talento) i;
                 return talento;
@@ -82,7 +84,7 @@ public class Habilidades {
     }
     
     public Don getDon (String nombre) {
-        for (Habilidad i: this.habilidades) {
+        for (Habilidad i: this.getHabilidades()) {
             if ((i.getClass()==Don.class) && (i.getNombre().equals(nombre))) {
                 Don don=(Don) i;
                 return don;
@@ -90,4 +92,20 @@ public class Habilidades {
         }
         return null;
     }
+
+    /**
+     * @return the habilidades
+     */
+    public List<Habilidad> getHabilidades() {
+        return habilidades;
+    }
+
+    /**
+     * @param habilidades the habilidades to set
+     */
+    public void setHabilidades(List<Habilidad> habilidades) {
+        this.habilidades = habilidades;
+    }
+    
+    
 }

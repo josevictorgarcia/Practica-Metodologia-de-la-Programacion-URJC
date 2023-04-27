@@ -34,6 +34,7 @@ public class App {
         this.menu = new Menu();
         tienda = new Tienda(equipos);
         habilidades= loadHabilidades();
+        System.out.println("habil: "+habilidades.getHabilidades().size());
     }
     
     //es el main pero sin ser estático
@@ -131,6 +132,7 @@ public class App {
         saveRanking();
         saveEquipos();
         saveGenerador();
+        saveHabilidades();
     }
     
     public Ranking loadRanking() {
@@ -226,6 +228,17 @@ public class App {
             habilidades.añadirHabilidad(new Talento("por defecto",1,1));
             return habilidades;
         }
+    }
+    
+    public void saveHabilidades() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("Habilidades.ser");
+            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
+            rankingSalida.writeObject(habilidades);
+            rankingSalida.close();
+        }
+        catch (Exception ex) {
+        System.out.println("Error clase App method saveHabilidades");}
     }
    
 }
