@@ -60,7 +60,7 @@ public class App {
             Cliente cliente= (Cliente) user;
             while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
                 if (cliente.hayDesafios()) { //comprueba si hay desafios validados que deba responder inmediatamente
-                    cliente.responderDesafios();
+                    cliente.responderDesafios(ranking);
                 }
                 else {
                     AccionCliente accionCliente= menu.pedirAccionCliente(); //pide al usuario que elija una accion
@@ -82,7 +82,7 @@ public class App {
                             cliente.desafiar(ranking, generador);
                             break;
                         case ResponderDesafios:
-                            cliente.responderDesafios();
+                            cliente.responderDesafios(ranking);
                             break;
                         case ConsultaCombates:
                             cliente.consultaCombates();

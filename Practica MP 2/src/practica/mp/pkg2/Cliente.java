@@ -61,7 +61,7 @@ public class Cliente extends Usuario implements Serializable{
     
     
     //el usuario solo acepta desafios, no los rechaza. Si no quiere 
-    public void responderDesafios () {
+    public void responderDesafios (Ranking ranking) {
         List<Integer> list = new ArrayList();
         int pos=0;
         for (Desafio i: this.desafiosPendientes) {
@@ -71,6 +71,7 @@ public class Cliente extends Usuario implements Serializable{
                     i.aceptar(getMenu());
                     this.ultimosCombates.add(i.getCombate());
                     i.getUserDesafiante().getUltimosCombates().add(i.getCombate());
+                    ranking.actualizarRanking();
                 }
                 else {
                     i.rechazar();
