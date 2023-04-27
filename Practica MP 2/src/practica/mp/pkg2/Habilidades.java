@@ -4,6 +4,12 @@
  */
 package practica.mp.pkg2;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +17,7 @@ import java.util.List;
  *
  * @author migue
  */
-public class Habilidades {
+public class Habilidades implements Serializable {
     private List<Habilidad> habilidades;
     
     public Habilidades(){
@@ -56,6 +62,14 @@ public class Habilidades {
     
     public void añadirHabilidad(Habilidad habilidad){
         this.habilidades.add(habilidad);
+        try {
+            FileInputStream archivo = new FileInputStream("Habilidades.ser");
+            ObjectInputStream habilidadesEntrada = new ObjectInputStream(archivo);
+            Habilidades habilidades = (Habilidades) habilidadesEntrada.readObject();
+            habilidadesEntrada.close();
+        }
+        catch(IOException | ClassNotFoundException e) {
+        }
     }
     
      public Disciplina getDisciplina (String nombre) {
@@ -86,5 +100,18 @@ public class Habilidades {
             }
         }
         return null;
+    }
+    
+    public void saveHabilidades() {
+        try {
+            FileOutputStream archivo = new FileOutputStream("habilidades.ser");
+            ObjectOutputStream habilidadesSalida = new ObjectOutputStream(archivo);
+            habilidadesSalida.writeObject(this.habilidades);
+            habilidadesSalida.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error clase App method saveHabilidades");
+        }
     }
 }
