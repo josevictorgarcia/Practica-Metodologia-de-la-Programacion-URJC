@@ -20,13 +20,15 @@ public class Desafio implements Serializable{
     private int oro_ganado;
     private boolean validado;
     private Combate combate;
+    private Cliente userDesafiante;
     
-    public Desafio(Personaje desafiante, Personaje desafiado, int oro, GeneradorIDs generador) {
+    public Desafio(Personaje desafiante, Personaje desafiado, int oro, GeneradorIDs generador, Cliente cliente) {
         this.validado=false;
         this.desafiante= desafiante;
         this.desafiado= desafiado;
         this.oro_apostado= oro;
         this.id_desafio=generador.getID();
+        this.userDesafiante=cliente;
     }
     
     public void validar() {
@@ -187,5 +189,21 @@ public class Desafio implements Serializable{
     public void setCombate(Combate combate) {
         this.combate = combate;
     }
+
+    /**
+     * @return the userDesafiante
+     */
+    public Cliente getUserDesafiante() {
+        return userDesafiante;
+    }
+
+    /**
+     * @param userDesafiante the userDesafiante to set
+     */
+    public void setUserDesafiante(Cliente userDesafiante) {
+        this.userDesafiante = userDesafiante;
+    }
+    
+    
     
 }

@@ -37,15 +37,15 @@ public class Cliente extends Usuario implements Serializable{
     
     //elegir armas o armaduras activas
     public void elegirEquipo() {
-        String equipo= menu.askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
+        String equipo= getMenu().askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
         if (equipo.equals("armas")) {
-            Arma arma = menu.askArma(this.getPersonaje().getEquipo(), this.getPersonaje().getArmas_activas()); //muestra todas las armas activas y no activas y pide que elija una para poner activa
+            Arma arma = getMenu().askArma(this.getPersonaje().getEquipo(), this.getPersonaje().getArmas_activas()); //muestra todas las armas activas y no activas y pide que elija una para poner activa
             if (arma !=null) {
                 this.getPersonaje().ponerArmaActiva(arma);  //cambia la última arma de la lista por la que le pasamos como parámetro
             }
         }
         else {
-            Armadura armadura = menu.askArmadura(this.getPersonaje().getEquipo()); //muestra armaduras y pide elegir una para ponerla activa
+            Armadura armadura = getMenu().askArmadura(this.getPersonaje().getEquipo()); //muestra armaduras y pide elegir una para ponerla activa
             if (armadura != null) {
                 this.getPersonaje().setArmadura_activa(armadura);
             }
@@ -53,9 +53,9 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     public void desafiar (Ranking ranking, GeneradorIDs generador) {
-        Cliente desafiado= menu.askDesafiado(ranking);
-        int oro=menu.askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
-        Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro, generador);
+        Cliente desafiado= getMenu().askDesafiado(ranking);
+        int oro=getMenu().askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
+        Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro, generador, this);
         enviarDesafio(des, desafiado); //añade el desafio a desafiosPendientes del desafiado
     }
     
@@ -66,9 +66,11 @@ public class Cliente extends Usuario implements Serializable{
         int pos=0;
         for (Desafio i: this.desafiosPendientes) {
             if (i.isValidado()) {
-                boolean respuesta = menu.askDesafio(i); //pide si quiere responder el desafio o no
+                boolean respuesta = getMenu().askDesafio(i); //pide si quiere responder el desafio o no
                 if (respuesta) {
-                    i.aceptar(menu);
+                    i.aceptar(getMenu());
+                    this.ultimosCombates.add(i.getCombate());
+                    i.getUserDesafiante().getUltimosCombates().add(i.getCombate());
                 }
                 else {
                     i.rechazar();
@@ -98,11 +100,11 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     public void consultaCombates () {
-        menu.mostrarCombates(this.ultimosCombates);
+        getMenu().mostrarCombates(this.ultimosCombates);
     }
     
     public void consultaRanking (Ranking rank) {
-        menu.mostrarRanking(rank);
+        getMenu().mostrarRanking(rank);
     }
     
     public void enviarDesafio(Desafio des, Cliente desafiado) {
@@ -110,16 +112,16 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     public void comprarItem (Tienda tienda) {
-        menu.mostrarString("El oro que tienes es: " + this.getPersonaje().getOro());
-        Equipo item= menu.pedirItemTienda(tienda);
+        getMenu().mostrarString("El oro que tienes es: " + this.getPersonaje().getOro());
+        Equipo item= getMenu().pedirItemTienda(tienda);
         if (item!=null) {
             if (item.getCoste() <= this.getPersonaje().getOro()) {
                 this.getPersonaje().setOro(this.getPersonaje().getOro()-item.getCoste());
                 this.getPersonaje().anadirItem(item);
-                menu.mostrarString("Comprado");
+                getMenu().mostrarString("Comprado");
             }
             else {
-                menu.mostrarString("No tienes suficiente oro");
+                getMenu().mostrarString("No tienes suficiente oro");
             }
         }
     }
@@ -185,5 +187,19 @@ public class Cliente extends Usuario implements Serializable{
      */
     public void setUltimosCombates(List<Combate> ultimosCombates) {
         this.ultimosCombates = ultimosCombates;
+    }
+
+    /**
+     * @return the menu
+     */
+    public Menu getMenu() {
+        return menu;
+    }
+
+    /**
+     * @param menu the menu to set
+     */
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }
