@@ -104,9 +104,9 @@ public class Ranking implements Serializable{
             System.out.println("No se encontró un usuario con ese nombre.");
         } else {
             ranking.remove(usuarioEliminado); // Eliminar el usuario de la lista
-            Collections.sort(ranking);
+        //    Collections.sort(ranking);
             ranking.remove(index); // Eliminar el usuario de la lista
-            //Collections.sort(ranking); CRASHEA
+            //Collections.sort(ranking); //CRASHEA
             actualizarRanking();
             /*
             // Escribir las instancias actualizadas de la clase Usuario en el fichero
