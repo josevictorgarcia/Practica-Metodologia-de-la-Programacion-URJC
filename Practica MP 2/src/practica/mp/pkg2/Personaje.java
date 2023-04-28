@@ -143,6 +143,10 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     public int getPotencialDefensa() {
         return 0;
     }
+    //override
+    public void prepararCombate() {
+        
+    }
     
     //getters setters
     public String getNombre() {

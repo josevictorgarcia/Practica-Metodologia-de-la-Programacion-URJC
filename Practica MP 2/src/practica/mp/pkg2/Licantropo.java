@@ -40,6 +40,12 @@ public class Licantropo extends Personaje implements Serializable{
         return result;
     }
     
+    public void prepararCombate () {
+        this.setSalud(5);
+        calcularSaludEsbirros();
+        this.rabia=0;
+    }
+    
     
      /**
      * @return the rabia

@@ -78,36 +78,8 @@ public class Combate implements Serializable{
     }
     
     private void condicionesIniciales() {
-        this.personaje1.setSalud(5);
-        this.personaje2.setSalud(5);
-        this.personaje1.calcularSaludEsbirros();
-        this.personaje2.calcularSaludEsbirros();
-        //personaje1
-        if (personaje1 instanceof Licantropo) {
-            Licantropo licantropo = (Licantropo) personaje1;
-            licantropo.setRabia(0);
-        } 
-        if (personaje1 instanceof Cazador) {
-            Cazador cazador = (Cazador) personaje1;
-            cazador.setVoluntad(3);
-        }
-        if (personaje1 instanceof Vampiro) {
-            Vampiro vampiro = (Vampiro) personaje1;
-            vampiro.setSangre(0);
-        }
-        //personaje2
-        if (personaje2 instanceof Licantropo) {
-            Licantropo licantropo = (Licantropo) personaje2;
-            licantropo.setRabia(0);
-        } 
-        if (personaje2 instanceof Cazador) {
-            Cazador cazador = (Cazador) personaje2;
-            cazador.setVoluntad(3);
-        }
-        if (personaje2 instanceof Vampiro) {
-            Vampiro vampiro = (Vampiro) personaje2;
-            vampiro.setSangre(0);
-        }
+        this.personaje1.prepararCombate();
+        this.personaje2.prepararCombate();
     }
     
     

@@ -70,7 +70,7 @@ public class Cliente extends Usuario implements Serializable{
                 if (respuesta) {
                     i.aceptar(getMenu());
                     this.ultimosCombates.add(i.getCombate());
-                    i.getUserDesafiante().getUltimosCombates().add(i.getCombate());
+                    i.getUserDesafiante().añadirCombate(i.getCombate());
                     ranking.actualizarRanking();
                 }
                 else {
@@ -83,10 +83,7 @@ public class Cliente extends Usuario implements Serializable{
         }
         
         for (int i=list.size()-1; i>=0; i--) {
-            System.out.println(this.desafiosPendientes.size());
             this.desafiosPendientes.remove((int)list.get(i));
-            System.out.println(i); //debugging
-            System.out.println(this.desafiosPendientes.size());
         }
     }
     
@@ -98,6 +95,10 @@ public class Cliente extends Usuario implements Serializable{
             }
         }
         return result;
+    }
+    
+    public void añadirCombate (Combate comb) {
+        this.ultimosCombates.add(comb);
     }
     
     public void consultaCombates () {

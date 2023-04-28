@@ -59,6 +59,12 @@ public class Vampiro extends Personaje implements Serializable{
         return potencial;
     }
     
+    public void prepararCombate () {
+        this.setSalud(5);
+        calcularSaludEsbirros();
+        this.sangre=0;
+    }
+    
     
     
     /**

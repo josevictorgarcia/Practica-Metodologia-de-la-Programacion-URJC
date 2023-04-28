@@ -121,6 +121,8 @@ public class Ranking implements Serializable{
             System.out.println("El usuario ha sido eliminado correctamente.");
         }
     }
+    
+    /* Esto se hace desde App
     public Ranking loadRanking() {
         try {
             FileInputStream archivo = new FileInputStream("ranking.ser");
@@ -147,6 +149,8 @@ public class Ranking implements Serializable{
             System.out.println("Error clase App method saveRanking");
         }
     }
+    
+    */
     
 //getters setters
     public List<Usuario> getRanking() {
