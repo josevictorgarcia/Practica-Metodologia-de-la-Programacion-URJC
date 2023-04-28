@@ -33,7 +33,7 @@ public class GeneradorIDs implements Serializable{
             }
             else {
                 if (idUltimo.charAt(3) < 'Z') {
-                    id = idUltimo.substring(0, 2) + (idUltimo.charAt(3) +1) + 'Z';
+                    id = idUltimo.substring(0, 2) + (idUltimo.charAt(3) +1) + "Z";
                 }
                 else {
                     if (idUltimo.charAt(2) < '9') {
@@ -54,6 +54,7 @@ public class GeneradorIDs implements Serializable{
                     }
                 }
             }
+            this.ids.add(id);
         }
         return id;
     }

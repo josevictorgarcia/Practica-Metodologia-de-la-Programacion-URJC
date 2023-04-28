@@ -31,6 +31,11 @@ public class Cazador extends Personaje implements Serializable{
         return result;
     }
     
+    public void prepararCombate () {
+        this.setSalud(5);
+        calcularSaludEsbirros();
+        this.voluntad=3;
+    }
     
     
     
