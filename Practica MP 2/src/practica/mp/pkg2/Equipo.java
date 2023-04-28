@@ -14,6 +14,8 @@ import java.util.List;
  *
  * @author Alex
  */
+
+//clase que generaliza un artículo de ataque o defensa que el usuario usa en el combate. Los hay de dos tipos: Armas y Armaduras
 public class Equipo implements Serializable{
     private String nombre;
     private int ataque;

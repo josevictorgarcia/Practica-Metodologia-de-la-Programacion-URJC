@@ -9,6 +9,8 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
+
+//clase que guarda y maneja la informacion de las habilidades de los personajes
 public class Habilidad implements Serializable{
     private String nombre;
     private int ataque;

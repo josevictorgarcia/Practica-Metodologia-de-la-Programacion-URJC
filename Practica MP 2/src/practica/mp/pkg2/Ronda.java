@@ -12,6 +12,8 @@ import java.util.*;
  * @author Alex
  */
 import java.io.*;
+
+//clase que ejecuta una ronda y guarda su informacion
 public class Ronda implements Serializable{
     private String combate;
     private Personaje personaje1, personaje2;
@@ -21,7 +23,7 @@ public class Ronda implements Serializable{
     private int ataqueAPersonaje2;
 
     public Ronda (Combate c){                       
-        this.combate = c.getID(); //Se puede poner como un puntero que apunta al combate principal, ya que en esta clase Ronda no modificaremos detalles del combate. Y Si lo hacemos, lo modificaremos en el combate original, mediante this.combate.
+        this.combate = c.getID(); 
         this.personaje1 = c.getPersonaje1();
         this.personaje2 = c.getPersonaje2();
         this.numRonda = c.getRondas().size() + 1;
@@ -34,6 +36,7 @@ public class Ronda implements Serializable{
         return this.ganador;
     }
 
+    //ejecuta la ronda
     public void calculoRonda(){                           
         int p1; int p2;
         System.out.println("Ronda: "+this.numRonda);
@@ -75,8 +78,6 @@ public class Ronda implements Serializable{
         }
     }
 
-    //calculoPotencialAtaque(){} no puede ir en esta clase. Debe ir en
-
     public int calculoNumExitosAtaque(Personaje p){
         Random rand = new Random();
         int total = 0;
@@ -94,7 +95,7 @@ public class Ronda implements Serializable{
         int total = 0;
         for(int i=1;i<=p.getPotencialDefensa();i++){        
             int n = rand.nextInt(1,6);      //Calcula un numero random entre 1 y 6
-            if ((n==5) || (n==6)) {                       //Si el numero random es 5 o 6, sumamos 1 al valor total del ataque.
+            if ((n==5) || (n==6)) {                       //Si el numero random es 5 o 6, sumamos 1 al valor total de la defensa.
                 total = total + 1;
             }
         }

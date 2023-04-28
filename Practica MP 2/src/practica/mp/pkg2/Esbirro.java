@@ -10,6 +10,8 @@ package practica.mp.pkg2;
  */
 import java.io.*;
 
+
+//clase correspondiente a los esbirros de los personajes
 public class Esbirro implements Serializable{
 
     private String nombre;

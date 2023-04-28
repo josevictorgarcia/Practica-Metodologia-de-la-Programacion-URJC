@@ -10,6 +10,8 @@ package practica.mp.pkg2;
  */
 
 import java.io.*;
+
+//clase correspondiente a los usuarios de tipo operador de sistema
 public class OperadorSistema extends Usuario implements Serializable{
     
     private Menu menu;
@@ -18,12 +20,14 @@ public class OperadorSistema extends Usuario implements Serializable{
         this.menu= menu;
     }
     
+    //edita un personaje de un cliente del ranking
     public void editarPersonaje(Ranking rank) {
         Personaje per;
         per= menu.askEditarPersonaje(rank);  //muestra ranking y pide que elija un personaje
         menu.askDatosPersonaje(per); //pide los datos (nombre, etc) para cambiar al personaje y los cambia
     }
     
+    //completa un personaje de un cliente del ranking
     public void completarPersonaje (Ranking rank, Equipos equipos) {
         Personaje per;
         per= menu.askPersonaje(rank);  //muestra ranking y pide que elija un personaje para completar
@@ -51,7 +55,7 @@ public class OperadorSistema extends Usuario implements Serializable{
         }
     }
     
-    
+    //valida desafios no validados
     public void validarDesafios (Ranking ranking) {
         Desafio des =menu.askDesafioValidar(ranking); //muestra desafios pendientes no validados y pide que elija uno para validarlo
         if (des!=null) {
@@ -59,6 +63,7 @@ public class OperadorSistema extends Usuario implements Serializable{
         }
     }
     
+    //banea usuarios
     public void banear(Ranking ranking) {
         Usuario user = menu.askUsuarioBanear(ranking); //elige un usuario a banear
         if (user!=null) {
@@ -66,6 +71,7 @@ public class OperadorSistema extends Usuario implements Serializable{
         }
     }
     
+    //desbanea usuarios
     public void desbanear(Ranking ranking) {
         Usuario user = menu.askUsuarioDesbanear(ranking);
         if (user!=null) {
@@ -73,11 +79,13 @@ public class OperadorSistema extends Usuario implements Serializable{
         }
     }
     
+    //añade items a la tienda
     public void añadirItemTienda(Equipos equipos) {
         Equipo equipo = menu.askItemNuevo();
         equipos.anadirEquipo(equipo);
     }
     
+    //añade habilidades que pueden ser elegidas por nuevos personajes
      public void añadirHabilidad(Habilidades habilidades) throws FileNotFoundException{
         System.out.println(habilidades.getHabilidades().size());
         String respuesta = menu.pedirString("Escriba lo que quiera añadir: 'disciplina', 'don' o cualquier otra cosa para talento");

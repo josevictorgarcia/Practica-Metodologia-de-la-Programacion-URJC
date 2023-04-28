@@ -15,8 +15,7 @@ import java.util.*;
  */
 
 
-//Clase principal que inicia el programa.
-//No se podia en MetProgUrjcGame porque se usa estático y no se podian invocar objetos
+//Clase principal que inicia el programa y carga y descarga de memoria las estructuras necesarias.
 public class App {
     
     private Ranking ranking;
@@ -41,20 +40,13 @@ public class App {
         //System.out.println("habil: "+habilidades.getHabilidades().size());
     }
     
-    //es el main pero sin ser estático
+    //metodo principal que ejecuta la logica del programa
     public void run() throws InterruptedException, FileNotFoundException {
         Usuario user = null;
         while (user==null || user.isBaneado()){
             user = menu.inicio(ranking, generador, habilidades);
         }
-        //loadBase();
-        //loadRanking();
-        //while (!inicioSesion(menu, usuarioActivo)) {} //se queda en blucle hasta que el usuario se registre o se loguee
-        //menu.inicio(usuarioActivo, baseUsers);
-        //ranking.save();
-        //baseUsers.save();
         //pregunta en bucle que hacer y le dice al usuario que lo haga
-        
         boolean end=false;
         if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
             Cliente cliente= (Cliente) user;
@@ -139,6 +131,7 @@ public class App {
         saveHabilidades();
     }
     
+    //carga la estructura ranking
     public Ranking loadRanking() {
         try {
             FileInputStream archivo = new FileInputStream("ranking.ser");
@@ -153,6 +146,7 @@ public class App {
         }
     }
     
+    //guarda en memoria la estructura ranking
     public void saveRanking() {
         try {
             FileOutputStream archivo = new FileOutputStream("ranking.ser");
@@ -166,6 +160,7 @@ public class App {
         }
     }
     
+    //carga la estructura equipos
     public Equipos loadEquipos() {
         try {
             FileInputStream archivo = new FileInputStream("equipos.ser");
@@ -180,6 +175,7 @@ public class App {
         }
     }
     
+    //guarda en memoria la estructura equipos
     public void saveEquipos() {
         try {
             FileOutputStream archivo = new FileOutputStream("equipos.ser");
@@ -191,6 +187,7 @@ public class App {
         System.out.println("Error clase App method saveEquipos");}
     }
     
+    //carga la estructura generador
     public GeneradorIDs loadGenerador() {
         try {
             FileInputStream archivo = new FileInputStream("generador.ser");
@@ -205,6 +202,7 @@ public class App {
         }
     }
     
+    //guarda en memoria la estructura generador
     public void saveGenerador() {
         try {
             FileOutputStream archivo = new FileOutputStream("generador.ser");
@@ -216,6 +214,7 @@ public class App {
         System.out.println("Error clase App method saveGenerador");}
     }
 
+    //carga la estructura habilidades
     public Habilidades loadHabilidades(){
         try {
             FileInputStream archivo = new FileInputStream("Habilidades.ser");
@@ -234,6 +233,7 @@ public class App {
         }
     }
     
+    //guarda en memoria la estructura habilidades
     public void saveHabilidades() {
         try {
             FileOutputStream archivo = new FileOutputStream("Habilidades.ser");

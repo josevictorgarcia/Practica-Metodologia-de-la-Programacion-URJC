@@ -11,6 +11,7 @@ package practica.mp.pkg2;
 import java.util.*;
 import java.io.*;
 
+//clase correspondiente al tipo de esbirro llamado Demonio
 public class Demonio extends Esbirro implements Serializable{
     private String pacto;
     private List<Esbirro> esbirros;
@@ -21,6 +22,7 @@ public class Demonio extends Esbirro implements Serializable{
         this.esbirros=new ArrayList();
     }
     
+    //añade un esbirro a su colección de esbirros
     public void anadirEsbirro(Esbirro es) {
         this.esbirros.add(es);
     }

@@ -9,6 +9,8 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
+
+//clase corespondiente a los esbirros de tipo humano
 public class Humano extends Esbirro implements Serializable{
     private Lealtad lealtad;
     

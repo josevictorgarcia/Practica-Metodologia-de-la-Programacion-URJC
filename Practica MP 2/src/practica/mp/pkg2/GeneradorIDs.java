@@ -11,15 +11,18 @@ package practica.mp.pkg2;
 
 import java.util.*;
 import java.io.*;
+
+//estructura que guarda y devuelve identificadores únicos
 public class GeneradorIDs implements Serializable{
     private List<String> ids;
     
     //ID de formato  LNNLL  
-    
+
     public GeneradorIDs () {
         this.ids = new ArrayList();
     }
     
+    //crea el id siguiente respecto al último introducido
     public String getID () {
         String id;
         if (this.ids.size()==0) {

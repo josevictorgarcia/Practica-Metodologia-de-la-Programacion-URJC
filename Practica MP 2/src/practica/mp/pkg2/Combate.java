@@ -47,12 +47,14 @@ public class Combate implements Serializable{
         return this.getId_combate();
     }
 
+    //crea una ronda y la ejecuta
     public void nuevaRonda(){
-        Ronda r = new Ronda(this);              //Creamos una nueva ronda
+        Ronda r = new Ronda(this);
         r.calculoRonda();
         this.rondas.add(r);                     //Añadimos la ronda a la lista
     }
 
+    //metodo principal que incluye la logica del combate. El combate se compone de sucesivas rondas hasta que al menos un personaje tiene salud 0
     public void desarrolloCombate(){
         condicionesIniciales();
         while (this.personaje1.getSalud()>0 && this.personaje2.getSalud()>0){     //Bucle. Hasta que la salud de alguno de los personajes no sea cero:
@@ -71,12 +73,14 @@ public class Combate implements Serializable{
         }
     }
     
+    //genera un ID unico en funcion de la fecha y los personajes implicados
     private String generarID(Personaje p1, Personaje p2, Date fecha){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
         String strDate = dateFormat.format(fecha);
         return p1.getNombre()+p2.getNombre()+strDate;
     }
     
+    //pone a los personajes con los parametros iniciales necesarios
     private void condicionesIniciales() {
         this.personaje1.prepararCombate();
         this.personaje2.prepararCombate();

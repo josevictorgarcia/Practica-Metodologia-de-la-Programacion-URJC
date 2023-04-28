@@ -10,6 +10,8 @@ package practica.mp.pkg2;
  */
 
 import java.io.*;
+
+//clase corespondiente a los personajes de tipo vampiro
 public class Vampiro extends Personaje implements Serializable{
 
     private int sangre;
@@ -19,16 +21,8 @@ public class Vampiro extends Personaje implements Serializable{
         setPoder(5);
         this.sangre = 0;
     }
-
-    /*
-    @Override
-    public void setPotencialAtaque(){
-        int potencial = this.getSangre() + super.getPoder();     //Aqui habria que anadir el valor de ataque de su disciplina, equipo etc.
-        super.setPotencialAtaque(potencial);                //Tambien habria que anadir el correspondiente calculo del potencial de ataque en las clases que extienden (heredan) de personaje
-    }
-    */
     
-    
+    //calcula el potencial de ataque en una ronda
     public int getPotencialAtaque() {
         Disciplina disciplina = (Disciplina) this.getHabilidad_especial();
         int extra_sangre =0;
@@ -59,6 +53,7 @@ public class Vampiro extends Personaje implements Serializable{
         return potencial;
     }
     
+    //inicializa el personaje antes de un combate
     public void prepararCombate () {
         this.setSalud(5);
         calcularSaludEsbirros();

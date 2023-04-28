@@ -19,6 +19,7 @@ import java.io.*;
  * @author migue
  */
 
+//estructura que guarda las habilidades que el usuario podrá elegir al crear su personaje
 public class Habilidades implements Serializable {
 
     private List<Habilidad> habilidades;
@@ -102,33 +103,6 @@ public class Habilidades implements Serializable {
     }
     
 
-    /*public Habilidades loadHabilidades(){
-        try {
-            FileInputStream archivo = new FileInputStream("Habilidades.ser");
-            ObjectInputStream habilidadesEntrada = new ObjectInputStream(archivo);
-            Habilidades habilidades = (Habilidades) habilidadesEntrada.readObject();
-            habilidadesEntrada.close();
-            return habilidades;
-        }
-        catch(IOException | ClassNotFoundException e) {
-           //lo creamos pues no hay archivo
-            Habilidades habilidades = new Habilidades();
-            habilidades.añadirHabilidad(new Disciplina("por defecto",1,1,1));
-            habilidades.añadirHabilidad(new Don("por defecto",1,1,1));
-            habilidades.añadirHabilidad(new Talento("por defecto",1,1));
-            return habilidades;
-        }
-    }
-    public void saveHabilidades() {
-        try {
-            FileOutputStream archivo = new FileOutputStream("Habilidades.ser");
-            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(habilidades);
-            rankingSalida.close();
-        }
-        catch (Exception ex) {
-        System.out.println("Error clase App method saveHabilidades");}
-    }*/
     
     public List<Habilidad> getHabilidades() {
         return habilidades;

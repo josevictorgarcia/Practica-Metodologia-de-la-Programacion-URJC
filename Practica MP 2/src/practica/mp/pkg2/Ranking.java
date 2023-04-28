@@ -17,8 +17,7 @@ import java.util.logging.Level;
  * @author Alex
  */
 
-//guarda una lista de personajes ordenada en funcion de desfios_ganados
-
+//estructura encargada de guardar una lista de personajes ordenada en funcion de desfios_ganados
 public class Ranking implements Serializable{
     private List<Usuario> ranking;
 
@@ -31,6 +30,8 @@ public class Ranking implements Serializable{
         this.ranking.add(user);
         actualizarRanking();
     }
+    
+    //ordena los usuarios
     public void actualizarRanking () {
         int i, j;
         for (i = 0; i < ranking.size() - 1; i++) {
@@ -57,14 +58,7 @@ public class Ranking implements Serializable{
             }
         }
     }
-    
-    //ya lo muestra el menu
-    /*public void mostrarRanking(){
-        System.out.println("\nRanking:");
-        for (Usuario u : getRanking()) {
-            System.out.println("Nombre: " + u.getNombre() + ", Desafíos ganados: " + u.getPersonaje().getDesafios_ganados());
-        }
-    }*/
+   
     public void mostrarRanking () {
         int pos =0;
         for (Usuario i: ranking) {
@@ -76,6 +70,8 @@ public class Ranking implements Serializable{
             }
         }
     }
+    
+    //devuelve el usuario con el mismo nickname
     public Usuario getUsuario (String nickname) {
         for (Usuario i: this.ranking) {
             if (i.getNickname().equals(nickname)) {
@@ -85,6 +81,7 @@ public class Ranking implements Serializable{
         return null;
     }
     
+    //elimina el usuario con el nombre deteminado
     public void eliminarUsuario(String nombreUsuario){
         
         // Buscar el usuario que deseas eliminar
@@ -103,54 +100,13 @@ public class Ranking implements Serializable{
         if (usuarioEliminado == null) {
             System.out.println("No se encontró un usuario con ese nombre.");
         } else {
-            ranking.remove(usuarioEliminado); // Eliminar el usuario de la lista
-        //    Collections.sort(ranking);
             ranking.remove(index); // Eliminar el usuario de la lista
-            //Collections.sort(ranking); //CRASHEA
             actualizarRanking();
-            /*
-            // Escribir las instancias actualizadas de la clase Usuario en el fichero
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ranking.txt"))) {
-                for (Usuario usuario : ranking) {
-                    out.writeObject(usuario);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            */
             System.out.println("El usuario ha sido eliminado correctamente.");
         }
     }
     
-    /* Esto se hace desde App
-    public Ranking loadRanking() {
-        try {
-            FileInputStream archivo = new FileInputStream("ranking.ser");
-            ObjectInputStream rankingEntrada = new ObjectInputStream(archivo);
-            Ranking rank = (Ranking) rankingEntrada.readObject();
-            rankingEntrada.close();
-            return rank;
-        }
-        catch(IOException | ClassNotFoundException e) {
-           //lo creamos pues no hay archivo
-            return new Ranking();
-        }
-    }
-    
-    public void saveRanking() {
-        try {
-            FileOutputStream archivo = new FileOutputStream("ranking.ser");
-            ObjectOutputStream rankingSalida = new ObjectOutputStream(archivo);
-            rankingSalida.writeObject(this.ranking);
-            rankingSalida.close();
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error clase App method saveRanking");
-        }
-    }
-    
-    */
+ 
     
 //getters setters
     public List<Usuario> getRanking() {

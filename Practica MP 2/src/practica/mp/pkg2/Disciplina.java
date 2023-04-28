@@ -9,6 +9,8 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
+
+//clase correspondiente al tipo de habilidad denominado Disciplina
 public class Disciplina extends Habilidad implements Serializable{
     private int coste;
     

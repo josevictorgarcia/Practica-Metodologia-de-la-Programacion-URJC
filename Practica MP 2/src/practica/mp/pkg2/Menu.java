@@ -10,11 +10,13 @@ import java.util.Scanner;
  * @author Alex
  */
 import java.io.*;
-//es una pantalla, hace de interfaz con el usuario. Es quien le muestra o le pide cosas al usuario.
+
+//clase encargada de hacer de interfaz con el usuario. Es quien le muestra o le pide cosas al usuario.
 public class Menu implements Serializable{
-    //Ranking ranking;
+
     private Usuario p;
     
+    //lógica del inicio de sesion o registro del usuario
     public Usuario inicio(Ranking ranking, GeneradorIDs generador, Habilidades habilidades) throws InterruptedException, FileNotFoundException{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Pulse '1' para iniciar sesión o cualquier otra cosa para registrarse:");
@@ -73,7 +75,7 @@ public class Menu implements Serializable{
         return null;
     }
 
-
+    //pide al cliente que accion quiere realizar y la ejecuta
     public AccionCliente pedirAccionCliente(){
         String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem' o cualquier otra cosa para SalirSistema");
         switch (respuesta) {
@@ -95,6 +97,8 @@ public class Menu implements Serializable{
                 return AccionCliente.SalirSistema;
         }
     }
+    
+    //pide a un operador la acción a realizar y la ejecuta
     public AccionOp pedirAccionOperador(){
         String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AnadirHabilidad' o cualquier otra cosa para SalirSistema");
         switch (respuesta) {
@@ -119,6 +123,7 @@ public class Menu implements Serializable{
         }
     }
 
+    //pide un string al usuario mostrando un mensaje
     public String pedirString (String mensaje) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(mensaje);
@@ -126,10 +131,12 @@ public class Menu implements Serializable{
         return respuesta;
     }
 
+    //muestra string al usuario
     public void mostrarString (String mensaje) {
         System.out.println(mensaje);
     }
 
+    //pide un entero al usuario
     private int pedirInt(String mensaje) {
         String respuesta = pedirString(mensaje);
         try {
@@ -142,6 +149,7 @@ public class Menu implements Serializable{
         return 0;
     }
     
+    //pide un entero en el rango especificado
     private int pedirIntRango(String mensaje, int min, int max) {
         boolean end =false;
         int num=0;
@@ -163,7 +171,8 @@ public class Menu implements Serializable{
         }
         return num;
     }
-
+    
+    //pide un booleano
     private boolean pedirBool (String mensaje) {
         String respuesta = pedirString(mensaje);
         if (respuesta.equals("s")) {
@@ -174,6 +183,7 @@ public class Menu implements Serializable{
         }
     }
 
+    
     public String askNombrePersonaje () {
         return pedirString("Introduzca nombre para su nuevo personaje");
     }
@@ -182,6 +192,7 @@ public class Menu implements Serializable{
         return pedirString("Escriba 'armas' si quiere cambiar un arma. Escriba cualquier otra cosa para cambiar armadura");
     }
 
+    //pide que al cliente que elija un arma de su equipo
     public Arma askArma(List<Equipo> equipo, List<Arma> armasActivas) {
         boolean vacio=true;
         mostrarString("Las armas en tu inventario son:");
@@ -217,6 +228,7 @@ public class Menu implements Serializable{
         return (Arma) equipo.get(num); 
     }
 
+    //pide a un cliente que elija una armadura de su equipo
     public Armadura askArmadura (List<Equipo> equipo) {
         boolean vacio=true;
         mostrarString("Las armaduras en tu inventario son:");
@@ -248,6 +260,7 @@ public class Menu implements Serializable{
         return (Armadura) equipo.get(num); 
     }
 
+    //pide un cliente a desafiar
     public Cliente askDesafiado (Ranking ranking) {
         boolean end=false;
         Usuario user=null;
@@ -272,6 +285,7 @@ public class Menu implements Serializable{
         return cliente;
     }
 
+    //pide cuanto oro se quiere apostar
     public int askOroApostado(int oro_max, int oro_rival) {
         boolean end=false;
         int respuesta=0;
@@ -287,6 +301,7 @@ public class Menu implements Serializable{
         return respuesta;
     }
 
+    //pide al cliente si quiere responder o rechazar el desafio
     public boolean askDesafio (Desafio des) {
         mostrarString("Desafio pendiente: ");
         mostrarString("Nombre personaje desafiante: " + des.getDesafiante().getNombre());
@@ -295,6 +310,7 @@ public class Menu implements Serializable{
         return pedirBool("Escribe 's' si quieres aceptar el desafio o cualquier otra cosa para rechazarlo");
     }
 
+    //muestra los ultimos combates del personaje
     public void mostrarCombates (List<Combate> list) {
         mostrarString("Los ultimos combates son: ");
         for (Combate i: list) {
@@ -318,19 +334,7 @@ public class Menu implements Serializable{
         }
     }
 
-
-    /*public void mostrarRanking (Ranking rank) {
-        int pos =0;
-        for (Usuario i: rank.getRanking()) {
-            pos++;
-            mostrarString(pos+ ": " + i.getNickname());
-            if (i instanceof Cliente) {
-                Cliente cliente= (Cliente) i;
-                mostrarString("Desafios ganados: " + cliente.getPersonaje().getDesafios_ganados());
-            }
-        }
-    }*/
-
+    //pide el cliente a cambiar
     public Personaje askEditarPersonaje(Ranking rank) {
         for (Usuario i: rank.getRanking()) {
             if (i instanceof Cliente) {
@@ -352,12 +356,13 @@ public class Menu implements Serializable{
         return cliente.getPersonaje();
     }
 
+    //pide el nombre de un personaje y lo asigna
     public void askDatosPersonaje(Personaje per) {
         String respuesta = pedirString("Escribe el nuevo nombre del personaje");
         per.setNombre(respuesta);
     }
 
-
+    //pide un cliente para completar personaje
     public Personaje askPersonaje (Ranking rank) {
         for (Usuario i: rank.getRanking()) {
             if (i instanceof Cliente) {
@@ -379,10 +384,12 @@ public class Menu implements Serializable{
         return cliente.getPersonaje();
     } 
     
+    //pide que quiere añadir al personaje
     public String askAñadirAPersonaje () {
         return pedirString("Escribe que quieres añadir al personaje: 'armas', 'armaduras', 'modificador' o cualquier otra cosa para esbirros ");
     }
 
+    //pide datos de arma nueva
     public Arma askArmaNueva() {
         String nombre= pedirString("Escribe el nombre del arma: ");
         int ataque = pedirIntRango("Escribe el ataque del arma  (1-3): ", 1, 3);
@@ -391,6 +398,7 @@ public class Menu implements Serializable{
         return new Arma(nombre, ataque, 0, coste, manos);
     }
 
+    //pide datos de armadura nueva
     public Armadura askArmaduraNueva() {
         String nombre= pedirString("Escribe el nombre de la armadura: ");
         int defensa = pedirInt("Escribe la defensa de la armadura: ");
@@ -398,6 +406,7 @@ public class Menu implements Serializable{
         return new Armadura(nombre, defensa,0 , coste);
     }
 
+    //pide datos modificador nuevo
     public Modificador askModificadorNuevo() {
         String nombre = pedirString("Escribe el nombre del modificador: ");
         int sensibilidad = pedirIntRango("Escribe la sensibilidad (1-5): ",1,5);
@@ -405,6 +414,7 @@ public class Menu implements Serializable{
         return new Modificador(nombre, sensibilidad, fortaleza);
     }
 
+    //pide datos esbirro nuevo
     public Esbirro askEsbirroNuevo(boolean vampiro) {
         String nombre=pedirString("Escribe el nombre del esbirro: ");
         int salud= pedirIntRango("Escribe la salud del esbirro (1-3): ", 1,3);
@@ -446,6 +456,7 @@ public class Menu implements Serializable{
         return esbirro;
     }
 
+    //muestra desafios y pide si quiere validarlos
     public Desafio askDesafioValidar (Ranking rank) {
         Desafio des=null;
         for (Usuario i: rank.getRanking()) {
@@ -468,6 +479,7 @@ public class Menu implements Serializable{
         return des;
     }
 
+    //muestra usuarios y pide si banear
     public Usuario askUsuarioBanear(Ranking ranking) {
         Usuario user =null;
         for (Usuario i: ranking.getRanking()) {
@@ -480,6 +492,7 @@ public class Menu implements Serializable{
         return user;
     } 
 
+    //muestra usuarios y pide si desbanear
     public Usuario askUsuarioDesbanear (Ranking ranking) {
         Usuario user =null;
         for (Usuario i: ranking.getRanking()) {
@@ -492,6 +505,7 @@ public class Menu implements Serializable{
         return user;
     }
 
+    //pide datos personaje nuevo
     public Personaje askPersonajeNuevo(Habilidades habilidades) throws FileNotFoundException {
         String nombre = pedirString("Escribe nombre personaje: ");
         int tipo = pedirIntRango("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador",0,2);
@@ -512,6 +526,7 @@ public class Menu implements Serializable{
         }
     }
 
+    //pide datos disciplina nueva
     public Disciplina askDisciplinaNueva() throws FileNotFoundException {
         String nombre = pedirString("Elija nombre disciplina");      
         int defensa = pedirIntRango("Elija valor de defensa entre 1 y 3", 1,3);
@@ -520,6 +535,7 @@ public class Menu implements Serializable{
         return new Disciplina(nombre,ataque,defensa,coste);
     }
 
+    //pide datos don nuevo
     public Don askDonNuevo() {
         String nombre = pedirString("Escribe nombre don :");
         int defensa = pedirIntRango("Elija valor de defensa entre 1 y 3",1,3);
@@ -543,6 +559,7 @@ public class Menu implements Serializable{
         mostrarString("El ganador es: "+per.getNombre());
     }
     
+    //pide un item a comprar
     public Equipo pedirItemTienda(Tienda tienda) {
         mostrarString("Los items de la tienda son:");
         int pos=0;

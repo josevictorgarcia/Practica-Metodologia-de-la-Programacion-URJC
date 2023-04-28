@@ -10,8 +10,10 @@ package practica.mp.pkg2;
  */
 import java.io.*;
 import java.util.*;
-//guarda la informacion del Cliente y se le llama para hacer las acciones a las que tiene derecho
+
+//guarda la informacion del Cliente y contiene la logica de las acciones a las que tiene derecho
 public class Cliente extends Usuario implements Serializable{
+    
     private String numRegistro;
     private Personaje personaje;
     private List<Desafio> desafiosPendientes;
@@ -27,15 +29,12 @@ public class Cliente extends Usuario implements Serializable{
         personaje= new Personaje(this.getNombre(), new Habilidad("por defecto",0,0)); //por defecto crea un personaje con su mismo nombre
     }
     
+    //cambia el personaje del cliente a uno nuevo decidido por el usuario
     public void cambiarPersonaje(Habilidades habilidades) throws FileNotFoundException {
-        //ranking.eliminar(personaje) ??? Si cambias de personaje lo eliminamos del ranking?
         setPersonaje(menu.askPersonajeNuevo(habilidades));
-        //baseUsuarios.save() ?? para que el cambio quede reflejado a los que le desafien despues mientras aun no ha finalizado el programa?  En general en cualquier cambio a 
-        //personaje también
-        
     }
     
-    //elegir armas o armaduras activas
+    //elege que armas o armaduras quiere tener activas
     public void elegirEquipo() {
         String equipo= getMenu().askElegirEquipo(); //elegir si quiere cambiar un arma o una armadura
         if (equipo.equals("armas")) {
@@ -52,6 +51,7 @@ public class Cliente extends Usuario implements Serializable{
         }
     }
     
+    //crea un desafio según el usuario y lo envia al usuario desafiado esperando que un Operador lo valide y después que el desafiado lo acepte o rechace
     public void desafiar (Ranking ranking, GeneradorIDs generador) {
         Cliente desafiado= getMenu().askDesafiado(ranking);
         int oro=getMenu().askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
@@ -60,7 +60,7 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     
-    //el usuario solo acepta desafios, no los rechaza. Si no quiere 
+    //se muestra al usuario los Desafios a los que ha sido retado, pide una respuesta y los ejecuta
     public void responderDesafios (Ranking ranking) {
         List<Integer> list = new ArrayList();
         int pos=0;
@@ -87,6 +87,7 @@ public class Cliente extends Usuario implements Serializable{
         }
     }
     
+    //devuelve si el usuario tiene desafios pendientes que responder
     public boolean hayDesafios () {
         boolean result=false;
         for (Desafio i: this.desafiosPendientes) {
@@ -97,27 +98,30 @@ public class Cliente extends Usuario implements Serializable{
         return result;
     }
     
+    //añade el combate el registro de los últimos combates
     public void añadirCombate (Combate comb) {
         this.ultimosCombates.add(comb);
     }
     
+    //consulta los ultimos combates guardados
     public void consultaCombates () {
         getMenu().mostrarCombates(this.ultimosCombates);
     }
     
+    
     public void consultaRanking (Ranking rank) {
-        //getMenu().mostrarRanking(rank);
         rank.mostrarRanking();
     }
     
+    //añade el desafio a desafiosPendientes del desafiado
     public void enviarDesafio(Desafio des, Cliente desafiado) {
         desafiado.desafiosPendientes.add(des);
     }
     
+    //ejecuta la compra del item que se elija
     public void comprarItem (Tienda tienda) {
         getMenu().mostrarString("El oro que tienes es: " + this.getPersonaje().getOro());
         Equipo item= getMenu().pedirItemTienda(tienda);
-        //Equipo item= tienda.pedirItemTienda();
         if (item!=null) {
             if (item.getCoste() <= this.getPersonaje().getOro()) {
                 this.getPersonaje().setOro(this.getPersonaje().getOro()-item.getCoste());
@@ -130,8 +134,9 @@ public class Cliente extends Usuario implements Serializable{
         }
     }
     
-    //getters y setters
     
+    
+    //getters y setters
     public String getNumRegistro() {
         return numRegistro;
     }

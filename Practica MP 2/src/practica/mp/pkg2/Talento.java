@@ -9,6 +9,8 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
+
+//clase correspondiente a las habilidades de tipo talento
 public class Talento extends Habilidad implements Serializable{
     public Talento(String nombre, int ataque, int defensa) {
         super(nombre, ataque, defensa);

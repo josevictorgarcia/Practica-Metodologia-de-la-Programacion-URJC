@@ -9,6 +9,8 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
+
+//clase general correspondiente a los modificadores
 public class Modificador implements Serializable{
     private String nombre;
     private int sensible;

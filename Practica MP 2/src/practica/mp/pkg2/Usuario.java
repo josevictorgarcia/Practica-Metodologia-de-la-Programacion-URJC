@@ -12,6 +12,7 @@ package practica.mp.pkg2;
 import java.io.Serializable;
 import java.util.*;
 
+//clase generica que corresponde a un usuario de la aplicacion
 public class Usuario implements Serializable, Comparable<Usuario>{
     private String nombre;
     private String nickname;
@@ -25,6 +26,7 @@ public class Usuario implements Serializable, Comparable<Usuario>{
         this.nickname=nickname;
         this.contrasena=contrasena;
     }
+    
     @Override
     public int compareTo(Usuario o) {
         return Integer.compare(this.personaje.getDesafios_ganados(), o.getPersonaje().getDesafios_ganados());

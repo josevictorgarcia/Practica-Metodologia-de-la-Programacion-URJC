@@ -17,15 +17,20 @@ import java.util.*;
  *
  * @author eloys
  */
+
+//estructura encargada de guardar y manejar los artículos de Equipo que los usuarios compran en la tienda y luego usan
 public class Equipos implements Serializable{
     private List<Equipo> equipos;
     
     public Equipos() {
         this.equipos= new ArrayList();
     }
+    //constructor copia
     public Equipos (Equipos equip) {
         this.equipos = new ArrayList(equip.getEquipos());
     }
+    
+   
     public void anadirEquipo(){
         // Pedir los atributos del nuevo equipo
         Scanner scanner = new Scanner(System.in);
@@ -49,28 +54,13 @@ public class Equipos implements Serializable{
         System.out.println("El nuevo equipo ha sido añadido correctamente.");
     }
     
+    //añade un elemento a la estructura
     public void anadirEquipo (Equipo equipo) {
         this.getEquipos().add(equipo);
     }
     
     
     public void modificarEquipo(){
-        /*
-        // Leer el fichero y cargar las instancias en una lista
-        List<Equipo> equipos = new ArrayList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.txt"))) {
-            while (true) {
-                Equipo equipo = (Equipo) in.readObject();
-                equipos.add(equipo);
-            }
-        } catch (EOFException e) {
-            // Fin del archivo
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        */
-        // Pedir el nombre del equipo a modificar
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el nombre del equipo a modificar:");
         String nombreEquipo = scanner.nextLine();
@@ -114,36 +104,9 @@ public class Equipos implements Serializable{
                     System.out.println("Atributo inválido.");
                     break;
             }
-
-            /*
-            // Escribir las instancias actualizadas de la clase Equipo en el fichero
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("equipos.txt"))) {
-                for (Equipo equipo : equipos) {
-                    out.writeObject(equipo);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            */
         }
     }
     public void eliminarEquipo(){
-        
-        /*
-        // Leer el fichero y cargar las instancias en una lista
-        List<Equipo> equipos = new ArrayList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("equipos.dat"))) {
-            while (true) {
-                Equipo equipo = (Equipo) in.readObject();
-                equipos.add(equipo);
-            }
-        } catch (EOFException e) {
-            // Fin del archivo
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        */
-
-        // Pedir el nombre del equipo a eliminar
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el nombre del equipo a eliminar:");
         String nombreEquipo = scanner.nextLine();
@@ -161,19 +124,6 @@ public class Equipos implements Serializable{
             System.out.println("No se encontró un equipo con ese nombre.");
         } else {
             getEquipos().remove(equipoEliminado); // Eliminar el equipo de la lista
-            
-            /*
-
-            // Escribir las instancias actualizadas de la clase Equipo en el fichero
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("equipos.dat"))) {
-                for (Equipo equipo : equipos) {
-                    out.writeObject(equipo);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            */
-
             System.out.println("El equipo ha sido eliminado correctamente.");
         }
     }

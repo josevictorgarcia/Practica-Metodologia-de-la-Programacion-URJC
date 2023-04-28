@@ -11,6 +11,8 @@ import java.util.*;
  * @author migue
  */
 import java.io.*;
+
+//clase encargada de las compras de articulos
 public class Tienda implements Serializable{
     private Equipos items;
     
@@ -18,26 +20,7 @@ public class Tienda implements Serializable{
         this.items= equipos;
     }
     
-    /*public Equipo pedirItemTienda() {
-        System.out.println("Los items de la tienda son:");
-        int pos=0;
-        for (Equipo i: items.getEquipos()) {
-            System.out.println(pos+": Nombre: "+i.getNombre() + " Oro: "+ i.getCoste()+ " Ataque: " + i.getAtaque() + " Defensa: " + i.getDefensa());
-            pos++;
-        }
-        int size=items.getEquipos().size();
-        System.out.println("Escribe el numero para comprar, o escribe "+size+" para salir");
-        Scanner scanner = new Scanner(System.in);
-        
-        int respuesta =  scanner.nextInt();
-        if (respuesta ==size) {
-            return null;
-        }
-        else {
-            return items.getEquipos().get(respuesta);
-        }
-    }*/
-    
+    //pide y realiza la compra
     public void comprar(Personaje personaje){
         Scanner scanner = new Scanner(System.in);
         getItems().mostrarEquipos();

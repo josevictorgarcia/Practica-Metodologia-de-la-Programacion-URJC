@@ -9,8 +9,9 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
-public class Desafio implements Serializable{
 
+//clase que guarda y maneja la informacion de un desafio y la logica de su ejecucion
+public class Desafio implements Serializable{
 
     private String id_desafio;
     private Personaje desafiante;
@@ -31,17 +32,12 @@ public class Desafio implements Serializable{
         this.userDesafiante=cliente;
     }
     
+    //valida el desafio
     public void validar() {
         this.setValidado(true);
     }
     
-    /*
-    public void comenzarDesafio(){
-        this.setCombate(new Combate(getDesafiante(), getDesafiado()));
-        getCombate().desarrolloCombate();
-    } 
-    */
-    
+    //logica correspondiente a aceptar el desafio. Ejecuta el combate, guarda la informacion y resta el oro
     public void aceptar(Menu menu) {
         prepararDesafiado(menu);
         this.setCombate(new Combate(this.getDesafiante(), this.getDesafiado()));
@@ -64,11 +60,13 @@ public class Desafio implements Serializable{
         }
     }
     
+    //rechazar el desafio. Resta 10% del oro al desafiado
     public void rechazar() {
         int oro_restante= (int) (this.desafiado.getOro()*0.9);
         this.desafiado.setOro(oro_restante);
     }
     
+    //pide al desafiado y modifica las armas y armaduras que usará en el combate
     private void prepararDesafiado(Menu menu) {
         Arma arma = menu.askArma(this.desafiado.getEquipo(), this.desafiado.getArmas_activas());
         this.desafiado.ponerArmaActiva(arma);

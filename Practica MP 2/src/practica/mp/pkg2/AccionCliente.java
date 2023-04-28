@@ -13,4 +13,3 @@ package practica.mp.pkg2;
 public enum AccionCliente {
     DarseBaja, SalirSistema, CambiarPersonaje, ElegirEquipo, Desafiar, ResponderDesafios, ConsultaCombates, ConsultaRanking, ComprarItem
 }
-//prueba

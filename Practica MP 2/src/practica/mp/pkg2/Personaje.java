@@ -11,6 +11,7 @@ package practica.mp.pkg2;
 import java.util.*;
 import java.io.Serializable;
 
+//clase que guarda y maneja la informacion de un personaje y sus acciones
 public class Personaje implements Serializable, Comparable<Personaje>{
     private String nombre;
     private Habilidad habilidad_especial;
@@ -20,9 +21,9 @@ public class Personaje implements Serializable, Comparable<Personaje>{
     private Equipo armadura_activa;
     private List<Esbirro> esbirros;
     private int oro;
-    private int salud;                                  //Valor entre 0 y 5 --> Determinado por el numero de exitos.
-    private int poder;                                  //Valor entre 1 y 5
-    private int potencial_ataque;                       //Valor entre 0 y 5 --> Determinado por el numero de exitos.
+    private int salud;                                
+    private int poder;                                
+    private int potencial_ataque;                       
     private int desafios_ganados;
     private int salud_esbirros;
 
@@ -99,6 +100,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         this.esbirros.add(es);
     }
     
+    //calcula el total de salud de los esbirros
     public void calcularSaludEsbirros() {
         this.setSalud_esbirros(0);
         for (Esbirro i: this.esbirros) {
@@ -106,7 +108,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         }
     }
     
-    
+    //calcula los puntos de ataque de su equipo
     public int calcularAtaqueEquipo () {
         int result=0;
         for (Arma i: this.armas_activas) {
@@ -115,6 +117,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         return result;
     }
     
+    //calcula los puntos de ataque de sus modificadores
     public int calcularModificadoresAtaque() {
         int result =0;
         for (Modificador i: this.modificadores) {
@@ -125,6 +128,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         return result;
     }
     
+    //calcula los puntos de defensa de sus modificadores
     public int calcularModificadoresDefensa() {
         int result=0;
         for (Modificador i: this.modificadores) {

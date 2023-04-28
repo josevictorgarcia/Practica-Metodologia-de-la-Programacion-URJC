@@ -9,6 +9,9 @@ package practica.mp.pkg2;
  * @author Alex
  */
 import java.io.*;
+
+
+//clase que guarda y maneja la informacion de un arma
 public class Arma extends Equipo implements Serializable{
     private int manos;
     
