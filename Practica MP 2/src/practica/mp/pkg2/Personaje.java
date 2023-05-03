@@ -46,6 +46,7 @@ public class Personaje implements Serializable, Comparable<Personaje>{
         this.potencial_ataque=0;
         this.desafios_ganados=0;
         this.salud_esbirros=0;
+        this.poder=0;
         
     }
     
