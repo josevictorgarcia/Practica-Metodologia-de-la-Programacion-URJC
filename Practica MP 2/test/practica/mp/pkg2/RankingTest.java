@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
  *
  * @author Alex
  */
+
 public class RankingTest {
     
     public RankingTest() {

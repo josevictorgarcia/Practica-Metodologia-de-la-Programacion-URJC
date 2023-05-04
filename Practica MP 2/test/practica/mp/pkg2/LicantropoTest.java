@@ -44,8 +44,15 @@ public class LicantropoTest {
     public void testGetPotencialAtaque() {
         System.out.println("getPotencialAtaque");
         Licantropo instance = new Licantropo("prueba", new Don("prueba",1,2,1));
+        instance.setRabia(0);
         instance.setPoder(3);
-        int expResult = 0;
+        Arma arma = new Arma("arma",1,0,0,2);
+        instance.anadirItem(arma);
+        instance.ponerArmaActiva(arma);
+        Armadura armadura = new Armadura("armadura", 1,0,0);
+        instance.anadirItem(armadura);
+        instance.setArmadura_activa(armadura);
+        int expResult = 4;
         int result = instance.getPotencialAtaque();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -57,18 +64,24 @@ public class LicantropoTest {
      */
     @org.junit.jupiter.api.Test
     public void testGetPotencialDefensa() {
-        System.out.println("getPotencialDefensa");
-        Licantropo instance = null;
-        int expResult = 0;
+        System.out.println("getPotencialAtaque");
+        Licantropo instance = new Licantropo("prueba", new Don("prueba",1,2,1));
+        instance.setRabia(0);
+        instance.setPoder(3);
+        Arma arma = new Arma("arma",1,0,0,2);
+        instance.anadirItem(arma);
+        instance.ponerArmaActiva(arma);
+        Armadura armadura = new Armadura("armadura", 1,0,0);
+        instance.anadirItem(armadura);
+        instance.setArmadura_activa(armadura);
+        int expResult = 4;
         int result = instance.getPotencialDefensa();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of prepararCombate method, of class Licantropo.
-     */
+    /*
     @org.junit.jupiter.api.Test
     public void testPrepararCombate() {
         System.out.println("prepararCombate");
@@ -79,7 +92,6 @@ public class LicantropoTest {
     }
     
 
-    /*
    
     @org.junit.jupiter.api.Test
     public void testGetRabia() {
