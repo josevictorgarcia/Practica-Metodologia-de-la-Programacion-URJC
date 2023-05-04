@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.*;
 
 /**
  *
@@ -244,5 +243,17 @@ public class App {
         catch (Exception ex) {
         System.out.println("Error clase App method saveHabilidades");}
     }
-   
+
+    public Habilidades getHabilidades() {
+        return habilidades;
+    }
+
+    public GeneradorIDs getGenerador() {
+        return generador;
+    }
+
+    public void setGenerador(GeneradorIDs generador) {
+        this.generador = generador;
+    }
+    
 }

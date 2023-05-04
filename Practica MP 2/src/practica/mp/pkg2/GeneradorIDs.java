@@ -62,6 +62,7 @@ public class GeneradorIDs implements Serializable{
         return id;
     }
     
+/*   To creo que esto no sirve para nada....esta el mismo código en la clase app (los test están en AppTest)
     public void saveGenerador() {
         try {
             FileOutputStream archivo = new FileOutputStream("generador.ser");
@@ -85,5 +86,10 @@ public class GeneradorIDs implements Serializable{
            //lo creamos pues no hay archivo
             return new GeneradorIDs();
         }
+    }
+*/
+
+    public List<String> getIds() {
+        return ids;
     }
 }
