@@ -47,6 +47,50 @@ public class RankingTest {
         assertTrue(buscado!=null);
     }
     
+    @Test
+    public void testCasoPrueba2() { //intenta logear Hacker peron no está registrado
+        System.out.println("a\u00f1adirUsuario");
+        Ranking instance = new Ranking();
+        Usuario buscado = instance.getUsuario("Hacker");
+        assertTrue(buscado==null);
+    }
+    
+    @Test
+    public void testCasoPrueba3() { //intenta logear Hacker pero constraseña no es correcta
+        System.out.println("a\u00f1adirUsuario");
+        Ranking instance = new Ranking();
+        Usuario hacker = new Usuario("Hacker", "Hacker", "contra");
+        instance.añadirUsuario(hacker);
+        Usuario buscado = instance.getUsuario("Hacker");
+        String intentoContra= "contra incorrecta";
+        assertTrue(! intentoContra.equals(buscado.getContrasena()));
+    }
+    
+    @Test
+    public void testCasoPrueba4() { //intenta logear Hacker pero está baneado
+        System.out.println("a\u00f1adirUsuario");
+        Usuario user = new Usuario("Hacker","Hacker", "contra");
+        user.setBaneado(true);
+        Ranking instance = new Ranking();
+        instance.añadirUsuario(user);
+        Usuario buscado= instance.getUsuario("Hacker");
+        String contra = "contra";
+        assertTrue(buscado.isBaneado() && contra.equals(buscado.getContrasena()));
+    }
+    
+    @Test
+    public void testCasoPrueba5() { //intenta logear Hacker que está desbaneado
+        System.out.println("a\u00f1adirUsuario");
+        Usuario user = new Usuario("Hacker","Hacker", "contra");
+        user.setBaneado(false);
+        Ranking instance = new Ranking();
+        instance.añadirUsuario(user);
+        Usuario buscado= instance.getUsuario("Hacker");
+        String contra = "contra";
+        assertTrue((!buscado.isBaneado()) && contra.equals(buscado.getContrasena()));
+    }
+    
+    
     /*
 
     @Test
