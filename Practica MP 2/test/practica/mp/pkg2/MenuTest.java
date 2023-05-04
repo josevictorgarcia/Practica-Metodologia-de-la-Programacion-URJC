@@ -61,7 +61,7 @@ public class MenuTest {
     @org.junit.Test
     public void testMostrarString() {
         System.out.println("mostrarString");
-        String mensaje = "";
+        String mensaje = "String a mostrar";
         Menu instance = new Menu();
         instance.mostrarString(mensaje);
     }
