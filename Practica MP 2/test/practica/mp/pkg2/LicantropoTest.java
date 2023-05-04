@@ -36,21 +36,6 @@ public class LicantropoTest {
     public void tearDown() throws Exception {
     }
     
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      * Test of getPotencialAtaque method, of class Licantropo.
@@ -92,10 +77,10 @@ public class LicantropoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+    
 
-    /**
-     * Test of getRabia method, of class Licantropo.
-     */
+    /*
+   
     @org.junit.jupiter.api.Test
     public void testGetRabia() {
         System.out.println("getRabia");
@@ -107,9 +92,7 @@ public class LicantropoTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of setRabia method, of class Licantropo.
-     */
+    
     @org.junit.jupiter.api.Test
     public void testSetRabia() {
         System.out.println("setRabia");
@@ -120,4 +103,6 @@ public class LicantropoTest {
         fail("The test case is a prototype.");
     }
     
+    */
+   
 }
