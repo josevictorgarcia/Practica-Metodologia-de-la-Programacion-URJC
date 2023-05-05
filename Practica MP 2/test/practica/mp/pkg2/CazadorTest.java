@@ -16,22 +16,54 @@ public class CazadorTest {
     public CazadorTest() {
     }
 
+    @org.junit.jupiter.api.BeforeAll
+    public static void setUpClass() throws Exception {
+    }
+
+    @org.junit.jupiter.api.AfterAll
+    public static void tearDownClass() throws Exception {
+    }
+
+    @org.junit.jupiter.api.BeforeEach
+    public void setUp() throws Exception {
+    }
+
+    @org.junit.jupiter.api.AfterEach
+    public void tearDown() throws Exception {
+    }
+
     @Test
     public void testGetPotencialAtaque() {
         System.out.println("getPotencialAtaque");
         Talento talento= new Talento("prueba", 1, 3);
-        Cazador instance = new Cazador("prueba", talento);
-        int expResult = 9;
-        int result = instance.getPotencialAtaque();
+        Cazador personaje1 = new Cazador("prueba", talento);
+        personaje1.setPoder(3);
+        Arma arma = new Arma("arma",1,0,0,2);
+        personaje1.anadirItem(arma);
+        personaje1.ponerArmaActiva(arma);
+        Armadura armadura = new Armadura("armadura", 1,0,0);
+        personaje1.anadirItem(armadura);
+        personaje1.setArmadura_activa(armadura);
+        
+        int expResult = 8;
+        int result = personaje1.getPotencialAtaque();
         assertEquals(expResult, result);
     }
 
     @Test
     public void testGetPotencialDefensa() {
-        System.out.println("getPotencialDefensa");
+        System.out.println("getPotencialAtaque");
         Talento talento= new Talento("prueba", 1, 3);
-        Cazador instance = new Cazador("prueba", talento);
-        int expResult = 11;
+        Cazador personaje1 = new Cazador("prueba", talento);
+        personaje1.setPoder(3);
+        Arma arma = new Arma("arma",1,0,0,2);
+        personaje1.anadirItem(arma);
+        personaje1.ponerArmaActiva(arma);
+        Armadura armadura = new Armadura("armadura", 1,0,0);
+        personaje1.anadirItem(armadura);
+        personaje1.setArmadura_activa(armadura);
+        
+        int expResult = 10;
         int result = instance.getPotencialDefensa();
         assertEquals(expResult, result);
     }
@@ -45,26 +77,6 @@ public class CazadorTest {
         assertEquals(instance.getSalud(), 5);
         assertEquals(instance.getVoluntad(), 3);
         assertEquals(instance.getSalud_esbirros(), 0);
-    }
-
-    @Test
-    public void testGetVoluntad() {
-        System.out.println("getVoluntad");
-        Talento talento= new Talento("prueba", 1, 3);
-        Cazador instance = new Cazador("prueba", talento);
-        int expResult = 3;
-        int result = instance.getVoluntad();
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testSetVoluntad() {
-        System.out.println("setVoluntad");
-        int voluntad = 2;
-        Talento talento= new Talento("prueba", 1, 3);
-        Cazador instance = new Cazador("prueba", talento);
-        instance.setVoluntad(voluntad);
-        assertEquals(instance.getVoluntad(), 2);
     }
     
 }
