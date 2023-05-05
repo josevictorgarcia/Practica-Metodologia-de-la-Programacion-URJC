@@ -1,21 +1,39 @@
 
 package practica.mp.pkg2;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.BeforeClass;
 
 public class AppTest {
     private App app;
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
     @Before
     public void setUp() {
         app = new App();
     }
 
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    
+     //los metodos load se ejecutan en el constructor, por lo que no se pueden testear correctamente
+    //los metodos save no se pueden testear bien pues no podemos ejecutar loads para comprobar si se han realizado correctamente
     @Test
     public void testLoadRanking() {
-        // Verificar que se carga correctamente la estructura Ranking
+         // Verificar que se carga correctamente la estructura Ranking
         assertNotNull(app.loadRanking());
     }
     @Test
@@ -106,4 +124,17 @@ public class AppTest {
         app.getHabilidades().setHabilidades(habilidades1.getHabilidades());
         app.saveHabilidades();
     }
+
+    /**
+     * Test of run method, of class App.
+     */
+    @Test
+    public void testRun() throws Exception {
+        System.out.println("run");
+        App instance = new App();
+        instance.run();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }
