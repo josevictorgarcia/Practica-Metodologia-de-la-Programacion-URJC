@@ -506,7 +506,7 @@ public class Menu implements Serializable{
     }
 
     //pide datos personaje nuevo
-    public Personaje askPersonajeNuevo(Habilidades habilidades) throws FileNotFoundException {
+    public Personaje askPersonajeNuevo(Habilidades habilidades) {
         String nombre = pedirString("Escribe nombre personaje: ");
         int tipo = pedirIntRango("Escribe tipo de Personaje: 0 para vampiro, 1 para licantropo, 2 para cazador",0,2);
         if (tipo==0) {

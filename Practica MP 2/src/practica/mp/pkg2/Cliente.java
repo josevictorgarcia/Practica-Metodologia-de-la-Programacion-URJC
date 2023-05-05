@@ -30,7 +30,7 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     //cambia el personaje del cliente a uno nuevo decidido por el usuario
-    public void cambiarPersonaje(Habilidades habilidades) throws FileNotFoundException {
+    public void cambiarPersonaje(Habilidades habilidades) {
         setPersonaje(menu.askPersonajeNuevo(habilidades));
     }
     
