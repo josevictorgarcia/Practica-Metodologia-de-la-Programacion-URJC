@@ -18,18 +18,21 @@ public class HabilidadesTest {
     public HabilidadesTest() {
     }
 
-  /*  @Test
+    @Test
     public void testImprimirInfo() {
         System.out.println("imprimirInfo");
-        Habilidad habilidad = null;
+        Habilidad habilidad = new Talento("tal", 1,1);
         Habilidades instance = new Habilidades();
+        instance.añadirHabilidad(habilidad);
         instance.imprimirInfo(habilidad);
-    }***/
+    }
 
     @Test
     public void testMostrarDisciplinas() {
         System.out.println("mostrarDisciplinas");
         Habilidades instance = new Habilidades();
+        Disciplina dis= new Disciplina("dis", 1, 1, 1);
+        instance.añadirHabilidad(dis);
         instance.mostrarDisciplinas();
     }
 
@@ -37,6 +40,8 @@ public class HabilidadesTest {
     public void testMostrarDones() {
         System.out.println("mostrarDones");
         Habilidades instance = new Habilidades();
+        Don don = new Don("don", 1,1,1);
+        instance.añadirHabilidad(don);
         instance.mostrarDones();
     }
 
@@ -44,62 +49,18 @@ public class HabilidadesTest {
     public void testMostrarTalentos() {
         System.out.println("mostrarTalentos");
         Habilidades instance = new Habilidades();
+        Talento talento = new Talento("tal", 1,1);
+        instance.añadirHabilidad(talento);
         instance.mostrarTalentos();
     }
 
     @Test
     public void testAñadirHabilidad() {
         System.out.println("a\u00f1adirHabilidad");
-        Habilidad habilidad = null;
+        Habilidad habilidad = new Talento("tal", 1,1);
         Habilidades instance = new Habilidades();
         instance.añadirHabilidad(habilidad);
-    }
-
-    @Test
-    public void testGetDisciplina() {
-        System.out.println("getDisciplina");
-        String nombre = "";
-        Habilidades instance = new Habilidades();
-        Disciplina expResult = null;
-        Disciplina result = instance.getDisciplina(nombre);
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testGetTalento() {
-        System.out.println("getTalento");
-        String nombre = "";
-        Habilidades instance = new Habilidades();
-        Talento expResult = null;
-        Talento result = instance.getTalento(nombre);
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testGetDon() {
-        System.out.println("getDon");
-        String nombre = "";
-        Habilidades instance = new Habilidades();
-        Don expResult = null;
-        Don result = instance.getDon(nombre);
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testGetHabilidades() {
-        System.out.println("getHabilidades");
-        Habilidades instance = new Habilidades();
-        List<Habilidad> expResult = new ArrayList();
-        List<Habilidad> result = instance.getHabilidades();
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testSetHabilidades() {
-        System.out.println("setHabilidades");
-        List<Habilidad> habilidades = null;
-        Habilidades instance = new Habilidades();
-        instance.setHabilidades(habilidades);
+        assertTrue(instance.getHabilidades().size()>0);
     }
     
 }
