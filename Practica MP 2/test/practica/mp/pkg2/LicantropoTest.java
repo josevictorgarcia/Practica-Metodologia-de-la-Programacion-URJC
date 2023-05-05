@@ -80,41 +80,16 @@ public class LicantropoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /*
+    
+    
     @org.junit.jupiter.api.Test
     public void testPrepararCombate() {
         System.out.println("prepararCombate");
-        Licantropo instance = null;
+        Licantropo instance = new Licantropo("licant", new Don("don",1,1,1));
         instance.prepararCombate();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
 
-   
-    @org.junit.jupiter.api.Test
-    public void testGetRabia() {
-        System.out.println("getRabia");
-        Licantropo instance = null;
-        int expResult = 0;
-        int result = instance.getRabia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    
-    @org.junit.jupiter.api.Test
-    public void testSetRabia() {
-        System.out.println("setRabia");
-        int rabia = 0;
-        Licantropo instance = null;
-        instance.setRabia(rabia);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
-    */
    
 }

@@ -178,6 +178,7 @@ public class OperadorSistemaTest {
     public void testAñadirHabilidad() throws Exception {
         System.out.println("a\u00f1adirHabilidad");
         Habilidades habilidades = new Habilidades();
+        Menu menu = new Menu();
         OperadorSistema instance = new OperadorSistema("op", "op", "contra", menu);
         instance.añadirHabilidad(habilidades);
     }

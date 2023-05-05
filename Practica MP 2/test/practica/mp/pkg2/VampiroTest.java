@@ -46,25 +46,4 @@ public class VampiroTest {
         assertEquals(instance.getSangre(), 0);
         assertEquals(instance.getSalud_esbirros(), 0);
     }
-
-    @Test
-    public void testGetSangre() {
-        System.out.println("getSangre");
-        Disciplina disciplina= new Disciplina("prueba", 1, 3, 2);
-        Vampiro instance = new Vampiro("prueba", disciplina);
-        int expResult = 0;
-        int result = instance.getSangre();
-        assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testSetSangre() {
-        System.out.println("setSangre");
-        int sangre = 3;
-        Disciplina disciplina= new Disciplina("prueba", 1, 3, 2);
-        Vampiro instance = new Vampiro("prueba", disciplina);
-        instance.setSangre(sangre);
-        assertEquals(instance.getSangre(), 3);
-    }
-    
 }

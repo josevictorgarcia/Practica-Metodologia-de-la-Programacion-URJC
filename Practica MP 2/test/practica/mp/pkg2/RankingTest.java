@@ -92,12 +92,13 @@ public class RankingTest {
     }
     
     
-    /*
-
+  
     @Test
     public void testAñadirUsuario() {
         System.out.println("a\u00f1adirUsuario");
-        Usuario user = null;
+        Menu menu = new Menu();
+        GeneradorIDs generador= new GeneradorIDs();
+        Usuario user = new Cliente("cliente", "cliente", "contra", menu, generador);
         Ranking instance = new Ranking();
         instance.añadirUsuario(user);
         // TODO review the generated test code and remove the default call to fail.
@@ -108,7 +109,13 @@ public class RankingTest {
     @Test
     public void testActualizarRanking() {
         System.out.println("actualizarRanking");
+        Menu menu = new Menu();
+        GeneradorIDs generador= new GeneradorIDs();
+        Cliente user = new Cliente("cliente", "cliente", "contra", menu, generador);
+        Personaje per = new Licantropo("lican", new Don("don", 1,1,1));
+        user.setPersonaje(per);
         Ranking instance = new Ranking();
+        instance.añadirUsuario(user);
         instance.actualizarRanking();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -117,7 +124,11 @@ public class RankingTest {
     @Test
     public void testMostrarRanking() {
         System.out.println("mostrarRanking");
+        Menu menu = new Menu();
+        GeneradorIDs generador= new GeneradorIDs();
+        Usuario user = new Cliente("cliente", "cliente", "contra", menu, generador);
         Ranking instance = new Ranking();
+        instance.añadirUsuario(user);
         instance.mostrarRanking();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -127,11 +138,13 @@ public class RankingTest {
     @Test
     public void testGetUsuario() {
         System.out.println("getUsuario");
-        String nickname = "";
+        Menu menu = new Menu();
+        GeneradorIDs generador= new GeneradorIDs();
+        Usuario user = new Cliente("cliente", "cliente", "contra", menu, generador);
         Ranking instance = new Ranking();
-        Usuario expResult = null;
-        Usuario result = instance.getUsuario(nickname);
-        assertEquals(expResult, result);
+        instance.añadirUsuario(user);
+        Usuario result = instance.getUsuario("cliente");
+        assertTrue(result!=null);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -140,37 +153,14 @@ public class RankingTest {
     @Test
     public void testEliminarUsuario() {
         System.out.println("eliminarUsuario");
-        String nombreUsuario = "";
+        Menu menu = new Menu();
+        GeneradorIDs generador= new GeneradorIDs();
+        Usuario user = new Cliente("cliente", "cliente", "contra", menu, generador);
         Ranking instance = new Ranking();
-        instance.eliminarUsuario(nombreUsuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.añadirUsuario(user);
+        instance.eliminarUsuario("cliente");
+        
+        assertTrue(instance.getUsuario("cliente")==null);
     }
-
-  
-    @Test
-    public void testGetRanking() {
-        System.out.println("getRanking");
-        Ranking instance = new Ranking();
-        List<Usuario> expResult = null;
-        List<Usuario> result = instance.getRanking();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-
-    @Test
-    public void testSetRanking() {
-        System.out.println("setRanking");
-        List<Usuario> ranking = null;
-        Ranking instance = new Ranking();
-        instance.setRanking(ranking);
-       // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
-    
-    */
     
 }

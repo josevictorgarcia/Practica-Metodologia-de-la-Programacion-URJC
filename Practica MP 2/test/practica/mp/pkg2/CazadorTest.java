@@ -64,7 +64,7 @@ public class CazadorTest {
         personaje1.setArmadura_activa(armadura);
         
         int expResult = 10;
-        int result = instance.getPotencialDefensa();
+        int result = personaje1.getPotencialDefensa();
         assertEquals(expResult, result);
     }
 

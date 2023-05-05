@@ -259,7 +259,7 @@ public class ClienteTest {
         personaje2.setArmadura_activa(armadura2);
         
         instance.setPersonaje(personaje1);
-        instance.setPersonaje(personaje2);
+        cliente2.setPersonaje(personaje2);
         
         
         Ranking ranking = new Ranking();
