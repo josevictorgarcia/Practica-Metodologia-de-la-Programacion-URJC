@@ -29,8 +29,7 @@ public class AppTest {
     }
 
     
-     //los metodos load se ejecutan en el constructor, por lo que no se pueden testear correctamente
-    //los metodos save no se pueden testear bien pues no podemos ejecutar loads para comprobar si se han realizado correctamente
+     
     @Test
     public void testLoadRanking() {
          // Verificar que se carga correctamente la estructura Ranking
