@@ -5,12 +5,12 @@
 package practica.mp.pkg2;
 
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -21,26 +21,10 @@ public class PersonajeTest {
     public PersonajeTest() {
     }
 
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
-
     /**
      * Test of anadirItem method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAnadirItem() {
         System.out.println("anadirItem");
         Equipo item = new Arma("arma", 1, 0, 0, 2);
@@ -53,7 +37,7 @@ public class PersonajeTest {
     /**
      * Test of modificarOro method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testModificarOro() {
         System.out.println("modificarOro");
         int cant = 0;
@@ -67,7 +51,7 @@ public class PersonajeTest {
     /**
      * Test of ponerArmaActiva method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testPonerArmaActiva() {
         System.out.println("ponerArmaActiva");
         Arma arma = new Arma("arma",1,0,1,2);
@@ -81,7 +65,7 @@ public class PersonajeTest {
     /**
      * Test of oroSuficiente method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testOroSuficiente() {
         System.out.println("oroSuficiente");
         int oro = 5;
@@ -96,7 +80,7 @@ public class PersonajeTest {
     /**
      * Test of añadirModificador method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAñadirModificador() {
         System.out.println("a\u00f1adirModificador");
         int ataque =2;
@@ -112,7 +96,7 @@ public class PersonajeTest {
     /**
      * Test of añadirEsbirro method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAñadirEsbirro() {
         System.out.println("a\u00f1adirEsbirro");
         Esbirro es = new Humano("humano", 1, Lealtad.ALTA);
@@ -127,7 +111,7 @@ public class PersonajeTest {
     /**
      * Test of calcularSaludEsbirros method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCalcularSaludEsbirros() {
         System.out.println("calcularSaludEsbirros");
         int salud=1;
@@ -144,7 +128,7 @@ public class PersonajeTest {
     /**
      * Test of calcularAtaqueEquipo method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCalcularAtaqueEquipo() {
         System.out.println("calcularAtaqueEquipo");
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
@@ -161,7 +145,7 @@ public class PersonajeTest {
     /**
      * Test of calcularModificadoresAtaque method, of class Personaje.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCalcularModificadoresAtaque() {
         System.out.println("calcularModificadoresAtaque");
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
@@ -174,7 +158,7 @@ public class PersonajeTest {
         fail("The test case is a prototype.");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCalcularModificadoresDefensa() {
         System.out.println("calcularModificadoresDefensa");
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));

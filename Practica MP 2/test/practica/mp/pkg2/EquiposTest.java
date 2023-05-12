@@ -5,12 +5,12 @@
 package practica.mp.pkg2;
 
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -20,26 +20,10 @@ public class EquiposTest {
     
     public EquiposTest() {
     }
-
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
     /**
      * Test of anadirEquipo method, of class Equipos.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAnadirEquipo_0args() {
         System.out.println("anadirEquipo");
         Equipos instance = new Equipos();
@@ -51,7 +35,7 @@ public class EquiposTest {
     /**
      * Test of anadirEquipo method, of class Equipos.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAnadirEquipo_Equipo() {
         System.out.println("anadirEquipo");
         Equipo equipo = new Arma("arma", 1, 1, 0, 2);
@@ -64,7 +48,7 @@ public class EquiposTest {
     /**
      * Test of modificarEquipo method, of class Equipos.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testModificarEquipo() {
         System.out.println("modificarEquipo");
         Equipo equipo = new Arma("arma", 1, 1, 0, 2);
@@ -78,7 +62,7 @@ public class EquiposTest {
     /**
      * Test of eliminarEquipo method, of class Equipos.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEliminarEquipo() {
         System.out.println("eliminarEquipo");
         Equipo equipo = new Arma("arma", 1, 1, 0, 2);

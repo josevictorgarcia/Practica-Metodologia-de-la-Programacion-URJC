@@ -4,12 +4,12 @@
  */
 package practica.mp.pkg2;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -19,28 +19,12 @@ public class LicantropoTest {
     
     public LicantropoTest() {
     }
-
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
     
 
     /**
      * Test of getPotencialAtaque method, of class Licantropo.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetPotencialAtaque() {
         System.out.println("getPotencialAtaque");
         Licantropo instance = new Licantropo("prueba", new Don("prueba",1,2,1));
@@ -62,7 +46,7 @@ public class LicantropoTest {
     /**
      * Test of getPotencialDefensa method, of class Licantropo.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetPotencialDefensa() {
         System.out.println("getPotencialAtaque");
         Licantropo instance = new Licantropo("prueba", new Don("prueba",1,2,1));
@@ -82,7 +66,7 @@ public class LicantropoTest {
     }
     
     
-    @org.junit.jupiter.api.Test
+    @Test
     public void testPrepararCombate() {
         System.out.println("prepararCombate");
         Licantropo instance = new Licantropo("licant", new Don("don",1,1,1));

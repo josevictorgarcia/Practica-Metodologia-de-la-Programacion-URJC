@@ -6,12 +6,12 @@ package practica.mp.pkg2;
 
 import java.util.Date;
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -22,26 +22,10 @@ public class CombateTest {
     public CombateTest() {
     }
 
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
-
     /**
      * Test of nuevaRonda method, of class Combate.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testNuevaRonda() {
         System.out.println("nuevaRonda");
         Licantropo personaje1= new Licantropo("prueba", new Don("prueba",1,2,1));
@@ -78,7 +62,7 @@ public class CombateTest {
     /**
      * Test of desarrolloCombate method, of class Combate.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testDesarrolloCombate() {
         System.out.println("desarrolloCombate");
         Licantropo personaje1= new Licantropo("prueba", new Don("prueba",1,2,1));

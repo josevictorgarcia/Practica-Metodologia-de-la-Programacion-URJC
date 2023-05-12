@@ -5,12 +5,12 @@
 package practica.mp.pkg2;
 
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -21,26 +21,10 @@ public class ClienteTest {
     public ClienteTest() {
     }
 
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
-
     /**
      * Test of cambiarPersonaje method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCambiarPersonaje() throws Exception {
         System.out.println("cambiarPersonaje");
         Habilidades habilidades = new Habilidades();
@@ -58,7 +42,7 @@ public class ClienteTest {
     /**
      * Test of elegirEquipo method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testElegirEquipo() {
         System.out.println("elegirEquipo");
         Menu menu = new Menu();
@@ -83,7 +67,7 @@ public class ClienteTest {
     /**
      * Test of desafiar method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testDesafiar() {
         System.out.println("desafiar");
         Menu menu = new Menu();
@@ -100,7 +84,7 @@ public class ClienteTest {
     /**
      * Test of responderDesafios method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testResponderDesafios() {
         System.out.println("responderDesafios");
         Menu menu = new Menu();
@@ -147,7 +131,7 @@ public class ClienteTest {
     /**
      * Test of hayDesafios method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testHayDesafios() {
         System.out.println("hayDesafios");
         Menu menu = new Menu();
@@ -163,7 +147,7 @@ public class ClienteTest {
     /**
      * Test of añadirCombate method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAñadirCombate() {
         System.out.println("a\u00f1adirCombate");
         Menu menu = new Menu();
@@ -180,7 +164,7 @@ public class ClienteTest {
     /**
      * Test of consultaCombates method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testConsultaCombates() {
         System.out.println("consultaCombates");
         Menu menu = new Menu();
@@ -198,7 +182,7 @@ public class ClienteTest {
     /**
      * Test of consultaRanking method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testConsultaRanking() {
         System.out.println("consultaRanking");
         Menu menu = new Menu();
@@ -214,7 +198,7 @@ public class ClienteTest {
     /**
      * Test of enviarDesafio method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEnviarDesafio() {
         System.out.println("enviarDesafio");
         Menu menu = new Menu();
@@ -259,7 +243,7 @@ public class ClienteTest {
     /**
      * Test of comprarItem method, of class Cliente.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testComprarItem() {
         System.out.println("comprarItem");
         Menu menu = new Menu();
