@@ -199,6 +199,8 @@ public class MenuTest {
     public void testAskEditarPersonaje() {
         System.out.println("askEditarPersonaje");
         Ranking rank = new Ranking();
+        Menu instance = new Menu();
+        GeneradorIDs generador = new GeneradorIDs();
         
         Licantropo personaje1= new Licantropo("prueba", new Don("prueba",1,2,1));
         personaje1.setRabia(0);
@@ -214,8 +216,6 @@ public class MenuTest {
         cliente.setPersonaje(personaje1);
         
         rank.añadirUsuario(cliente);
-        
-        Menu instance = new Menu();
         Personaje result = instance.askEditarPersonaje(rank);
         assertTrue(result!=null);
     }
