@@ -255,5 +255,4 @@ public class App {
     public void setGenerador(GeneradorIDs generador) {
         this.generador = generador;
     }
-    
 }

@@ -114,10 +114,10 @@ public class AppTest {
         Habilidades habilidadesCargadas = app.loadHabilidades();
     
         // Verificar que las habilidades cargadas son iguales a las habilidades originales
-        assertEquals(habilidades.getHabilidades().size(), habilidadesCargadas.getHabilidades().size());
-        assertEquals(habilidades.getTalento("Habilidad 1").getNombre(), habilidadesCargadas.getTalento("Habilidad 1").getNombre());
-        assertEquals(habilidades.getDisciplina("Habilidad 2").getNombre(), habilidadesCargadas.getDisciplina("Habilidad 2").getNombre());
-        assertEquals(habilidades.getDon("Habilidad 3").getNombre(), habilidadesCargadas.getDon("Habilidad 3").getNombre());
+        assertEquals(habilidades.getHabilidades().size(), habilidadesCargadas.getHabilidades().size()); //1
+        assertEquals(habilidades.getTalento("Habilidad 1").getNombre(), habilidadesCargadas.getTalento("Habilidad 1").getNombre()); //2
+        assertEquals(habilidades.getDisciplina("Habilidad 2").getNombre(), habilidadesCargadas.getDisciplina("Habilidad 2").getNombre()); //3
+        assertEquals(habilidades.getDon("Habilidad 3").getNombre(), habilidadesCargadas.getDon("Habilidad 3").getNombre()); //4
         
         // Restaurar las habilidades
         app.getHabilidades().setHabilidades(habilidades1.getHabilidades());
@@ -126,7 +126,7 @@ public class AppTest {
 
     /**
      * Test of run method, of class App.
-     */
+     **/
     @Test
     public void testRun() throws Exception {
         System.out.println("run");
@@ -134,5 +134,4 @@ public class AppTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
 }
