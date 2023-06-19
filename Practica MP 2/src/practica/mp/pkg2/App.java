@@ -41,86 +41,97 @@ public class App {
     
     //metodo principal que ejecuta la logica del programa
     public void run() throws InterruptedException, FileNotFoundException {
-        Usuario user = null;
-        while (user==null || user.isBaneado()){
-            user = menu.inicio(ranking, generador, habilidades);
-        }
-        //pregunta en bucle que hacer y le dice al usuario que lo haga
-        boolean end=false;
-        if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
-            Cliente cliente= (Cliente) user;
-            while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
-                if (cliente.hayDesafios()) { //comprueba si hay desafios validados que deba responder inmediatamente
-                    cliente.responderDesafios(ranking);
+        boolean finPrograma=false;
+        while (!finPrograma) {
+            Usuario user = null;
+            while (user==null || user.isBaneado()){
+                user = menu.inicio(ranking, generador, habilidades);
+            }
+            //pregunta en bucle que hacer y le dice al usuario que lo haga
+            boolean end=false;
+            if (user instanceof Cliente) { //acciones diferentes dependiendo de si es cliente o operadorSistema
+                Cliente cliente= (Cliente) user;
+                while (!end) {  //bucle hata que se elija DarseBaja o SalirSistema
+                    if (cliente.hayDesafios()) { //comprueba si hay desafios validados que deba responder inmediatamente
+                        cliente.responderDesafios(ranking);
+                    }
+                    else {
+                        AccionCliente accionCliente= menu.pedirAccionCliente(); //pide al usuario que elija una accion
+                        switch (accionCliente) {
+                            case DarseBaja:
+                                cliente.darseBaja(ranking);
+                                end=true;
+                                break;
+                            case SalirSistema:
+                                end=true;
+                                break;
+                            case CambiarPersonaje:
+                                cliente.cambiarPersonaje(habilidades);
+                                break;
+                            case ElegirEquipo:
+                                cliente.elegirEquipo();
+                                break;
+                            case Desafiar:
+                                cliente.desafiar(ranking, generador);
+                                break;
+                            case ResponderDesafios:
+                                cliente.responderDesafios(ranking);
+                                break;
+                            case ConsultaCombates:
+                                cliente.consultaCombates();
+                                break;
+                            case ConsultaRanking:
+                                cliente.consultaRanking(ranking);
+                                break;
+                            case ComprarItem:
+                                cliente.comprarItem(tienda);
+                                break;
+                            case FinPrograma:
+                                end=true;
+                                finPrograma=true;
+                                break;
+                        }
+                    }
                 }
-                else {
-                    AccionCliente accionCliente= menu.pedirAccionCliente(); //pide al usuario que elija una accion
-                    switch (accionCliente) {
+            } 
+            else {
+                OperadorSistema op= (OperadorSistema) user;
+                while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
+                    AccionOp accionOp=menu.pedirAccionOperador();
+                    switch (accionOp) {
                         case DarseBaja:
-                            cliente.darseBaja(ranking);
+                            op.darseBaja(ranking);
                             end=true;
                             break;
                         case SalirSistema:
                             end=true;
                             break;
-                        case CambiarPersonaje:
-                            cliente.cambiarPersonaje(habilidades);
+                        case EditarPersonaje:
+                            op.editarPersonaje(ranking);
                             break;
-                        case ElegirEquipo:
-                            cliente.elegirEquipo();
+                        case CompletarPersonaje:
+                            op.completarPersonaje(ranking, equipos);
                             break;
-                        case Desafiar:
-                            cliente.desafiar(ranking, generador);
+                        case ValidarDesafios:
+                            op.validarDesafios(ranking);
                             break;
-                        case ResponderDesafios:
-                            cliente.responderDesafios(ranking);
+                        case Banear:
+                            op.banear(ranking);
                             break;
-                        case ConsultaCombates:
-                            cliente.consultaCombates();
+                        case Desbanear:
+                            op.desbanear(ranking);
                             break;
-                        case ConsultaRanking:
-                            cliente.consultaRanking(ranking);
+                        case AñadirItemTienda:
+                            op.añadirItemTienda(equipos);
                             break;
-                        case ComprarItem:
-                            cliente.comprarItem(tienda);
+                        case AnadirHabilidad:
+                            op.añadirHabilidad(habilidades);
+                            break;
+                        case FinPrograma:
+                            end=true;
+                            finPrograma=true;
                             break;
                     }
-                }
-            }
-        } 
-        else {
-            OperadorSistema op= (OperadorSistema) user;
-            while (!end) { //bucle hasta que se elija DarseBaja o SalirSistema
-                AccionOp accionOp=menu.pedirAccionOperador();
-                switch (accionOp) {
-                    case DarseBaja:
-                        op.darseBaja(ranking);
-                        end=true;
-                        break;
-                    case SalirSistema:
-                        end=true;
-                        break;
-                    case EditarPersonaje:
-                        op.editarPersonaje(ranking);
-                        break;
-                    case CompletarPersonaje:
-                        op.completarPersonaje(ranking, equipos);
-                        break;
-                    case ValidarDesafios:
-                        op.validarDesafios(ranking);
-                        break;
-                    case Banear:
-                        op.banear(ranking);
-                        break;
-                    case Desbanear:
-                        op.desbanear(ranking);
-                        break;
-                    case AñadirItemTienda:
-                        op.añadirItemTienda(equipos);
-                        break;
-                    case AnadirHabilidad:
-                        op.añadirHabilidad(habilidades);
-                        break;
                 }
             }
         }

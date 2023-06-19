@@ -60,6 +60,7 @@ public class Menu implements Serializable{
                 if ("c".equals(tipo)) {
                     Cliente cliente = new Cliente(nickname, nickname, contra, this, generador);
                     ranking.añadirUsuario(cliente);
+                    ranking.actualizarRanking();
                     System.out.println("Cliente registrado");
                     cliente.cambiarPersonaje(habilidades);
                     return cliente;
@@ -67,6 +68,7 @@ public class Menu implements Serializable{
                 else {
                     OperadorSistema op = new OperadorSistema(nickname, nickname, contra, this);
                     ranking.añadirUsuario(op);
+                    ranking.actualizarRanking();
                     System.out.println("Operador de Sistema registrado");
                     return op;
                 }
@@ -77,7 +79,7 @@ public class Menu implements Serializable{
 
     //pide al cliente que accion quiere realizar y la ejecuta
     public AccionCliente pedirAccionCliente(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem' o cualquier otra cosa para SalirSistema");
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'CambiarPersonaje', 'ElegirEquipo', 'Desafiar', 'ResponderDesafios', 'ConsultaCombates', 'ComprarItem' , 'FinPrograma' o cualquier otra cosa para SalirSistema");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionCliente.DarseBaja;
@@ -93,6 +95,8 @@ public class Menu implements Serializable{
                 return AccionCliente.ConsultaCombates;
             case "ComprarItem":
                 return AccionCliente.ComprarItem;
+            case "FinPrograma":
+                return AccionCliente.FinPrograma;
             default:
                 return AccionCliente.SalirSistema;
         }
@@ -100,7 +104,7 @@ public class Menu implements Serializable{
     
     //pide a un operador la acción a realizar y la ejecuta
     public AccionOp pedirAccionOperador(){
-        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AnadirHabilidad' o cualquier otra cosa para SalirSistema");
+        String respuesta= pedirString("Escriba lo que quiere hacer: 'DarseBaja', 'EditarPersonaje', 'CompletarPersonaje', 'ValidarDesafio', 'Banear', 'Desbanear', 'AñadirItemTienda', 'AnadirHabilidad', 'FinPrograma' o cualquier otra cosa para SalirSistema");
         switch (respuesta) {
             case "DarseBaja":
                 return AccionOp.DarseBaja;
@@ -118,6 +122,8 @@ public class Menu implements Serializable{
                 return AccionOp.AñadirItemTienda;
             case "AnadirHabilidad":
                 return AccionOp.AnadirHabilidad;
+            case "FinPrograma":
+                return AccionOp.FinPrograma;
             default:
                 return AccionOp.SalirSistema;
         }
