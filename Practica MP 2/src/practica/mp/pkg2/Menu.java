@@ -60,6 +60,7 @@ public class Menu implements Serializable{
                 if ("c".equals(tipo)) {
                     Cliente cliente = new Cliente(nickname, nickname, contra, this, generador);
                     ranking.añadirUsuario(cliente);
+                    ranking.actualizarRanking();
                     System.out.println("Cliente registrado");
                     cliente.cambiarPersonaje(habilidades);
                     return cliente;
@@ -67,6 +68,7 @@ public class Menu implements Serializable{
                 else {
                     OperadorSistema op = new OperadorSistema(nickname, nickname, contra, this);
                     ranking.añadirUsuario(op);
+                    ranking.actualizarRanking();
                     System.out.println("Operador de Sistema registrado");
                     return op;
                 }

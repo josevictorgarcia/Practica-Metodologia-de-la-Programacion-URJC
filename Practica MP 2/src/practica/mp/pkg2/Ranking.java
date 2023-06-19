@@ -33,25 +33,27 @@ public class Ranking implements Serializable{
     
     //ordena los usuarios
     public void actualizarRanking () {
-        int i, j;
-        for (i = 0; i < ranking.size() - 1; i++) {
-            for (j = 0; j < ranking.size() - i - 1; j++) {
-                Usuario user1= ranking.get(j);
-                Usuario user2= ranking.get(j+1);
-                Usuario aux=null;
-                if (!(user1 instanceof Cliente)){
-                    aux=user1;
-                    ranking.set(j, user2);
-                    ranking.set(j+1, aux);
-                }
-                else {
-                    if (user2 instanceof Cliente) {
-                        Cliente cliente1= (Cliente) user1;
-                        Cliente cliente2= (Cliente) user2;
-                        if (cliente2.getPersonaje().getDesafios_ganados() > cliente1.getPersonaje().getDesafios_ganados()) {
-                            aux=user1;
-                            ranking.set(j, user2);
-                            ranking.set(j, aux);
+        if (ranking.size()>1) {
+            int i, j;
+            for (i = 0; i < ranking.size() - 1; i++) {
+                for (j = 0; j < ranking.size() - i - 2; j++) {
+                    Usuario user1= ranking.get(j);
+                    Usuario user2= ranking.get(j+1);
+                    Usuario aux=null;
+                    if (!(user1 instanceof Cliente)){
+                        aux=user1;
+                        ranking.set(j, user2);
+                        ranking.set(j+1, aux);
+                    }
+                    else {
+                        if (user2 instanceof Cliente) {
+                            Cliente cliente1= (Cliente) user1;
+                            Cliente cliente2= (Cliente) user2;
+                            if (cliente2.getPersonaje().getDesafios_ganados() > cliente1.getPersonaje().getDesafios_ganados()) {
+                                aux=user1;
+                                ranking.set(j, user2);
+                                ranking.set(j+1, aux);
+                            }
                         }
                     }
                 }
