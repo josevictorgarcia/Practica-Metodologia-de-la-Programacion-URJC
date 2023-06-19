@@ -11,5 +11,5 @@ package practica.mp.pkg2;
 
 //enumerado de acciones que puede realizar un OperadorSistema
 public enum AccionOp {
-    DarseBaja, SalirSistema, EditarPersonaje, CompletarPersonaje, ValidarDesafios, Banear, Desbanear, AñadirItemTienda, AnadirHabilidad
+    DarseBaja, SalirSistema, EditarPersonaje, CompletarPersonaje, ValidarDesafios, Banear, Desbanear, AñadirItemTienda, AnadirHabilidad, FinPrograma
 }
