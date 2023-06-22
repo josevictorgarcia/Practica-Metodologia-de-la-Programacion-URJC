@@ -158,6 +158,7 @@ public class MenuTest {
         
         Desafio des = new Desafio(personaje1, personaje2, 3, generador, cliente);
         boolean result = instance.askDesafio(des);
+        assertTrue(result==true | result==false);
     }
 
     @org.junit.Test

@@ -56,7 +56,6 @@ public class CombateTest {
         instance.nuevaRonda();
         // TODO review the generated test code and remove the default call to fail.
         assertTrue(instance.getRondas().size()>0);
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,7 +91,7 @@ public class CombateTest {
         Combate instance = new Combate(personaje1, personaje2);
         instance.desarrolloCombate();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue((personaje1.getSalud()==0) | (personaje2.getSalud()==0));
     }
 
     

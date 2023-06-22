@@ -31,8 +31,8 @@ public class TiendaTest {
         equipos.anadirEquipo(new Arma("arma2", 1, 0, 0 ,2));
         Tienda instance = new Tienda(equipos);
         instance.comprar(personaje);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(personaje.getOro()<50);
     }
     
 }

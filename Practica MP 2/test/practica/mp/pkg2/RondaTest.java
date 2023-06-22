@@ -51,7 +51,6 @@ public class RondaTest {
         
         Ronda instance = new Ronda(new Combate(personaje1, personaje2));
         instance.calculoRonda();
-        // Es random y no podemos hacer assert de nada
         
     }
 
@@ -73,10 +72,9 @@ public class RondaTest {
         personaje1.setArmadura_activa(armadura);
        
         Ronda instance = new Ronda(new Combate(personaje1, null));
-        int expResult = 0;
+        
         int result = instance.calculoNumExitosAtaque(personaje1);
-        //assertEquals(expResult, result);
-        //es random por lo que no podemos hacer assert de nada
+        assertTrue(result>=0);
         
     }
     
@@ -94,9 +92,10 @@ public class RondaTest {
         personaje1.setArmadura_activa(armadura);
        
         Ronda instance = new Ronda(new Combate(personaje1, null));
-        int expResult = 0;
+        
         int result = instance.calculoNumExitosDefensa(personaje1);
-        //es random por lo que no podemos hacer assert de nada
+        
+        assertTrue(result>=0);
     }
 
     

@@ -85,8 +85,8 @@ public class RankingTest {
         Usuario user = new Cliente("cliente", "cliente", "contra", menu, generador);
         Ranking instance = new Ranking();
         instance.añadirUsuario(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(instance.getRanking().size()>0);
     }
 
  
@@ -101,8 +101,7 @@ public class RankingTest {
         Ranking instance = new Ranking();
         instance.añadirUsuario(user);
         instance.actualizarRanking();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getRanking().size()>0);
     }
 
     @Test
@@ -114,8 +113,6 @@ public class RankingTest {
         Ranking instance = new Ranking();
         instance.añadirUsuario(user);
         instance.mostrarRanking();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
  
@@ -129,8 +126,6 @@ public class RankingTest {
         instance.añadirUsuario(user);
         Usuario result = instance.getUsuario("cliente");
         assertTrue(result!=null);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
    

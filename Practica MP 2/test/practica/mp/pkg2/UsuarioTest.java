@@ -33,8 +33,6 @@ public class UsuarioTest {
         instance.darseBaja(ranking);
         
         assertTrue(ranking.getUsuario("cliente")==null);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

@@ -36,7 +36,7 @@ public class ClienteTest {
         Cliente instance = new Cliente("cliente", "cliente","contra", menu, generador);
         instance.cambiarPersonaje(habilidades);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getPersonaje().getNombre()!="cliente");
     }
 
     /**
@@ -61,7 +61,7 @@ public class ClienteTest {
         instance.getPersonaje().setArmadura_activa(armadura);
         instance.elegirEquipo();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue((instance.getPersonaje().getArmadura_activa()!= null) && (instance.getPersonaje().getArmas_activas().size()>0));
     }
 
     /**
@@ -75,10 +75,11 @@ public class ClienteTest {
         Cliente instance = new Cliente("cliente", "cliente","contra", menu, generador);
         Ranking ranking = new Ranking();
         ranking.añadirUsuario(instance);
-        ranking.añadirUsuario(new Cliente ("cliente2","cliente2", "contra",menu,generador));
+        Cliente rival = new Cliente ("cliente2","cliente2", "contra",menu,generador);
+        ranking.añadirUsuario(rival);
         instance.desafiar(ranking, generador);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(rival.getDesafiosPendientes().size()>0);
     }
 
     /**
@@ -125,7 +126,7 @@ public class ClienteTest {
         des.validar();
         instance.responderDesafios(ranking);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getUltimosCombates().size()>0);
     }
 
     /**
@@ -140,8 +141,6 @@ public class ClienteTest {
         boolean expResult = false;
         boolean result = instance.hayDesafios();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -158,7 +157,7 @@ public class ClienteTest {
         Combate comb = new Combate(personaje1, personaje2);
         instance.añadirCombate(comb);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getUltimosCombates().size()>0);
     }
 
     /**
@@ -176,7 +175,7 @@ public class ClienteTest {
         instance.añadirCombate(comb);
         instance.consultaCombates();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getUltimosCombates().size()>0);
     }
 
     /**
@@ -237,7 +236,7 @@ public class ClienteTest {
         Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 2, generador, instance);
         instance.enviarDesafio(des, cliente2);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(cliente2.getDesafiosPendientes().size()>0);
     }
 
     /**
@@ -268,7 +267,7 @@ public class ClienteTest {
         Tienda tienda= new Tienda(equipos);
         instance.comprarItem(tienda);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getPersonaje().getOro()<50);
     }
 
     

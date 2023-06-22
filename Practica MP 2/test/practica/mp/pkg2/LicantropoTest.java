@@ -39,8 +39,6 @@ public class LicantropoTest {
         int expResult = 4;
         int result = instance.getPotencialAtaque();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,8 +59,6 @@ public class LicantropoTest {
         int expResult = 4;
         int result = instance.getPotencialDefensa();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
     
@@ -72,7 +68,7 @@ public class LicantropoTest {
         Licantropo instance = new Licantropo("licant", new Don("don",1,1,1));
         instance.prepararCombate();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue((instance.getSalud()==5)&&(instance.getRabia()==0));
     }
 
    

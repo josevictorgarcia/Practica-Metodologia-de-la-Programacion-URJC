@@ -29,7 +29,7 @@ public class EquiposTest {
         Equipos instance = new Equipos();
         instance.anadirEquipo();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getEquipos().size()>0);
     }
 
     /**
@@ -42,7 +42,7 @@ public class EquiposTest {
         Equipos instance = new Equipos();
         instance.anadirEquipo(equipo);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getEquipos().size()>0);
     }
 
     /**
@@ -56,7 +56,7 @@ public class EquiposTest {
         instance.anadirEquipo(equipo);
         instance.modificarEquipo();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue((equipo.getAtaque()!=1)|(equipo.getDefensa()!=1)|(equipo.getCoste()!=2));
     }
 
     /**
@@ -70,7 +70,7 @@ public class EquiposTest {
         instance.anadirEquipo(equipo);
         instance.eliminarEquipo();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getEquipos().size()==0);
     }
     
 }

@@ -60,7 +60,6 @@ public class DesafioTest {
         instance.validar();
         // TODO review the generated test code and remove the default call to fail.
         assertTrue(instance.isValidado());
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -102,7 +101,7 @@ public class DesafioTest {
         
         instance.aceptar(menu);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue((personaje1.getSalud()==0) | (personaje2.getSalud()==0));
     }
 
     /**
@@ -143,7 +142,7 @@ public class DesafioTest {
         Desafio instance = new Desafio(personaje1, personaje2, 2, generador, cliente);
         instance.rechazar();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(personaje2.getOro()<50);
     }
     
 }

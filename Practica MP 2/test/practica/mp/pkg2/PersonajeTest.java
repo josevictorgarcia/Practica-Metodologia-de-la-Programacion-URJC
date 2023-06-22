@@ -31,7 +31,7 @@ public class PersonajeTest {
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
         instance.anadirItem(item);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.getEquipo().size()>0);
     }
 
     /**
@@ -45,7 +45,6 @@ public class PersonajeTest {
         instance.modificarOro(cant);
         // TODO review the generated test code and remove the default call to fail.
         assertTrue(instance.getOro()==cant);
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,7 +57,6 @@ public class PersonajeTest {
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
         instance.ponerArmaActiva(arma);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
         assertTrue(instance.getArmas_activas().get(0).getNombre().equals(arma.getNombre())); //si el nombre del primer arma activa coincide con el del arma que acabamos de poner como activa
     }
 
@@ -73,8 +71,6 @@ public class PersonajeTest {
         boolean expResult = true;
         boolean result = instance.oroSuficiente(oro); //por defecto tiene 50 de oro
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,9 +84,7 @@ public class PersonajeTest {
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
         instance.añadirModificador(mod);
         
-        assertTrue(instance.calcularModificadoresAtaque()== ataque); 
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance.calcularModificadoresAtaque()== ataque);
     }
 
     /**
@@ -104,8 +98,6 @@ public class PersonajeTest {
         instance.añadirEsbirro(es);
         
         assertTrue(instance.getEsbirros().size() >0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -121,8 +113,6 @@ public class PersonajeTest {
         instance.calcularSaludEsbirros();
         
         assertTrue(instance.getSalud_esbirros()==salud);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -138,8 +128,6 @@ public class PersonajeTest {
         int expResult = ataque;
         int result = instance.calcularAtaqueEquipo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -154,8 +142,6 @@ public class PersonajeTest {
         int expResult = ataque;
         int result = instance.calcularModificadoresAtaque();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     @Test
@@ -167,17 +153,7 @@ public class PersonajeTest {
         int expResult = defensa;
         int result = instance.calcularModificadoresDefensa();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    
-   /* son metodos a los que se les hace override
-    @org.junit.jupiter.api.Test
-    public void testGetPotencialDefensa() {
-        
-    }
-*/
 
     
     

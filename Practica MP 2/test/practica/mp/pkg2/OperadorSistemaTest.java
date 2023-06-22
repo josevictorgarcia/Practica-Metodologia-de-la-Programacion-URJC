@@ -47,6 +47,8 @@ public class OperadorSistemaTest {
         
         OperadorSistema instance = new OperadorSistema("prueba", "prueba", "prueba", new Menu());
         instance.editarPersonaje(rank);
+        
+        assertTrue(! cliente.getPersonaje().getNombre().equals("cliente"));
     }
 
     @Test
@@ -79,6 +81,8 @@ public class OperadorSistemaTest {
         equipos.anadirEquipo(new Arma("arma2",1,0,1,2));
         OperadorSistema instance = new OperadorSistema("op", "op", "contra", menu);
         instance.completarPersonaje(rank, equipos);
+        
+        assertTrue(cliente.getPersonaje().getEquipo().size()>2);
     }
 
     @Test
@@ -124,6 +128,8 @@ public class OperadorSistemaTest {
         
         OperadorSistema op = new OperadorSistema("op", "op", "contra", menu);
         op.validarDesafios(ranking);
+        
+        assertTrue(des.isValidado());
     }
 
     @Test
@@ -160,6 +166,8 @@ public class OperadorSistemaTest {
         Menu menu = new Menu();
         OperadorSistema instance = new OperadorSistema("op", "op", "contra", menu);
         instance.añadirItemTienda(equipos);
+        
+        assertTrue(equipos.getEquipos().size()>0);
     }
 
     @Test
@@ -169,6 +177,8 @@ public class OperadorSistemaTest {
         Menu menu = new Menu();
         OperadorSistema instance = new OperadorSistema("op", "op", "contra", menu);
         instance.añadirHabilidad(habilidades);
+        
+        assertTrue(habilidades.getHabilidades().size()>0);
     }
     
 }
