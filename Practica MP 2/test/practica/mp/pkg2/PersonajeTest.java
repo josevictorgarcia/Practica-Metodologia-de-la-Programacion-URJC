@@ -40,11 +40,11 @@ public class PersonajeTest {
     @Test
     public void testModificarOro() {
         System.out.println("modificarOro");
-        int cant = 0;
+        int cant = 5;
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
         instance.modificarOro(cant);
         // TODO review the generated test code and remove the default call to fail.
-        assertTrue(instance.getOro()==cant);
+        assertTrue(instance.getOro()==50-cant);
     }
 
     /**
@@ -66,11 +66,10 @@ public class PersonajeTest {
     @Test
     public void testOroSuficiente() {
         System.out.println("oroSuficiente");
-        int oro = 5;
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
-        boolean expResult = true;
-        boolean result = instance.oroSuficiente(oro); //por defecto tiene 50 de oro
-        assertEquals(expResult, result);
+        assertEquals(true,instance.oroSuficiente(5));
+        assertEquals(true,instance.oroSuficiente(50));
+        assertEquals(false,instance.oroSuficiente(51));
     }
 
     /**
