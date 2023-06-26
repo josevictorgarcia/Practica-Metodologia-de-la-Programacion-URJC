@@ -218,8 +218,10 @@ public class Menu implements Serializable{
         for (Arma i: armasActivas) {
             mostrarString(i.getNombre());
         }
-        int num=-1;
-        while (num<0 || !(equipo.get(num) instanceof Arma)) {
+        int num=0;
+        boolean finBucle = false;
+        while (!finBucle){
+        //while (num<0 || !(equipo.get(num) instanceof Arma)) {
             String respuesta = pedirString("Escriba el numero del arma que desea incluir como activa");
             try {
                 num = Integer.parseInt(respuesta);
@@ -227,9 +229,16 @@ public class Menu implements Serializable{
             catch (Exception ex){
                 System.out.println("Error class menu method askArma");
             }
-            if (!(equipo.get(num) instanceof Arma)) {
-                mostrarString("El numero no corresponde a un arma");
+        //    if (!(equipo.get(num) instanceof Arma)) {
+            if ((num>=0) && (equipo.size()-1>=num) && (equipo.get(num) instanceof Arma)){
+                finBucle = true;
             }
+            else {
+                mostrarString("El numero no corresponde a un arma");
+                num = 0;
+            }
+        //    }
+        //}
         }
         return (Arma) equipo.get(num); 
     }
@@ -251,7 +260,8 @@ public class Menu implements Serializable{
             return null;
         }
         int num=-1;
-        while (num<0 || !(equipo.get(num) instanceof Armadura)) {
+        boolean finBucle = false;
+        while (!finBucle) {
             String respuesta = pedirString("Escriba el numero de la armadura que desea incluir como activa");
             try {
                 num = Integer.parseInt(respuesta);
@@ -259,8 +269,12 @@ public class Menu implements Serializable{
             catch (Exception ex){
                 System.out.println("Error class menu method askArmadura");
             }
-            if (!(equipo.get(num) instanceof Armadura)) {
-                mostrarString("El numero no corresponde a una Armadura");
+            if ((num>=0) && (equipo.size()-1>=num) && (equipo.get(num) instanceof Armadura)){
+                finBucle = true;
+            }
+            else {
+                mostrarString("El numero no corresponde a una armadura");
+                num = 0;
             }
         }
         return (Armadura) equipo.get(num); 
