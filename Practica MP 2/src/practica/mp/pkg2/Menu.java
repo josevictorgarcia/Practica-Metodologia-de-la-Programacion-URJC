@@ -612,21 +612,37 @@ public class Menu implements Serializable{
         }
     }
     
-     public Disciplina askDisciplina(Habilidades habilidades){
-        habilidades.mostrarDisciplinas();
-        String respuesta= pedirString ("Escribe el nombre de la disciplina elegida");
-        return habilidades.getDisciplina(respuesta);
+    public Disciplina askDisciplina(Habilidades habilidades){
+        Disciplina disc = null;
+        while(disc == null) {
+            habilidades.mostrarDisciplinas();
+            String respuesta= pedirString ("Escribe el nombre de la disciplina elegida");
+            disc = habilidades.getDisciplina(respuesta);
+        }
+        return disc;
+        //return habilidades.getDisciplina(respuesta);
     }
     
     public Don askDon(Habilidades habilidades){
-        habilidades.mostrarDones();
-        String respuesta= pedirString ("Escribe el nombre del don elegido");
-        return habilidades.getDon(respuesta);
+        Don d = null;
+        while(d == null) {
+            habilidades.mostrarDones();
+            String respuesta= pedirString ("Escribe el nombre del don elegido");
+            d = habilidades.getDon(respuesta);
+        }
+        return d;
+        //return habilidades.getDon(respuesta);
     }
     
     public Talento askTalento(Habilidades habilidades){
-        habilidades.mostrarTalentos();
-        String respuesta= pedirString ("Escribe el nombre del talento elegida");
-        return habilidades.getTalento(respuesta);
+        Talento t = null;
+        while(t == null){
+            habilidades.mostrarTalentos();
+            String respuesta= pedirString ("Escribe el nombre del talento elegida");
+            t = habilidades.getTalento(respuesta);
+        }
+        return t;
+        //return habilidades.getTalento(respuesta);
     }
 }
+
