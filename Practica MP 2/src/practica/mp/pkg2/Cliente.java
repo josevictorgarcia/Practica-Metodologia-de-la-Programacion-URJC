@@ -125,6 +125,7 @@ public class Cliente extends Usuario implements Serializable{
         if (item!=null) {
             if (item.getCoste() <= this.getPersonaje().getOro()) {
                 this.getPersonaje().setOro(this.getPersonaje().getOro()-item.getCoste());
+                this.comprobarOro(5);
                 this.getPersonaje().anadirItem(item);
                 getMenu().mostrarString("Comprado");
             }
@@ -132,9 +133,16 @@ public class Cliente extends Usuario implements Serializable{
                 getMenu().mostrarString("No tienes suficiente oro");
             }
         }
+        else{ 
+            getMenu().mostrarString("El numero seleccionado no se corresponde con un item de la tienda. Se procederá a salir de la tienda.");
+        }
     }
     
-    
+    public void comprobarOro(int oro){
+        if (this.personaje.getOro()<=0){
+            this.personaje.setOro(oro);
+        }
+    }
     
     //getters y setters
     public String getNumRegistro() {

@@ -589,7 +589,7 @@ public class Menu implements Serializable{
         }
         int size=tienda.getItems().getEquipos().size();
         int respuesta = pedirIntRango("Escribe el numero para comprar, o escribe "+size+" para salir", 0, size);
-        if (respuesta ==size) {
+        if (respuesta >= size || respuesta < 0) {
             return null;
         }
         else {

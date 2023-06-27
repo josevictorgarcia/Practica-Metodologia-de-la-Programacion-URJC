@@ -56,6 +56,7 @@ public class Desafio implements Serializable{
                 this.getDesafiado().setOro(this.getDesafiado().getOro()+this.getOro_apostado()); //suma oro apostado a ganador
                 this.desafiado.setDesafios_ganados(this.desafiado.getDesafios_ganados()+1);
             }
+            this.comprobarOro(10);
             menu.mostrarGanador(this.getVencedor());
         }
     }
@@ -202,6 +203,15 @@ public class Desafio implements Serializable{
         this.userDesafiante = userDesafiante;
     }
     
+    //Comprueba que al acabar un desafio, si el dinero de alguno de los personajes es cero, le añade un plus para que no se quede a cero
+    public void comprobarOro(int oro){
+        if (this.desafiado.getOro()<=0){
+            this.desafiado.setOro(oro);
+        }
+        else if (this.getDesafiante().getOro()<=0){
+            this.getDesafiante().setOro(oro);
+        }
+    }
     
     
 }
