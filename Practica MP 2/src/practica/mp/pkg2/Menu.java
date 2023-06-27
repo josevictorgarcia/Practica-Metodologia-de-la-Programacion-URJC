@@ -50,8 +50,8 @@ public class Menu implements Serializable{
             Usuario user =ranking.getUsuario(nickname);
             if(user!=null){
                 System.out.println("Nombre de usuario ya registrado");
-                Thread.sleep(3000);
-                inicio(ranking, generador, habilidades);
+//                Thread.sleep(3000);
+//                inicio(ranking, generador, habilidades);
             }else{
                 System.out.println("Escriba la contrasena");
                 String contra = scanner.nextLine();
