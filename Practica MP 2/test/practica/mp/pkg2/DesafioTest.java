@@ -56,7 +56,7 @@ public class DesafioTest {
         Cliente cliente = new Cliente("cliente", "cliente", "contra", menu , generador);
         cliente.setPersonaje(personaje1);
         
-        Desafio instance = new Desafio(personaje1, personaje2, 2, generador, cliente);
+        Desafio instance = new Desafio(personaje1, personaje2, 10, generador, cliente);
         instance.validar();
         // TODO review the generated test code and remove the default call to fail.
         assertTrue(instance.isValidado());
@@ -97,7 +97,7 @@ public class DesafioTest {
         Cliente cliente = new Cliente("cliente", "cliente", "contra", menu , generador);
         cliente.setPersonaje(personaje1);
         
-        Desafio instance = new Desafio(personaje1, personaje2, 2, generador, cliente);
+        Desafio instance = new Desafio(personaje1, personaje2, 10, generador, cliente);
         
         instance.aceptar(menu);
         // TODO review the generated test code and remove the default call to fail.
@@ -139,7 +139,7 @@ public class DesafioTest {
         Cliente cliente = new Cliente("cliente", "cliente", "contra", menu , generador);
         cliente.setPersonaje(personaje1);
         
-        Desafio instance = new Desafio(personaje1, personaje2, 2, generador, cliente);
+        Desafio instance = new Desafio(personaje1, personaje2, 10, generador, cliente);
         instance.rechazar();
         // TODO review the generated test code and remove the default call to fail.
         assertTrue(personaje2.getOro()<50);

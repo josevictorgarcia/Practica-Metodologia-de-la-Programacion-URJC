@@ -55,6 +55,23 @@ public class Ronda implements Serializable{
             if (getPersonaje1() instanceof Vampiro) {
                 Vampiro vampiro= (Vampiro) getPersonaje1();
                 vampiro.setSangre(vampiro.getSangre()+4);
+                if (vampiro.getSangre()>10) {
+                    vampiro.setSangre(10);
+                }
+            }
+            if (getPersonaje2() instanceof Cazador) {
+                Cazador cazador = (Cazador) getPersonaje2();
+                cazador.setVoluntad(cazador.getVoluntad()-1);
+                if (cazador.getVoluntad()<0) {
+                    cazador.setVoluntad(0);
+                }
+            }
+            if (getPersonaje2() instanceof Licantropo) {
+                Licantropo licantropo = (Licantropo) getPersonaje2();
+                licantropo.setRabia(licantropo.getRabia()+1);
+                if (licantropo.getRabia()>3) {
+                    licantropo.setRabia(3);
+                }
             }
             this.setAtaqueAPersonaje2(1);
         }
@@ -73,7 +90,24 @@ public class Ronda implements Serializable{
             if (getPersonaje2() instanceof Vampiro) {
                     Vampiro vampiro= (Vampiro) getPersonaje2();
                     vampiro.setSangre(vampiro.getSangre()+4);
+                    if (vampiro.getSangre()>10) {
+                        vampiro.setSangre(10);
+                    }
                 }
+            if (getPersonaje1() instanceof Cazador) {
+                Cazador cazador = (Cazador) getPersonaje1();
+                cazador.setVoluntad(cazador.getVoluntad()-1);
+                if (cazador.getVoluntad()<0) {
+                    cazador.setVoluntad(0);
+                }
+            }
+            if (getPersonaje1() instanceof Licantropo) {
+                Licantropo licantropo = (Licantropo) getPersonaje1();
+                licantropo.setRabia(licantropo.getRabia()+1);
+                if (licantropo.getRabia()>3) {
+                    licantropo.setRabia(3);
+                }
+            }
             this.setAtaqueAPersonaje1(1);
         }
     }

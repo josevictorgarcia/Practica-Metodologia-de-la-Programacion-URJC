@@ -156,7 +156,7 @@ public class MenuTest {
         Cliente cliente = new Cliente ("cliente", "cliente", "contra", instance, generador);
         cliente.setPersonaje(personaje1);
         
-        Desafio des = new Desafio(personaje1, personaje2, 3, generador, cliente);
+        Desafio des = new Desafio(personaje1, personaje2, 10, generador, cliente);
         boolean result = instance.askDesafio(des);
         assertTrue(result==true | result==false);
     }
@@ -338,7 +338,7 @@ public class MenuTest {
         ranking.añadirUsuario(instance);
         ranking.añadirUsuario(cliente2);
         
-        Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 2, generador, instance);
+        Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 10, generador, instance);
         instance.enviarDesafio(des, cliente2);
         
         

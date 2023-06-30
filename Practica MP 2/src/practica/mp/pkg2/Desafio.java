@@ -63,8 +63,9 @@ public class Desafio implements Serializable{
     
     //rechazar el desafio. Resta 10% del oro al desafiado
     public void rechazar() {
-        int oro_restante= (int) (this.desafiado.getOro()*0.9);
-        this.desafiado.setOro(oro_restante);
+        int oro_restante= (int) (this.oro_apostado*0.1);
+        this.desafiado.setOro(this.desafiado.getOro()- oro_restante);
+        this.desafiante.setOro(this.desafiante.getOro() + oro_restante);
     }
     
     //pide al desafiado y modifica las armas y armaduras que usará en el combate

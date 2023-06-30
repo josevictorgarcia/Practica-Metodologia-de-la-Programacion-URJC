@@ -121,7 +121,7 @@ public class ClienteTest {
         ranking.añadirUsuario(instance);
         ranking.añadirUsuario(cliente2);
         
-        Desafio des = new Desafio(cliente2.getPersonaje(), instance.getPersonaje(), 2, generador, cliente2);
+        Desafio des = new Desafio(cliente2.getPersonaje(), instance.getPersonaje(), 10, generador, cliente2);
         cliente2.enviarDesafio(des, instance);
         des.validar();
         instance.responderDesafios(ranking);
@@ -233,7 +233,7 @@ public class ClienteTest {
         ranking.añadirUsuario(instance);
         ranking.añadirUsuario(cliente2);
         
-        Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 2, generador, instance);
+        Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 10, generador, instance);
         instance.enviarDesafio(des, cliente2);
         // TODO review the generated test code and remove the default call to fail.
         assertTrue(cliente2.getDesafiosPendientes().size()>0);

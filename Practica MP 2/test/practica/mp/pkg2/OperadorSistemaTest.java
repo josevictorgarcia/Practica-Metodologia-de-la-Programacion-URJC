@@ -122,7 +122,7 @@ public class OperadorSistemaTest {
         ranking.añadirUsuario(instance);
         ranking.añadirUsuario(cliente2);
         
-        Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 2, generador, instance);
+        Desafio des = new Desafio(instance.getPersonaje(), cliente2.getPersonaje(), 10, generador, instance);
         instance.enviarDesafio(des, cliente2);
         
         
