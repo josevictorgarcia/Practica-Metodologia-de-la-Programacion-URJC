@@ -36,7 +36,7 @@ public class ClienteTest {
         Cliente instance = new Cliente("cliente", "cliente","contra", menu, generador);
         instance.cambiarPersonaje(habilidades);
         // TODO review the generated test code and remove the default call to fail.
-        assertTrue(instance.getPersonaje().getNombre()!="cliente");
+        assertTrue(!instance.getPersonaje().getNombre().equals("cliente"));
     }
 
     /**
