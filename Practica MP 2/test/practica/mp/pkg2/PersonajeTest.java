@@ -123,6 +123,7 @@ public class PersonajeTest {
         Personaje instance = new Licantropo("lican", new Don("don", 1,1,1));
         int ataque=2;
         Arma arma = new Arma("arma", ataque, 0, 1, 2);
+        instance.anadirItem(arma);
         instance.ponerArmaActiva(arma);
         int expResult = ataque;
         int result = instance.calcularAtaqueEquipo();
