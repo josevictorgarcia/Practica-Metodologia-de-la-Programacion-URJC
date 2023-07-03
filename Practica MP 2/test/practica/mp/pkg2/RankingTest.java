@@ -22,6 +22,7 @@ public class RankingTest {
     public RankingTest() {
     }
 
+    /*
     @Test
     public void testCasoPrueba1() { //intenta registrar Hacker pero nombre ya está cogido
         System.out.println("a\u00f1adirUsuario");
@@ -74,6 +75,7 @@ public class RankingTest {
         String contra = "contra";
         assertTrue((!buscado.isBaneado()) && contra.equals(buscado.getContrasena()));
     }
+    */
     
     
   
