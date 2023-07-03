@@ -54,7 +54,7 @@ public class Menu implements Serializable{
 //                inicio(ranking, generador, habilidades);
             }else{
                 System.out.println("Escriba la contrasena");
-                String contra = scanner.nextLine();
+                String contra = contrasenaNueva();      //Metodo que verifica que la contrasena tenga entre 8 y 12 caracteres
                 System.out.println("Escriba 'c' para Cliente o cualquier otra cosa para Operador de Sistema");
                 String tipo = scanner.nextLine();
                 if ("c".equals(tipo)) {
@@ -658,5 +658,18 @@ public class Menu implements Serializable{
         return t;
         //return habilidades.getTalento(respuesta);
     }
+
+    public String contrasenaNueva(){
+        String contrasena = " ";
+        do{
+            Scanner s = new Scanner(System.in);
+            contrasena = s.nextLine();
+            if (contrasena.length()<8 || contrasena.length()>12){
+                this.mostrarString("La contrasena debe tener entre 8 y 12 caracteres");
+            }
+        }while(contrasena.length()<8 || contrasena.length()>12);
+        return contrasena;
+    }
 }
+
 

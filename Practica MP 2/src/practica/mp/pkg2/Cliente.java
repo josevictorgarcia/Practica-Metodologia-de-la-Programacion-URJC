@@ -54,9 +54,13 @@ public class Cliente extends Usuario implements Serializable{
     //crea un desafio según el usuario y lo envia al usuario desafiado esperando que un Operador lo valide y después que el desafiado lo acepte o rechace
     public void desafiar (Ranking ranking, GeneradorIDs generador) {
         Cliente desafiado= getMenu().askDesafiado(ranking);
+        if (this.getPersonaje().getNombre() != desafiado.getPersonaje().getNombre()) {
         int oro=getMenu().askOroApostado(this.getPersonaje().getOro(), desafiado.getPersonaje().getOro());
         Desafio des = new Desafio(this.getPersonaje(), desafiado.getPersonaje(), oro, generador, this);
-        enviarDesafio(des, desafiado); //añade el desafio a desafiosPendientes del desafiado
+        enviarDesafio(des, desafiado);} //añade el desafio a desafiosPendientes del desafiado
+        else {
+            this.menu.mostrarString("No se puede desafiar a uno mismo");
+        }
     }
     
     
