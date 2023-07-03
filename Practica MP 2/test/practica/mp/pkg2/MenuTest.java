@@ -33,6 +33,56 @@ public class MenuTest {
         Usuario result = instance.inicio(ranking, generador, habilidades);
         assertTrue(result!=null);
     }
+    
+    @org.junit.Test
+    public void testInicio2() throws Exception { //intenta registrar Hacker pero nombre ya está cogido
+        System.out.println("inicio");
+        Ranking ranking = new Ranking();
+        GeneradorIDs generador = new GeneradorIDs();
+        Habilidades habilidades = new Habilidades();
+        Menu instance = new Menu();
+        ranking.añadirUsuario(new Cliente("Hacker","Hacker","contra",instance, generador));
+        Usuario result = instance.inicio(ranking, generador, habilidades);
+        assertTrue(result!=null);
+    }
+    
+    @org.junit.Test
+    public void testInicio3() throws Exception { //intenta logear Hacker pero no está registrado
+        System.out.println("inicio");
+        Ranking ranking = new Ranking();
+        GeneradorIDs generador = new GeneradorIDs();
+        Habilidades habilidades = new Habilidades();
+        Menu instance = new Menu();
+        Usuario result = instance.inicio(ranking, generador, habilidades);
+        assertTrue(result==null);
+    }
+    
+    @org.junit.Test
+    public void testInicio4() throws Exception { //intenta logear Hacker pero contraseña no es correcta
+        System.out.println("inicio");
+        Ranking ranking = new Ranking();
+        GeneradorIDs generador = new GeneradorIDs();
+        Habilidades habilidades = new Habilidades();
+        Menu instance = new Menu();
+        ranking.añadirUsuario(new Cliente("Hacker","Hacker","contra",instance, generador));
+        Usuario result = instance.inicio(ranking, generador, habilidades);
+        assertTrue(result==null);
+    }
+    
+    @org.junit.Test
+    public void testInicio5() throws Exception { //intenta logear Hacker pero está baneado
+        System.out.println("inicio");
+        Ranking ranking = new Ranking();
+        GeneradorIDs generador = new GeneradorIDs();
+        Habilidades habilidades = new Habilidades();
+        Menu instance = new Menu();
+        Usuario user = new Cliente("Hacker","Hacker","contra",instance, generador);
+        user.setBaneado(true);
+        ranking.añadirUsuario(user);
+        Usuario result = instance.inicio(ranking, generador, habilidades);
+        assertTrue(result==null);
+    }
+    
 
     @org.junit.Test
     public void testPedirAccionCliente() {
