@@ -70,8 +70,18 @@ public class RondaTest {
         Armadura armadura = new Armadura("armadura", 1,0,0);
         personaje1.anadirItem(armadura);
         personaje1.setArmadura_activa(armadura);
+        
+        Licantropo personaje2= new Licantropo("prueba", new Don("prueba",2,1,1));
+        personaje2.setRabia(0);
+        personaje2.setPoder(3);
+        Arma arma2 = new Arma("arma",2,0,0,2);
+        personaje2.anadirItem(arma2);
+        personaje2.ponerArmaActiva(arma2);
+        Armadura armadura2 = new Armadura("armadura", 1,0,0);
+        personaje2.anadirItem(armadura2);
+        personaje2.setArmadura_activa(armadura2);
        
-        Ronda instance = new Ronda(new Combate(personaje1, null));
+        Ronda instance = new Ronda(new Combate(personaje1, personaje2));
         
         int result = instance.calculoNumExitosAtaque(personaje1);
         assertTrue(result>=0);
@@ -90,8 +100,18 @@ public class RondaTest {
         Armadura armadura = new Armadura("armadura", 1,0,0);
         personaje1.anadirItem(armadura);
         personaje1.setArmadura_activa(armadura);
+        
+        Licantropo personaje2= new Licantropo("prueba", new Don("prueba",2,1,1));
+        personaje2.setRabia(0);
+        personaje2.setPoder(3);
+        Arma arma2 = new Arma("arma",2,0,0,2);
+        personaje2.anadirItem(arma2);
+        personaje2.ponerArmaActiva(arma2);
+        Armadura armadura2 = new Armadura("armadura", 1,0,0);
+        personaje2.anadirItem(armadura2);
+        personaje2.setArmadura_activa(armadura2);
        
-        Ronda instance = new Ronda(new Combate(personaje1, null));
+        Ronda instance = new Ronda(new Combate(personaje1, personaje2));
         
         int result = instance.calculoNumExitosDefensa(personaje1);
         
