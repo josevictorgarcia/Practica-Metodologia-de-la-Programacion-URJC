@@ -56,6 +56,7 @@ public class AppTest {
         equipos.anadirEquipo(equipo1);        
         try {
             app.saveEquipos();
+            assertNotNull(app.loadEquipos());
         } catch (Exception ex) {
             fail("No se debería haber producido una excepción");
         }
